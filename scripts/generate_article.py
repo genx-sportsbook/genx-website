@@ -12,6 +12,7 @@ import sys
 import json
 import random
 import re
+import time
 import urllib.request
 import urllib.error
 from datetime import date, datetime
@@ -110,19 +111,25 @@ def call_gemini(system: str, user: str) -> dict:
         },
     }).encode("utf-8")
 
-    req = urllib.request.Request(
-        GEMINI_URL,
-        data=payload,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            body = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        print(f"Gemini HTTP error {e.code}: {e.read().decode()}", file=sys.stderr)
-        sys.exit(1)
+    for attempt in range(4):
+        req = urllib.request.Request(
+            GEMINI_URL,
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                body = json.loads(resp.read().decode("utf-8"))
+                break
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < 3:
+                wait = 30 * (2 ** attempt)  # 30s, 60s, 120s
+                print(f"Rate limited (attempt {attempt + 1}), retrying in {wait}s...", file=sys.stderr)
+                time.sleep(wait)
+            else:
+                print(f"Gemini HTTP error {e.code}: {e.read().decode()}", file=sys.stderr)
+                sys.exit(1)
 
     text = body["candidates"][0]["content"]["parts"][0]["text"]
     # Strip markdown fences if present
