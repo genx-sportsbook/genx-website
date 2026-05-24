@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4125667313511978" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genx-Sportsbook — Sports Crypto Prediction Market Exchange</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-pink: #ff006e;
+    --neon-cyan: #00f5ff;
+    --neon-yellow: #ffe600;
+    --neon-green: #39ff14;
+    --neon-purple: #bf00ff;
+    --neon-orange: #ff6600;
+    --dark-bg: #050510;
+    --grid-color: rgba(0, 245, 255, 0.06);
+    --panel-bg: rgba(5, 5, 20, 0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark-bg);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* SCANLINES */
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* HORIZON GLOW */
+  .horizon {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(to top, rgba(191,0,255,0.15), transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .content { position: relative; z-index: 2; }
+
+  /* ─── HEADER ─── */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid rgba(0,245,255,0.2);
+    background: rgba(5,5,16,0.9);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Black Ops One', cursive;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    text-shadow:
+      0 0 10px var(--neon-cyan),
+      0 0 30px var(--neon-cyan),
+      0 0 60px rgba(0,245,255,0.5);
+    animation: pulse-logo 3s ease-in-out infinite;
+  }
+
+  .logo span { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 30px var(--neon-pink); }
+
+  @keyframes pulse-logo {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+  }
+
+  nav { display: flex; gap: 2rem; align-items: center; }
+  nav a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+  nav a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+  }
+
+  .cta-btn {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    padding: 0.6rem 1.4rem;
+    background: transparent;
+    border: 2px solid var(--neon-pink);
+    color: var(--neon-pink);
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .cta-btn:hover {
+    background: var(--neon-pink);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 40px rgba(255,0,110,0.4);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Retro sun */
+  .retro-sun {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, var(--neon-yellow) 0%, var(--neon-orange) 40%, var(--neon-pink) 100%);
+    box-shadow: 0 0 80px rgba(255,230,0,0.3), 0 0 160px rgba(255,102,0,0.2);
+    overflow: hidden;
+  }
+  .retro-sun::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent calc(8% - 2px),
+      var(--dark-bg) calc(8% - 2px),
+      var(--dark-bg) 8%
+    );
+    background-size: 100% 100%;
+  }
+
+  /* Neon grid floor */
+  .grid-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    overflow: hidden;
+  }
+  .grid-floor svg { width: 100%; height: 100%; }
+
+  .hero-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: flicker 4s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 96%, 100% { opacity: 1; }
+    97% { opacity: 0.6; }
+    98% { opacity: 1; }
+    99% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title .line1 {
+    display: block;
+    color: var(--neon-cyan);
+    text-shadow:
+      0 0 20px var(--neon-cyan),
+      0 0 60px rgba(0,245,255,0.6),
+      0 0 120px rgba(0,245,255,0.3),
+      4px 4px 0px rgba(191,0,255,0.8);
+  }
+
+  .hero-title .line2 {
+    display: block;
+    color: var(--neon-pink);
+    text-shadow:
+      0 0 20px var(--neon-pink),
+      0 0 60px rgba(255,0,110,0.6),
+      0 0 120px rgba(255,0,110,0.3),
+      -4px 4px 0px rgba(0,245,255,0.5);
+  }
+
+  .hero-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.8);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    padding: 1rem 2.5rem;
+    background: var(--neon-cyan);
+    border: none;
+    color: var(--dark-bg);
+    cursor: pointer;
+    text-transform: uppercase;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px rgba(0,245,255,0.4);
+    animation: pulse-btn 2s ease-in-out infinite;
+    transition: transform 0.1s;
+  }
+  .btn-primary:hover { transform: scale(1.05); }
+
+  @keyframes pulse-btn {
+    0%, 100% { box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px rgba(0,245,255,0.4); }
+    50% { box-shadow: 0 0 50px var(--neon-cyan), 0 0 100px rgba(0,245,255,0.6); }
+  }
+
+  .btn-secondary {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 2px solid var(--neon-purple);
+    color: var(--neon-purple);
+    cursor: pointer;
+    text-transform: uppercase;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    text-shadow: 0 0 8px var(--neon-purple);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: var(--neon-purple);
+    color: #fff;
+    box-shadow: 0 0 30px var(--neon-purple);
+  }
+
+  /* LIVE TICKER */
+  .ticker-wrap {
+    background: rgba(0,245,255,0.05);
+    border-top: 1px solid rgba(0,245,255,0.2);
+    border-bottom: 1px solid rgba(0,245,255,0.2);
+    overflow: hidden;
+    padding: 0.7rem 0;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 35s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.8);
+    padding: 0 3rem;
+  }
+
+  .ticker-item .up { color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green); }
+  .ticker-item .down { color: var(--neon-pink); text-shadow: 0 0 6px var(--neon-pink); }
+  .ticker-item .label { color: var(--neon-yellow); }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-item {
+    padding: 2rem;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-color, var(--neon-cyan));
+    box-shadow: 0 0 10px var(--accent-color, var(--neon-cyan));
+  }
+
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 2.2rem;
+    color: var(--accent-color, var(--neon-cyan));
+    text-shadow: 0 0 15px var(--accent-color, var(--neon-cyan));
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section { padding: 5rem 3rem; }
+
+  .section-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    color: var(--neon-pink);
+    text-shadow: 0 0 8px var(--neon-pink);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ─── MARKETS GRID ─── */
+  .markets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5px;
+    margin-top: 3rem;
+    background: rgba(0,245,255,0.08);
+    border: 1px solid rgba(0,245,255,0.1);
+  }
+
+  .market-card {
+    background: var(--dark-bg);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .market-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--card-color, var(--neon-cyan));
+    box-shadow: 0 0 12px var(--card-color, var(--neon-cyan));
+  }
+
+  .market-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(0,245,255,0.04), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .market-card:hover { background: rgba(0,245,255,0.03); }
+  .market-card:hover::after { opacity: 1; }
+
+  .market-sport {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--card-color, var(--neon-cyan));
+    text-shadow: 0 0 6px var(--card-color, var(--neon-cyan));
+    margin-bottom: 0.5rem;
+  }
+
+  .market-question {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.95);
+  }
+
+  .market-options { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+
+  .option-btn {
+    flex: 1;
+    padding: 0.6rem 0.5rem;
+    border: 1px solid var(--card-color, var(--neon-cyan));
+    background: transparent;
+    color: var(--card-color, var(--neon-cyan));
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .option-btn:hover, .option-btn.active {
+    background: var(--card-color, var(--neon-cyan));
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--card-color, var(--neon-cyan));
+  }
+
+  .market-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .prob-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .prob-fill {
+    height: 100%;
+    background: var(--card-color, var(--neon-cyan));
+    box-shadow: 0 0 8px var(--card-color, var(--neon-cyan));
+    transition: width 0.4s ease;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-it-works { background: rgba(0,0,0,0.3); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 3rem;
+    background: rgba(191,0,255,0.1);
+  }
+
+  .step-card {
+    background: rgba(5,5,16,0.95);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-number {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 4rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(191,0,255,0.3);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .step-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .step-icon svg { width: 100%; height: 100%; }
+
+  .step-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.3rem;
+    color: var(--neon-purple);
+    text-shadow: 0 0 10px rgba(191,0,255,0.5);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ─── NEON SPORTS ICONS SECTION ─── */
+  .sports-showcase {
+    padding: 4rem 3rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sports-icons-row {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sport-icon-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+
+  .sport-icon-wrap:hover .sport-icon-svg { filter: drop-shadow(0 0 20px var(--icon-color)); transform: scale(1.1); }
+
+  .sport-icon-svg {
+    width: 80px;
+    height: 80px;
+    transition: filter 0.2s, transform 0.2s;
+    filter: drop-shadow(0 0 8px var(--icon-color));
+  }
+
+  .sport-icon-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--icon-color);
+    text-transform: uppercase;
+  }
+
+  /* ─── LEADERBOARD ─── */
+  .leaderboard-wrap {
+    margin-top: 3rem;
+    border: 1px solid rgba(255,230,0,0.15);
+    overflow: hidden;
+  }
+
+  .lb-header {
+    display: grid;
+    grid-template-columns: 60px 1fr 140px 140px 120px;
+    background: rgba(255,230,0,0.05);
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid rgba(255,230,0,0.15);
+  }
+
+  .lb-col-head {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,230,0,0.6);
+    text-transform: uppercase;
+  }
+
+  .lb-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 140px 140px 120px;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: center;
+    transition: background 0.15s;
+  }
+
+  .lb-row:hover { background: rgba(255,230,0,0.03); }
+  .lb-row:last-child { border-bottom: none; }
+
+  .lb-rank {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .lb-rank.top { color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow); }
+
+  .lb-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .lb-handle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .lb-profit {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 8px var(--neon-green);
+  }
+
+  .lb-pct {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .lb-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── FEATURES ─── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    margin-top: 3rem;
+    background: rgba(57,255,20,0.08);
+  }
+
+  .feature-card {
+    background: var(--dark-bg);
+    padding: 2rem;
+    border-bottom: none;
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+
+  .feature-title {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-green);
+    text-shadow: 0 0 8px rgba(57,255,20,0.5);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .feature-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ─── BLOG / NEWS SECTION ─── */
+  .blog-section { background: rgba(0,0,0,0.2); }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    margin-top: 3rem;
+    background: rgba(0,245,255,0.06);
+    border: 1px solid rgba(0,245,255,0.08);
+  }
+
+  .blog-card {
+    background: var(--dark-bg);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--card-color, var(--neon-cyan));
+    box-shadow: 0 0 10px var(--card-color, var(--neon-cyan));
+  }
+
+  .blog-card:hover { background: rgba(0,245,255,0.02); }
+
+  .blog-category {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--card-color, var(--neon-cyan));
+    text-shadow: 0 0 6px var(--card-color, var(--neon-cyan));
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 1rem;
+  }
+
+  .blog-excerpt {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.55);
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-read-more {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--card-color, var(--neon-cyan));
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s, text-shadow 0.2s;
+  }
+
+  .blog-read-more:hover {
+    gap: 0.8rem;
+    text-shadow: 0 0 8px var(--card-color, var(--neon-cyan));
+  }
+
+  .blog-read-more::after { content: '→'; }
+
+  .blog-view-all {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    text-align: center;
+    padding: 7rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,245,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-title span:nth-child(1) {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 20px var(--neon-yellow), 0 0 60px rgba(255,230,0,0.4);
+    display: block;
+  }
+
+  .cta-title span:nth-child(2) {
+    color: white;
+    display: block;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+  }
+
+  .cta-desc {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .email-form {
+    display: flex;
+    gap: 0;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .email-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(0,245,255,0.3);
+    border-right: none;
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .email-input:focus { border-color: var(--neon-cyan); }
+  .email-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .email-submit {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    padding: 1rem 1.5rem;
+    background: var(--neon-cyan);
+    border: 2px solid var(--neon-cyan);
+    color: var(--dark-bg);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .email-submit:hover {
+    background: var(--dark-bg);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 20px var(--neon-cyan);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.3rem;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+  }
+
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--neon-cyan); }
+
+  .footer-copy {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+  }
+
+  /* DECORATIVE CORNER BRACKETS */
+  .bracket-tl, .bracket-tr, .bracket-bl, .bracket-br {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: rgba(0,245,255,0.4);
+    border-style: solid;
+  }
+  .bracket-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .bracket-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .bracket-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .bracket-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+  /* BLINKING CURSOR */
+  .blink { animation: blink 1s step-end infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    header { padding: 1rem 1.5rem; }
+    nav { display: none; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .section { padding: 3rem 1.5rem; }
+    .lb-header, .lb-row { grid-template-columns: 50px 1fr 100px; }
+    .lb-pct, .lb-badge { display: none; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="scanlines"></div>
+<div class="horizon"></div>
+
+<div class="content">
+
+<!-- HEADER -->
+<header>
+  <div class="logo">GENX<span>SPORTSBOOK</span></div>
+  <nav>
+    <a href="#">Markets</a>
+    <a href="#">Leaderboard</a>
+    <a href="#">Sports</a>
+    <a href="#">Live</a>
+    <a href="#">News</a>
+    <a href="#">Docs</a>
+  </nav>
+  <a href="#" class="cta-btn">Get Started</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="retro-sun"></div>
+
+  <!-- Neon grid floor SVG -->
+  <div class="grid-floor">
+    <svg viewBox="0 0 1400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gridFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(0,245,255,0.6)"/>
+          <stop offset="100%" stop-color="rgba(0,245,255,0.05)"/>
+        </linearGradient>
+      </defs>
+      <line x1="0" y1="200" x2="1400" y2="200" stroke="url(#gridFade)" stroke-width="1"/>
+      <line x1="0" y1="160" x2="1400" y2="160" stroke="rgba(0,245,255,0.3)" stroke-width="0.7"/>
+      <line x1="0" y1="120" x2="1400" y2="120" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="0" y1="80" x2="1400" y2="80" stroke="rgba(0,245,255,0.12)" stroke-width="0.4"/>
+      <line x1="0" y1="40" x2="1400" y2="40" stroke="rgba(0,245,255,0.06)" stroke-width="0.3"/>
+      <line x1="700" y1="0" x2="0" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="140" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="280" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="420" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="560" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="700" y2="200" stroke="rgba(0,245,255,0.3)" stroke-width="0.7"/>
+      <line x1="700" y1="0" x2="840" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="980" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="1120" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="1260" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="1400" y2="200" stroke="rgba(0,245,255,0.2)" stroke-width="0.5"/>
+    </svg>
+  </div>
+
+  <p class="hero-eyebrow">// Sports Crypto Prediction Market Exchange //</p>
+
+  <h1 class="hero-title">
+    <span class="line1">PREDICT.</span>
+    <span class="line2">PROFIT.</span>
+  </h1>
+
+  <p class="hero-subtitle">
+    A next-generation sports prediction exchange powered by crypto markets.
+    Trade outcome shares on the world's biggest sporting events.<span class="blink">_</span>
+  </p>
+
+  <div class="hero-buttons">
+    <button class="btn-primary">GET STARTED</button>
+    <button class="btn-secondary">HOW IT WORKS</button>
+  </div>
+</section>
+
+<!-- LIVE TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="label">⚽ MAN UTD WIN UEFA</span> 34¢ <span class="up">▲2.4%</span></span>
+    <span class="ticker-item"><span class="label">🏀 CELTICS -7.5 ATS</span> 61¢ <span class="down">▼1.2%</span></span>
+    <span class="ticker-item"><span class="label">🏈 CHIEFS SB LIX</span> 28¢ <span class="up">▲5.1%</span></span>
+    <span class="ticker-item"><span class="label">⚾ DODGERS WS</span> 42¢ <span class="up">▲0.8%</span></span>
+    <span class="ticker-item"><span class="label">🎾 DJOKOVIC WIMBLEDON</span> 55¢ <span class="down">▼3.3%</span></span>
+    <span class="ticker-item"><span class="label">🏒 LEAFS WIN STANLEY</span> 8¢ <span class="up">▲0.1%</span></span>
+    <span class="ticker-item"><span class="label">🥊 FURY REMATCH</span> 49¢ <span class="up">▲7.2%</span></span>
+    <span class="ticker-item"><span class="label">🏎 VERSTAPPEN F1 CHAMP</span> 71¢ <span class="down">▼0.5%</span></span>
+    <span class="ticker-item"><span class="label">⚽ MAN UTD WIN UEFA</span> 34¢ <span class="up">▲2.4%</span></span>
+    <span class="ticker-item"><span class="label">🏀 CELTICS -7.5 ATS</span> 61¢ <span class="down">▼1.2%</span></span>
+    <span class="ticker-item"><span class="label">🏈 CHIEFS SB LIX</span> 28¢ <span class="up">▲5.1%</span></span>
+    <span class="ticker-item"><span class="label">⚾ DODGERS WS</span> 42¢ <span class="up">▲0.8%</span></span>
+    <span class="ticker-item"><span class="label">🎾 DJOKOVIC WIMBLEDON</span> 55¢ <span class="down">▼3.3%</span></span>
+    <span class="ticker-item"><span class="label">🏒 LEAFS WIN STANLEY</span> 8¢ <span class="up">▲0.1%</span></span>
+    <span class="ticker-item"><span class="label">🥊 FURY REMATCH</span> 49¢ <span class="up">▲7.2%</span></span>
+    <span class="ticker-item"><span class="label">🏎 VERSTAPPEN F1 CHAMP</span> 71¢ <span class="down">▼0.5%</span></span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item" style="--accent-color: var(--neon-cyan)">
+    <span class="stat-num">$42.2B</span>
+    <span class="stat-label">Total Volume Traded</span>
+  </div>
+  <div class="stat-item" style="--accent-color: var(--neon-pink)">
+    <span class="stat-num">847K</span>
+    <span class="stat-label">Active Traders</span>
+  </div>
+  <div class="stat-item" style="--accent-color: var(--neon-yellow)">
+    <span class="stat-num">12,400</span>
+    <span class="stat-label">Open Markets</span>
+  </div>
+  <div class="stat-item" style="--accent-color: var(--neon-green)">
+    <span class="stat-num">98.7%</span>
+    <span class="stat-label">Resolution Accuracy</span>
+  </div>
+</div>
+
+<!-- LIVE MARKETS -->
+<section class="section">
+  <span class="section-tag">// Live Markets //</span>
+  <h2 class="section-title" style="color: var(--neon-cyan); text-shadow: 0 0 30px rgba(0,245,255,0.4);">ACTIVE CONTRACTS</h2>
+  <p style="color: rgba(255,255,255,0.5); font-size: 1rem; max-width: 600px; line-height: 1.6;">Trade outcome shares across the world's biggest sporting events, from major leagues to niche competitions.</p>
+
+  <div class="markets-grid">
+
+    <div class="market-card" style="--card-color: var(--neon-cyan)">
+      <div class="bracket-tl"></div><div class="bracket-tr"></div><div class="bracket-bl"></div><div class="bracket-br"></div>
+      <div class="market-sport">🏈 NFL • LIVE</div>
+      <div class="market-question">Will the Chiefs cover -6.5 vs the Ravens in the AFC Championship?</div>
+      <div class="prob-bar"><div class="prob-fill" style="width: 63%"></div></div>
+      <div class="market-options">
+        <button class="option-btn">YES 63¢</button>
+        <button class="option-btn">NO 37¢</button>
+      </div>
+      <div class="market-meta">
+        <span>Vol: $1.24M</span>
+        <span>4,812 traders</span>
+        <span>Closes: 6h 32m</span>
+      </div>
+    </div>
+
+    <div class="market-card" style="--card-color: var(--neon-pink)">
+      <div class="bracket-tl" style="border-color: rgba(255,0,110,0.4)"></div><div class="bracket-tr" style="border-color: rgba(255,0,110,0.4)"></div><div class="bracket-bl" style="border-color: rgba(255,0,110,0.4)"></div><div class="bracket-br" style="border-color: rgba(255,0,110,0.4)"></div>
+      <div class="market-sport">⚽ PREMIER LEAGUE • HOT</div>
+      <div class="market-question">Will Arsenal clinch the title by Gameweek 34?</div>
+      <div class="prob-bar"><div class="prob-fill" style="width: 41%"></div></div>
+      <div class="market-options">
+        <button class="option-btn">YES 41¢</button>
+        <button class="option-btn">NO 59¢</button>
+      </div>
+      <div class="market-meta">
+        <span>Vol: $876K</span>
+        <span>3,201 traders</span>
+        <span>Closes: 12d</span>
+      </div>
+    </div>
+
+    <div class="market-card" style="--card-color: var(--neon-yellow)">
+      <div class="bracket-tl" style="border-color: rgba(255,230,0,0.4)"></div><div class="bracket-tr" style="border-color: rgba(255,230,0,0.4)"></div><div class="bracket-bl" style="border-color: rgba(255,230,0,0.4)"></div><div class="bracket-br" style="border-color: rgba(255,230,0,0.4)"></div>
+      <div class="market-sport">🎾 GRAND SLAM • TRENDING</div>
+      <div class="market-question">Will Sinner win the French Open 2026?</div>
+      <div class="prob-bar"><div class="prob-fill" style="width: 29%"></div></div>
+      <div class="market-options">
+        <button class="option-btn">YES 29¢</button>
+        <button class="option-btn">NO 71¢</button>
+      </div>
+      <div class="market-meta">
+        <span>Vol: $542K</span>
+        <span>2,109 traders</span>
+        <span>Closes: 58d</span>
+      </div>
+    </div>
+
+    <div class="market-card" style="--card-color: var(--neon-green)">
+      <div class="bracket-tl" style="border-color: rgba(57,255,20,0.4)"></div><div class="bracket-tr" style="border-color: rgba(57,255,20,0.4)"></div><div class="bracket-bl" style="border-color: rgba(57,255,20,0.4)"></div><div class="bracket-br" style="border-color: rgba(57,255,20,0.4)"></div>
+      <div class="market-sport">🏀 NBA • SEASON</div>
+      <div class="market-question">Will LeBron average 25+ PPG through the 2026 playoffs?</div>
+      <div class="prob-bar"><div class="prob-fill" style="width: 54%"></div></div>
+      <div class="market-options">
+        <button class="option-btn">YES 54¢</button>
+        <button class="option-btn">NO 46¢</button>
+      </div>
+      <div class="market-meta">
+        <span>Vol: $394K</span>
+        <span>1,887 traders</span>
+        <span>Closes: 34d</span>
+      </div>
+    </div>
+
+    <div class="market-card" style="--card-color: var(--neon-orange)">
+      <div class="bracket-tl" style="border-color: rgba(255,102,0,0.4)"></div><div class="bracket-tr" style="border-color: rgba(255,102,0,0.4)"></div><div class="bracket-bl" style="border-color: rgba(255,102,0,0.4)"></div><div class="bracket-br" style="border-color: rgba(255,102,0,0.4)"></div>
+      <div class="market-sport">🏎 F1 • SEASON</div>
+      <div class="market-question">Will Max Verstappen win the 2026 Constructor's Championship?</div>
+      <div class="prob-bar"><div class="prob-fill" style="width: 71%"></div></div>
+      <div class="market-options">
+        <button class="option-btn">YES 71¢</button>
+        <button class="option-btn">NO 29¢</button>
+      </div>
+      <div class="market-meta">
+        <span>Vol: $1.1M</span>
+        <span>5,403 traders</span>
+        <span>Closes: 180d</span>
+      </div>
+    </div>
+
+    <div class="market-card" style="--card-color: var(--neon-purple)">
+      <div class="bracket-tl" style="border-color: rgba(191,0,255,0.4)"></div><div class="bracket-tr" style="border-color: rgba(191,0,255,0.4)"></div><div class="bracket-bl" style="border-color: rgba(191,0,255,0.4)"></div><div class="bracket-br" style="border-color: rgba(191,0,255,0.4)"></div>
+      <div class="market-sport">🥊 BOXING • UPCOMING</div>
+      <div class="market-question">Will Tyson Fury knock out Anthony Joshua in their rematch?</div>
+      <div class="prob-bar"><div class="prob-fill" style="width: 48%"></div></div>
+      <div class="market-options">
+        <button class="option-btn">YES 48¢</button>
+        <button class="option-btn">NO 52¢</button>
+      </div>
+      <div class="market-meta">
+        <span>Vol: $2.3M</span>
+        <span>9,871 traders</span>
+        <span>Closes: 21d</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPORTS NEON SHOWCASE -->
+<section class="sports-showcase">
+  <span class="section-tag">// Covered Sports //</span>
+  <h2 class="section-title" style="color: var(--neon-pink); text-shadow: 0 0 30px rgba(255,0,110,0.4);">EVERY SPORT. EVERY MARKET.</h2>
+
+  <div class="sports-icons-row">
+
+    <div class="sport-icon-wrap" style="--icon-color: var(--neon-cyan)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="40" cy="40" rx="28" ry="20" fill="none" stroke="#00f5ff" stroke-width="2.5"/>
+        <line x1="12" y1="40" x2="68" y2="40" stroke="#00f5ff" stroke-width="1.5"/>
+        <line x1="40" y1="20" x2="40" y2="60" stroke="#00f5ff" stroke-width="1.5"/>
+        <line x1="30" y1="25" x2="50" y2="25" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
+        <line x1="26" y1="33" x2="54" y2="33" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
+        <line x1="26" y1="47" x2="54" y2="47" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
+        <line x1="30" y1="55" x2="50" y2="55" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
+      </svg>
+      <span class="sport-icon-label">Football</span>
+    </div>
+
+    <div class="sport-icon-wrap" style="--icon-color: var(--neon-orange)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#ff6600" stroke-width="2.5"/>
+        <line x1="14" y1="40" x2="66" y2="40" stroke="#ff6600" stroke-width="1.5"/>
+        <line x1="40" y1="14" x2="40" y2="66" stroke="#ff6600" stroke-width="1.5"/>
+        <path d="M 20 20 Q 40 30 60 20" fill="none" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
+        <path d="M 20 60 Q 40 50 60 60" fill="none" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
+        <path d="M 14 40 Q 25 40 30 25" fill="none" stroke="#ff6600" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+      <span class="sport-icon-label">Basketball</span>
+    </div>
+
+    <div class="sport-icon-wrap" style="--icon-color: var(--neon-green)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#39ff14" stroke-width="2.5"/>
+        <polygon points="40,16 49,26 46,38 34,38 31,26" fill="none" stroke="#39ff14" stroke-width="1.5" opacity="0.9"/>
+        <line x1="40" y1="16" x2="40" y2="26" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
+        <line x1="46" y1="38" x2="54" y2="44" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
+        <line x1="34" y1="38" x2="26" y2="44" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
+        <line x1="46" y1="38" x2="50" y2="52" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
+        <line x1="34" y1="38" x2="30" y2="52" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
+      </svg>
+      <span class="sport-icon-label">Soccer</span>
+    </div>
+
+    <div class="sport-icon-wrap" style="--icon-color: var(--neon-yellow)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#ffe600" stroke-width="2.5"/>
+        <path d="M 22 28 Q 35 40 22 52" fill="none" stroke="#ffe600" stroke-width="2" opacity="0.8"/>
+        <path d="M 58 28 Q 45 40 58 52" fill="none" stroke="#ffe600" stroke-width="2" opacity="0.8"/>
+        <rect x="35" y="52" width="8" height="14" rx="2" fill="none" stroke="#ffe600" stroke-width="1.8"/>
+        <line x1="14" y1="40" x2="35" y2="52" stroke="#ffe600" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+      <span class="sport-icon-label">Tennis</span>
+    </div>
+
+    <div class="sport-icon-wrap" style="--icon-color: var(--neon-pink)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 8 46 L 20 34 L 50 30 L 68 38 L 72 46 L 8 46 Z" fill="none" stroke="#ff006e" stroke-width="2.5"/>
+        <circle cx="22" cy="48" r="6" fill="none" stroke="#ff006e" stroke-width="2"/>
+        <circle cx="56" cy="48" r="6" fill="none" stroke="#ff006e" stroke-width="2"/>
+        <line x1="28" y1="48" x2="50" y2="48" stroke="#ff006e" stroke-width="2" opacity="0.4"/>
+        <line x1="30" y1="34" x2="32" y2="22" stroke="#ff006e" stroke-width="2" opacity="0.7"/>
+        <line x1="32" y1="22" x2="48" y2="22" stroke="#ff006e" stroke-width="2" opacity="0.7"/>
+        <path d="M 14 38 L 10 28 L 20 30" fill="none" stroke="#ff006e" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+      <span class="sport-icon-label">Formula 1</span>
+    </div>
+
+    <div class="sport-icon-wrap" style="--icon-color: var(--neon-purple)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 25 50 Q 20 40 28 30 Q 36 20 46 24 Q 58 26 58 38 L 56 52 Q 52 62 42 62 Q 32 62 25 50 Z" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
+        <line x1="30" y1="62" x2="28" y2="72" stroke="#bf00ff" stroke-width="2" opacity="0.7"/>
+        <line x1="50" y1="62" x2="52" y2="72" stroke="#bf00ff" stroke-width="2" opacity="0.7"/>
+        <line x1="28" y1="72" x2="52" y2="72" stroke="#bf00ff" stroke-width="2.5" opacity="0.8"/>
+        <line x1="40" y1="30" x2="40" y2="52" stroke="#bf00ff" stroke-width="1.5" opacity="0.4"/>
+        <line x1="28" y1="38" x2="54" y2="42" stroke="#bf00ff" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+      <span class="sport-icon-label">Boxing</span>
+    </div>
+
+    <div class="sport-icon-wrap" style="--icon-color: #00ffcc">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <rect x="34" y="16" width="12" height="38" rx="4" fill="none" stroke="#00ffcc" stroke-width="2.5"/>
+        <line x1="30" y1="54" x2="50" y2="54" stroke="#00ffcc" stroke-width="2"/>
+        <circle cx="26" cy="28" r="10" fill="none" stroke="#00ffcc" stroke-width="2" opacity="0.8"/>
+        <line x1="22" y1="24" x2="30" y2="32" stroke="#00ffcc" stroke-width="1.5" opacity="0.6"/>
+        <line x1="36" y1="62" x2="34" y2="70" stroke="#00ffcc" stroke-width="2"/>
+        <line x1="44" y1="62" x2="46" y2="70" stroke="#00ffcc" stroke-width="2"/>
+      </svg>
+      <span class="sport-icon-label" style="color: #00ffcc; text-shadow: 0 0 6px #00ffcc">Cricket</span>
+    </div>
+
+    <div class="sport-icon-wrap" style="--icon-color: #00aaff">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="14" x2="30" y2="56" stroke="#00aaff" stroke-width="2.5"/>
+        <path d="M 30 56 Q 34 68 50 68 Q 62 68 62 60 Q 62 52 50 52 L 30 52" fill="none" stroke="#00aaff" stroke-width="2.5"/>
+        <circle cx="55" cy="72" r="5" fill="none" stroke="#00aaff" stroke-width="2"/>
+      </svg>
+      <span class="sport-icon-label" style="color: #00aaff; text-shadow: 0 0 6px #00aaff">Hockey</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-it-works">
+  <span class="section-tag">// The Exchange //</span>
+  <h2 class="section-title" style="color: var(--neon-purple); text-shadow: 0 0 30px rgba(191,0,255,0.4);">HOW IT WORKS</h2>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-number">01</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="10" width="40" height="30" rx="4" fill="none" stroke="#bf00ff" stroke-width="2"/>
+          <line x1="5" y1="20" x2="45" y2="20" stroke="#bf00ff" stroke-width="1.5"/>
+          <circle cx="14" cy="15" r="2" fill="#bf00ff"/>
+          <circle cx="22" cy="15" r="2" fill="#bf00ff" opacity="0.5"/>
+          <rect x="10" y="26" width="12" height="8" rx="2" fill="none" stroke="#bf00ff" stroke-width="1.5"/>
+          <line x1="27" y1="30" x2="40" y2="30" stroke="#bf00ff" stroke-width="1.5" opacity="0.6"/>
+          <line x1="27" y1="34" x2="36" y2="34" stroke="#bf00ff" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="step-title">FUND YOUR ACCOUNT</div>
+      <div class="step-desc">Deposit crypto or fiat. Your funds are held in a non-custodial smart contract — always in your control.</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">02</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="25" r="18" fill="none" stroke="#bf00ff" stroke-width="2"/>
+          <line x1="25" y1="10" x2="25" y2="25" stroke="#bf00ff" stroke-width="2.5"/>
+          <line x1="25" y1="25" x2="35" y2="30" stroke="#bf00ff" stroke-width="2"/>
+          <circle cx="25" cy="25" r="2.5" fill="#bf00ff"/>
+        </svg>
+      </div>
+      <div class="step-title">PICK YOUR MARKET</div>
+      <div class="step-desc">Browse thousands of live and upcoming sports markets. Filter by sport, date, volume, or category.</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">03</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="5,40 14,28 23,32 32,18 41,22 46,12" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
+          <circle cx="46" cy="12" r="3" fill="#bf00ff"/>
+          <line x1="5" y1="40" x2="46" y2="40" stroke="#bf00ff" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="step-title">TRADE SHARES</div>
+      <div class="step-desc">Buy YES or NO shares. Prices update in real time based on market activity. Sell at any time to lock in your position.</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">04</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="25" r="18" fill="none" stroke="#bf00ff" stroke-width="2"/>
+          <line x1="25" y1="14" x2="25" y2="20" stroke="#bf00ff" stroke-width="2"/>
+          <line x1="25" y1="30" x2="25" y2="36" stroke="#bf00ff" stroke-width="2"/>
+          <line x1="16" y1="20" x2="34" y2="20" stroke="#bf00ff" stroke-width="1.5"/>
+          <line x1="16" y1="30" x2="34" y2="30" stroke="#bf00ff" stroke-width="1.5" opacity="0.6"/>
+          <text x="22" y="27" fill="#bf00ff" font-size="9" font-weight="700">$</text>
+        </svg>
+      </div>
+      <div class="step-title">COLLECT WINNINGS</div>
+      <div class="step-desc">Correct predictions resolve to $1 per share. Payouts are automatic and gas-optimised via smart contract.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="section">
+  <span class="section-tag">// Hall of Fame //</span>
+  <h2 class="section-title" style="color: var(--neon-yellow); text-shadow: 0 0 30px rgba(255,230,0,0.4);">TOP FORECASTERS</h2>
+
+  <div class="leaderboard-wrap">
+    <div class="lb-header">
+      <div class="lb-col-head">Rank</div>
+      <div class="lb-col-head">Trader</div>
+      <div class="lb-col-head">All-Time Profit</div>
+      <div class="lb-col-head">Win Rate</div>
+      <div class="lb-col-head">Specialty</div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank top">01</div>
+      <div><div class="lb-name">CryptoKing88</div><div class="lb-handle">@ck88</div></div>
+      <div class="lb-profit">+$284,440</div>
+      <div class="lb-pct">71.2%</div>
+      <div><span class="lb-badge" style="color: var(--neon-yellow); border-color: rgba(255,230,0,0.4)">🏈 NFL</span></div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank top">02</div>
+      <div><div class="lb-name">SharpLondoner</div><div class="lb-handle">@sharp_lon</div></div>
+      <div class="lb-profit">+$196,020</div>
+      <div class="lb-pct">68.8%</div>
+      <div><span class="lb-badge" style="color: var(--neon-green); border-color: rgba(57,255,20,0.4)">⚽ EPL</span></div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank top">03</div>
+      <div><div class="lb-name">QuantMaven</div><div class="lb-handle">@qmaven</div></div>
+      <div class="lb-profit">+$151,800</div>
+      <div class="lb-pct">67.1%</div>
+      <div><span class="lb-badge" style="color: var(--neon-cyan); border-color: rgba(0,245,255,0.4)">🏀 NBA</span></div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank">04</div>
+      <div><div class="lb-name">TennisOracle</div><div class="lb-handle">@t_oracle</div></div>
+      <div class="lb-profit">+$98,340</div>
+      <div class="lb-pct">64.5%</div>
+      <div><span class="lb-badge" style="color: var(--neon-yellow); border-color: rgba(255,230,0,0.4)">🎾 ATP</span></div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank">05</div>
+      <div><div class="lb-name">GridironGhost</div><div class="lb-handle">@ggrh</div></div>
+      <div class="lb-profit">+$77,110</div>
+      <div class="lb-pct">63.9%</div>
+      <div><span class="lb-badge" style="color: var(--neon-pink); border-color: rgba(255,0,110,0.4)">🏈 NCAA</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="background: rgba(0,0,0,0.3)">
+  <span class="section-tag">// Platform //</span>
+  <h2 class="section-title" style="color: var(--neon-green); text-shadow: 0 0 30px rgba(57,255,20,0.4);">PLATFORM FEATURES</h2>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon" style="color: var(--neon-cyan)">⚡</span>
+      <div class="feature-title">Sub-second Execution</div>
+      <div class="feature-desc">Trades execute in under 200ms. Our matching engine processes 50,000 orders per second, so you'll never miss a price.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon" style="color: var(--neon-pink)">🔐</span>
+      <div class="feature-title">Non-Custodial</div>
+      <div class="feature-desc">Smart contract-powered. Your funds never touch our servers. Audited by three independent security firms.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon" style="color: var(--neon-yellow)">📡</span>
+      <div class="feature-title">Oracle Network</div>
+      <div class="feature-desc">Results sourced from a decentralised oracle network with 99.97% uptime and tamper-proof outcome resolution.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon" style="color: var(--neon-purple)">🧠</span>
+      <div class="feature-title">AI Probability Engine</div>
+      <div class="feature-desc">Our model aggregates stats, injuries, weather, and sentiment in real time to surface where market consensus is forming.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon" style="color: var(--neon-green)">💸</span>
+      <div class="feature-title">1% Maker Fee</div>
+      <div class="feature-desc">Competitive fees across the board. Provide liquidity and earn rebates. Zero withdrawal fees, ever.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon" style="color: var(--neon-orange)">🌍</span>
+      <div class="feature-title">300+ Sports Markets</div>
+      <div class="feature-desc">NFL, Premier League, F1, boxing, tennis, cricket, esports and more. New markets added daily by request.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS & BLOG SECTION -->
+<section class="section blog-section" id="news">
+  <span class="section-tag">// Insights //</span>
+  <h2 class="section-title" style="color: var(--neon-cyan); text-shadow: 0 0 30px rgba(0,245,255,0.4);">LATEST NEWS</h2>
+  <p style="color: rgba(255,255,255,0.5); font-size: 1rem; max-width: 600px; line-height: 1.6;">Analysis, platform updates, and sports market insights from the Genx team.</p>
+
+  <div class="blog-grid">
+
+    <article class="blog-card" style="--card-color: var(--neon-cyan)">
+      <div class="blog-category">Market Intelligence</div>
+      <div class="blog-date">24 May 2026</div>
+      <h3 class="blog-title">Kalshi's $22 Billion Gamble — And Why the Smart Money Is Watching</h3>
+      <p class="blog-excerpt">Kalshi raised $1B at a $22B valuation and commands 90% of US prediction market activity. But criminal charges in Arizona and a Nevada ban reveal the cracks beneath the surface.</p>
+      <a href="articles/kalshi-billion-dollar-rise.html" class="blog-read-more">Read more</a>
+    </article>
+
+    <article class="blog-card" style="--card-color: var(--neon-purple)">
+      <div class="blog-category">Market Analysis</div>
+      <div class="blog-date">20 May 2026</div>
+      <h3 class="blog-title">F1 2026: How the New Regulations Are Shifting the Odds</h3>
+      <p class="blog-excerpt">With a major regulation reset underway, prediction markets are showing unusual volatility in the constructor standings. We break down what the data suggests.</p>
+      <a href="#" class="blog-read-more">Read more</a>
+    </article>
+
+    <article class="blog-card" style="--card-color: var(--neon-pink)">
+      <div class="blog-category">Sports Intelligence</div>
+      <div class="blog-date">15 May 2026</div>
+      <h3 class="blog-title">Premier League Title Race: Market Consensus vs Pundit Picks</h3>
+      <p class="blog-excerpt">With five gameweeks remaining, we compare what the prediction markets are saying against mainstream media forecasts — and where the gaps might represent opportunity.</p>
+      <a href="#" class="blog-read-more">Read more</a>
+    </article>
+
+  </div>
+
+  <div class="blog-view-all">
+    <a href="#" class="cta-btn">View All Articles</a>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <h2 class="cta-title">
+    <span>YOUR KNOWLEDGE.</span>
+    <span>YOUR CALL.</span>
+  </h2>
+  <p class="cta-desc">Join thousands of traders on the world's leading sports prediction exchange. Free to sign up.</p>
+  <div class="email-form">
+    <input type="email" class="email-input" placeholder="Enter your email address">
+    <button class="email-submit">GET EARLY ACCESS</button>
+  </div>
+  <p style="margin-top: 1.2rem; font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em;">// No spam. Unsubscribe anytime. //</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GENX<span style="color: var(--neon-pink)">SPORTSBOOK</span></div>
+  <div class="footer-links">
+    <a href="#">Markets</a>
+    <a href="#">Docs</a>
+    <a href="#">API</a>
+    <a href="#">Careers</a>
+    <a href="#news">News</a>
+    <a href="#">Terms</a>
+  </div>
+  <div class="footer-copy">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
+</footer>
+
+</div>
+
+<script>
+  // Interactive market cards
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const siblings = this.closest('.market-options').querySelectorAll('.option-btn');
+      siblings.forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Stat counter animation
+  const stats = [
+    { el: document.querySelectorAll('.stat-num')[0], target: 42.2, prefix: '$', suffix: 'B', decimals: 1 },
+    { el: document.querySelectorAll('.stat-num')[1], target: 847,  prefix: '',  suffix: 'K', decimals: 0 },
+    { el: document.querySelectorAll('.stat-num')[2], target: 12400, prefix: '', suffix: '',  decimals: 0 },
+    { el: document.querySelectorAll('.stat-num')[3], target: 98.7, prefix: '',  suffix: '%', decimals: 1 },
+  ];
+
+  const animateCounter = (stat) => {
+    let start = 0;
+    const duration = 2000;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * stat.target;
+      stat.el.textContent = stat.prefix + current.toFixed(stat.decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + stat.suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        stats.forEach(animateCounter);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const statsBar = document.querySelector('.stats-bar');
+  if (statsBar) observer.observe(statsBar);
+
+  // Animate prob bars on scroll
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.prob-fill');
+        fills.forEach((fill, i) => {
+          const targetWidth = fill.style.width;
+          fill.style.width = '0%';
+          setTimeout(() => { fill.style.width = targetWidth; }, i * 150);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.market-card').forEach(card => barObserver.observe(card));
+</script>
+
+</body>
+</html>
