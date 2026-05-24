@@ -1,0 +1,36 @@
+name: Refresh Homepage Content
+
+on:
+  schedule:
+    # Runs at 07:00, 13:00, and 19:00 UTC every day
+    - cron: '0 7,13,19 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Refresh homepage via Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/refresh_homepage.py
+
+      - name: Commit and push
+        run: |
+          git config user.name  "Genx Content Bot"
+          git config user.email "bot@genx-sportsbook.io"
+          git add web/index.html
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore: refresh homepage content"
+          git push

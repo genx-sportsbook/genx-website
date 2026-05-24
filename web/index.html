@@ -151,33 +151,6 @@
     overflow: hidden;
   }
 
-  /* Retro sun */
-  .retro-sun {
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: linear-gradient(to bottom, var(--neon-yellow) 0%, var(--neon-orange) 40%, var(--neon-pink) 100%);
-    box-shadow: 0 0 80px rgba(255,230,0,0.3), 0 0 160px rgba(255,102,0,0.2);
-    overflow: hidden;
-  }
-  .retro-sun::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent calc(8% - 2px),
-      var(--dark-bg) calc(8% - 2px),
-      var(--dark-bg) 8%
-    );
-    background-size: 100% 100%;
-  }
-
   /* Neon grid floor */
   .grid-floor {
     position: absolute;
@@ -991,7 +964,6 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="retro-sun"></div>
 
   <!-- Neon grid floor SVG -->
   <div class="grid-floor">
@@ -1042,6 +1014,7 @@
 <!-- LIVE TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
+    <!-- GENX:TICKER:START -->
     <span class="ticker-item"><span class="label">⚽ MAN UTD WIN UEFA</span> 34¢ <span class="up">▲2.4%</span></span>
     <span class="ticker-item"><span class="label">🏀 CELTICS -7.5 ATS</span> 61¢ <span class="down">▼1.2%</span></span>
     <span class="ticker-item"><span class="label">🏈 CHIEFS SB LIX</span> 28¢ <span class="up">▲5.1%</span></span>
@@ -1058,11 +1031,13 @@
     <span class="ticker-item"><span class="label">🏒 LEAFS WIN STANLEY</span> 8¢ <span class="up">▲0.1%</span></span>
     <span class="ticker-item"><span class="label">🥊 FURY REMATCH</span> 49¢ <span class="up">▲7.2%</span></span>
     <span class="ticker-item"><span class="label">🏎 VERSTAPPEN F1 CHAMP</span> 71¢ <span class="down">▼0.5%</span></span>
+    <!-- GENX:TICKER:END -->
   </div>
 </div>
 
 <!-- STATS BAR -->
 <div class="stats-bar">
+  <!-- GENX:STATS:START -->
   <div class="stat-item" style="--accent-color: var(--neon-cyan)">
     <span class="stat-num">$42.2B</span>
     <span class="stat-label">Total Volume Traded</span>
@@ -1079,7 +1054,47 @@
     <span class="stat-num">98.7%</span>
     <span class="stat-label">Resolution Accuracy</span>
   </div>
+  <!-- GENX:STATS:END -->
 </div>
+
+<!-- NEWS & BLOG SECTION -->
+<section class="section blog-section" id="news">
+  <span class="section-tag">// Insights //</span>
+  <h2 class="section-title" style="color: var(--neon-cyan); text-shadow: 0 0 30px rgba(0,245,255,0.4);">LATEST NEWS</h2>
+  <p style="color: rgba(255,255,255,0.5); font-size: 1rem; max-width: 600px; line-height: 1.6;">Analysis, platform updates, and sports market insights from the Genx team.</p>
+
+  <div class="blog-grid">
+
+    <article class="blog-card" style="--card-color: var(--neon-cyan)">
+      <div class="blog-category">Market Intelligence</div>
+      <div class="blog-date">24 May 2026</div>
+      <h3 class="blog-title">Kalshi's $22 Billion Gamble — And Why the Smart Money Is Watching</h3>
+      <p class="blog-excerpt">Kalshi raised $1B at a $22B valuation and commands 90% of US prediction market activity. But criminal charges in Arizona and a Nevada ban reveal the cracks beneath the surface.</p>
+      <a href="articles/kalshi-billion-dollar-rise.html" class="blog-read-more">Read more</a>
+    </article>
+
+    <article class="blog-card" style="--card-color: var(--neon-purple)">
+      <div class="blog-category">Market Analysis</div>
+      <div class="blog-date">20 May 2026</div>
+      <h3 class="blog-title">F1 2026: How the New Regulations Are Shifting the Odds</h3>
+      <p class="blog-excerpt">With a major regulation reset underway, prediction markets are showing unusual volatility in the constructor standings. We break down what the data suggests.</p>
+      <a href="#" class="blog-read-more">Read more</a>
+    </article>
+
+    <article class="blog-card" style="--card-color: var(--neon-pink)">
+      <div class="blog-category">Sports Intelligence</div>
+      <div class="blog-date">15 May 2026</div>
+      <h3 class="blog-title">Premier League Title Race: Market Consensus vs Pundit Picks</h3>
+      <p class="blog-excerpt">With five gameweeks remaining, we compare what the prediction markets are saying against mainstream media forecasts — and where the gaps might represent opportunity.</p>
+      <a href="#" class="blog-read-more">Read more</a>
+    </article>
+
+  </div>
+
+  <div class="blog-view-all">
+    <a href="#" class="cta-btn">View All Articles</a>
+  </div>
+</section>
 
 <!-- LIVE MARKETS -->
 <section class="section">
@@ -1088,7 +1103,7 @@
   <p style="color: rgba(255,255,255,0.5); font-size: 1rem; max-width: 600px; line-height: 1.6;">Trade outcome shares across the world's biggest sporting events, from major leagues to niche competitions.</p>
 
   <div class="markets-grid">
-
+    <!-- GENX:MARKETS:START -->
     <div class="market-card" style="--card-color: var(--neon-cyan)">
       <div class="bracket-tl"></div><div class="bracket-tr"></div><div class="bracket-bl"></div><div class="bracket-br"></div>
       <div class="market-sport">🏈 NFL • LIVE</div>
@@ -1184,7 +1199,7 @@
         <span>Closes: 21d</span>
       </div>
     </div>
-
+    <!-- GENX:MARKETS:END -->
   </div>
 </section>
 
@@ -1374,7 +1389,7 @@
       <div class="lb-col-head">Win Rate</div>
       <div class="lb-col-head">Specialty</div>
     </div>
-
+    <!-- GENX:LEADERBOARD:START -->
     <div class="lb-row">
       <div class="lb-rank top">01</div>
       <div><div class="lb-name">CryptoKing88</div><div class="lb-handle">@ck88</div></div>
@@ -1414,6 +1429,7 @@
       <div class="lb-pct">63.9%</div>
       <div><span class="lb-badge" style="color: var(--neon-pink); border-color: rgba(255,0,110,0.4)">🏈 NCAA</span></div>
     </div>
+    <!-- GENX:LEADERBOARD:END -->
   </div>
 </section>
 
@@ -1453,45 +1469,6 @@
       <div class="feature-title">300+ Sports Markets</div>
       <div class="feature-desc">NFL, Premier League, F1, boxing, tennis, cricket, esports and more. New markets added daily by request.</div>
     </div>
-  </div>
-</section>
-
-<!-- NEWS & BLOG SECTION -->
-<section class="section blog-section" id="news">
-  <span class="section-tag">// Insights //</span>
-  <h2 class="section-title" style="color: var(--neon-cyan); text-shadow: 0 0 30px rgba(0,245,255,0.4);">LATEST NEWS</h2>
-  <p style="color: rgba(255,255,255,0.5); font-size: 1rem; max-width: 600px; line-height: 1.6;">Analysis, platform updates, and sports market insights from the Genx team.</p>
-
-  <div class="blog-grid">
-
-    <article class="blog-card" style="--card-color: var(--neon-cyan)">
-      <div class="blog-category">Market Intelligence</div>
-      <div class="blog-date">24 May 2026</div>
-      <h3 class="blog-title">Kalshi's $22 Billion Gamble — And Why the Smart Money Is Watching</h3>
-      <p class="blog-excerpt">Kalshi raised $1B at a $22B valuation and commands 90% of US prediction market activity. But criminal charges in Arizona and a Nevada ban reveal the cracks beneath the surface.</p>
-      <a href="articles/kalshi-billion-dollar-rise.html" class="blog-read-more">Read more</a>
-    </article>
-
-    <article class="blog-card" style="--card-color: var(--neon-purple)">
-      <div class="blog-category">Market Analysis</div>
-      <div class="blog-date">20 May 2026</div>
-      <h3 class="blog-title">F1 2026: How the New Regulations Are Shifting the Odds</h3>
-      <p class="blog-excerpt">With a major regulation reset underway, prediction markets are showing unusual volatility in the constructor standings. We break down what the data suggests.</p>
-      <a href="#" class="blog-read-more">Read more</a>
-    </article>
-
-    <article class="blog-card" style="--card-color: var(--neon-pink)">
-      <div class="blog-category">Sports Intelligence</div>
-      <div class="blog-date">15 May 2026</div>
-      <h3 class="blog-title">Premier League Title Race: Market Consensus vs Pundit Picks</h3>
-      <p class="blog-excerpt">With five gameweeks remaining, we compare what the prediction markets are saying against mainstream media forecasts — and where the gaps might represent opportunity.</p>
-      <a href="#" class="blog-read-more">Read more</a>
-    </article>
-
-  </div>
-
-  <div class="blog-view-all">
-    <a href="#" class="cta-btn">View All Articles</a>
   </div>
 </section>
 
