@@ -401,6 +401,7 @@
     background: radial-gradient(ellipse at top left, rgba(0,245,255,0.04), transparent 60%);
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
   }
 
   .market-card:hover { background: rgba(0,245,255,0.03); }
@@ -716,6 +717,7 @@
     height: 2px;
     background: var(--card-color, var(--neon-cyan));
     box-shadow: 0 0 10px var(--card-color, var(--neon-cyan));
+    pointer-events: none;
   }
 
   .blog-card:hover { background: rgba(0,245,255,0.02); }
@@ -766,6 +768,16 @@
     align-items: center;
     gap: 0.4rem;
     transition: gap 0.2s, text-shadow 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Stretch the link to cover the whole card so clicking anywhere navigates */
+  .blog-read-more::before {
+    content: '';
+    position: absolute;
+    inset: -999px;
+    z-index: 0;
   }
 
   .blog-read-more:hover {
