@@ -289,6 +289,7 @@ def main():
     filename = f"{TODAY.isoformat()}-{slug}.html"
     output_path = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "web",
         "articles",
         filename,
     )

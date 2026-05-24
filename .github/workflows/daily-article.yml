@@ -1,0 +1,94 @@
+name: Daily Article Generator
+
+on:
+  schedule:
+    # Runs at 08:00 UTC every day
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Generate article but do not commit (true/false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate article via Gemini
+        id: article
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_article.py
+
+      - name: Prepend article card to news section in index.html
+        if: steps.article.outputs.filename != ''
+        env:
+          FILENAME: ${{ steps.article.outputs.filename }}
+          TITLE: ${{ steps.article.outputs.title }}
+          EXCERPT: ${{ steps.article.outputs.excerpt }}
+          CATEGORY: ${{ steps.article.outputs.category }}
+        run: |
+          python - <<'PYEOF'
+          import os, re
+          from datetime import date
+
+          filename  = os.environ["FILENAME"]
+          title     = os.environ["TITLE"]
+          excerpt   = os.environ["EXCERPT"]
+          category  = os.environ["CATEGORY"]
+          today     = date.today().strftime("%-d %B %Y")
+
+          colour_map = {
+              "Market Analysis":   "var(--neon-purple)",
+              "Sports Intelligence": "var(--neon-pink)",
+              "Platform Update":   "var(--neon-green)",
+              "Market Intelligence": "var(--neon-cyan)",
+              "Industry Insight":  "var(--neon-yellow)",
+          }
+          colour = colour_map.get(category, "var(--neon-cyan)")
+
+          new_card = f"""
+            <article class="blog-card" style="--card-color: {colour}">
+              <div class="blog-category">{category}</div>
+              <div class="blog-date">{today}</div>
+              <h3 class="blog-title">{title}</h3>
+              <p class="blog-excerpt">{excerpt}</p>
+              <a href="articles/{filename}" class="blog-read-more">Read more</a>
+            </article>
+          """
+
+          with open("web/index.html", "r") as f:
+              content = f.read()
+
+          content = content.replace(
+              '\n    <article class="blog-card"',
+              new_card + '\n    <article class="blog-card"',
+              1,
+          )
+
+          with open("web/index.html", "w") as f:
+              f.write(content)
+
+          print(f"Prepended card for: {title}")
+          PYEOF
+
+      - name: Commit and push
+        if: ${{ github.event.inputs.dry_run != 'true' && steps.article.outputs.filename != '' }}
+        run: |
+          git config user.name  "Genx Article Bot"
+          git config user.email "bot@genx-sportsbook.io"
+          git add web/articles/${{ steps.article.outputs.filename }} web/index.html
+          git commit -m "chore: daily article — ${{ steps.article.outputs.title }}"
+          git push
