@@ -103,8 +103,9 @@ def call_gemini(system: str, user: str) -> dict:
         "contents": [{"role": "user", "parts": [{"text": user}]}],
         "generationConfig": {
             "temperature": 0.9,
-            "maxOutputTokens": 3000,
+            "maxOutputTokens": 8192,
             "responseMimeType": "application/json",
+            "thinkingConfig": {"thinkingBudget": 0},
         },
     }).encode("utf-8")
 
