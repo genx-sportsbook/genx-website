@@ -123,16 +123,23 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
 <!-- STATUS BAR -->
 <div class="status-bar">
   <!-- GENX:MKTPAGE_STATUS:START -->
-  <span><span class="live-dot"></span><span style="color:var(--neon-green);font-weight:700;letter-spacing:0.15em;">LIVE</span></span>
-  <span class="status-sep">|</span>
-  <span class="status-item"><span>12,847</span> MARKETS</span>
-  <span class="status-sep">|</span>
-  <span class="status-item">24H VOL <span>$47.2M</span></span>
-  <span class="status-sep">|</span>
-  <span class="status-item"><span>2,913</span> ACTIVE NOW</span>
-  <span class="status-sep">|</span>
-  <span class="status-item">UPDATED <span>08:00 UTC</span></span>
-  <!-- GENX:MKTPAGE_STATUS:END -->
+  <div class="terminal-stat" style="--stat-color: var(--neon-cyan)">
+    <span class="terminal-stat-num">14,128</span>
+    <span class="terminal-stat-label">Markets</span>
+  </div>
+  <div class="terminal-stat" style="--stat-color: var(--neon-green)">
+    <span class="terminal-stat-num">$53.8M</span>
+    <span class="terminal-stat-label">24h Volume</span>
+  </div>
+  <div class="terminal-stat" style="--stat-color: var(--neon-yellow)">
+    <span class="terminal-stat-num">3,317</span>
+    <span class="terminal-stat-label">Active Traders</span>
+  </div>
+  <div class="terminal-stat" style="--stat-color: var(--neon-pink)">
+    <span class="terminal-stat-num">23:12 UTC</span>
+    <span class="terminal-stat-label">Last Updated</span>
+  </div>
+    <!-- GENX:MKTPAGE_STATUS:END -->
 </div>
 
 <!-- MAIN TRADING AREA -->
@@ -141,22 +148,22 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
   <!-- CHART PANEL -->
   <div class="chart-panel">
     <!-- GENX:MKTPAGE_FEATURED:START -->
-    <div class="chart-header">
-      <div>
-        <div class="chart-symbol">ARSENAL-UCL</div>
-        <div class="chart-name">Will Arsenal win the UEFA Champions League 2025/26?</div>
-      </div>
-      <div class="price-display">
-        <div class="price-big up" id="featured-price">67¢</div>
-        <div class="price-change up" id="featured-change">▲ +3.2% today</div>
-      </div>
-    </div>
-    <div class="chart-meta">
-      <div class="meta-item">24H HIGH <span id="chart-high">71¢</span></div>
-      <div class="meta-item">24H LOW <span id="chart-low">62¢</span></div>
-      <div class="meta-item">VOLUME <span>$4.2M</span></div>
-      <div class="meta-item">CATEGORY <span>Football</span></div>
-    </div>
+  <div class="featured-symbol">DORTMUND-UCL</div>
+  <div class="featured-name">Will Borussia Dortmund win the UEFA Champions League Final on June 1, 2026?</div>
+  <div class="featured-meta">
+    <span class="featured-category">Football</span>
+    <span class="featured-price">42¢</span>
+    <span class="featured-change change-down">-4.8%</span>
+  </div>
+  <div class="featured-stats">
+    <div class="featured-stat"><span class="fstat-num">$4.9M</span><span class="fstat-label">Volume</span></div>
+    <div class="featured-stat"><span class="fstat-num">48¢</span><span class="fstat-label">24h High</span></div>
+    <div class="featured-stat"><span class="fstat-num">40¢</span><span class="fstat-label">24h Low</span></div>
+  </div>
+  <div class="featured-actions">
+    <button class="trade-btn trade-yes">BUY YES 42¢</button>
+    <button class="trade-btn trade-no">BUY NO 58¢</button>
+  </div>
     <!-- GENX:MKTPAGE_FEATURED:END -->
     <canvas id="price-chart"></canvas>
     <canvas id="vol-chart" class="vol-canvas"></canvas>
@@ -177,12 +184,24 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
       <!-- ASKS (sell side) -->
       <div id="ob-asks">
         <!-- GENX:MKTPAGE_ORDERBOOK:START -->
-        <div class="ob-row ob-ask"><div class="ask-price">72¢</div><div style="color:rgba(255,255,255,0.6)">$8,100</div><div style="color:rgba(255,255,255,0.4)">$28,400</div><div class="ob-bar ask-bar" style="width:60%"></div></div>
-        <div class="ob-row ob-ask"><div class="ask-price">71¢</div><div style="color:rgba(255,255,255,0.6)">$12,300</div><div style="color:rgba(255,255,255,0.4)">$20,300</div><div class="ob-bar ask-bar" style="width:85%"></div></div>
-        <div class="ob-row ob-ask"><div class="ask-price">70¢</div><div style="color:rgba(255,255,255,0.6)">$15,200</div><div style="color:rgba(255,255,255,0.4)">$8,000</div><div class="ob-bar ask-bar" style="width:100%"></div></div>
-        <div class="ob-row ob-ask"><div class="ask-price">69¢</div><div style="color:rgba(255,255,255,0.6)">$9,800</div><div style="color:rgba(255,255,255,0.4)">$25,600</div><div class="ob-bar ask-bar" style="width:65%"></div></div>
-        <div class="ob-row ob-ask"><div class="ask-price">68¢</div><div style="color:rgba(255,255,255,0.6)">$11,200</div><div style="color:rgba(255,255,255,0.4)">$15,800</div><div class="ob-bar ask-bar" style="width:75%"></div></div>
-        <!-- GENX:MKTPAGE_ORDERBOOK:END -->
+  <div class="ob-side ob-asks">
+    <div class="ob-header"><span>Price</span><span>Size</span><span>Total</span></div>
+    <div class="ob-row ob-ask" style="--bar-pct: 12.1%"><span class="ob-price-ask">47¢</span><span class="ob-size">$2,800</span><span class="ob-total">$7,100</span></div>
+    <div class="ob-row ob-ask" style="--bar-pct: 19.3%"><span class="ob-price-ask">46¢</span><span class="ob-size">$4,200</span><span class="ob-total">$11,300</span></div>
+    <div class="ob-row ob-ask" style="--bar-pct: 29.3%"><span class="ob-price-ask">45¢</span><span class="ob-size">$5,900</span><span class="ob-total">$17,200</span></div>
+    <div class="ob-row ob-ask" style="--bar-pct: 42.2%"><span class="ob-price-ask">44¢</span><span class="ob-size">$7,600</span><span class="ob-total">$24,800</span></div>
+    <div class="ob-row ob-ask" style="--bar-pct: 58.3%"><span class="ob-price-ask">43¢</span><span class="ob-size">$9,400</span><span class="ob-total">$34,200</span></div>
+  </div>
+  <div class="ob-spread"></div>
+  <div class="ob-side ob-bids">
+    <div class="ob-header"><span>Price</span><span>Size</span><span>Total</span></div>
+    <div class="ob-row ob-bid" style="--bar-pct: 100.0%"><span class="ob-price-bid">41¢</span><span class="ob-size">$15,200</span><span class="ob-total">$58,700</span></div>
+    <div class="ob-row ob-bid" style="--bar-pct: 74.1%"><span class="ob-price-bid">40¢</span><span class="ob-size">$11,800</span><span class="ob-total">$43,500</span></div>
+    <div class="ob-row ob-bid" style="--bar-pct: 54.0%"><span class="ob-price-bid">39¢</span><span class="ob-size">$9,100</span><span class="ob-total">$31,700</span></div>
+    <div class="ob-row ob-bid" style="--bar-pct: 38.5%"><span class="ob-price-bid">38¢</span><span class="ob-size">$6,500</span><span class="ob-total">$22,600</span></div>
+    <div class="ob-row ob-bid" style="--bar-pct: 27.4%"><span class="ob-price-bid">37¢</span><span class="ob-size">$4,300</span><span class="ob-total">$16,100</span></div>
+  </div>
+    <!-- GENX:MKTPAGE_ORDERBOOK:END -->
       </div>
       <div class="ob-spread">— SPREAD 1¢ —</div>
       <!-- BIDS (buy side) -->
@@ -198,17 +217,17 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
     <div class="panel-tab" style="margin-top:auto;">RECENT FILLS</div>
     <div class="fills-wrap">
       <!-- GENX:MKTPAGE_FILLS:START -->
-      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>67¢</span><span>$3,200</span><span class="fill-time">0:23</span></div>
-      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>67¢</span><span>$800</span><span class="fill-time">0:41</span></div>
-      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>66¢</span><span>$5,100</span><span class="fill-time">1:12</span></div>
-      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>66¢</span><span>$1,400</span><span class="fill-time">1:38</span></div>
-      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>65¢</span><span>$2,200</span><span class="fill-time">2:04</span></div>
-      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>65¢</span><span>$4,800</span><span class="fill-time">2:29</span></div>
-      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>64¢</span><span>$600</span><span class="fill-time">3:15</span></div>
-      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>64¢</span><span>$1,100</span><span class="fill-time">3:52</span></div>
-      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>63¢</span><span>$3,700</span><span class="fill-time">4:28</span></div>
-      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>63¢</span><span>$900</span><span class="fill-time">5:01</span></div>
-      <!-- GENX:MKTPAGE_FILLS:END -->
+  <div class="fill-row"><span class="fill-side fill-buy">BUY</span><span class="fill-price">42¢</span><span class="fill-size">$3,800</span><span class="fill-time">0:28 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-sell">SELL</span><span class="fill-price">43¢</span><span class="fill-size">$2,100</span><span class="fill-time">0:51 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-buy">BUY</span><span class="fill-price">41¢</span><span class="fill-size">$1,500</span><span class="fill-time">1:09 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-sell">SELL</span><span class="fill-price">43¢</span><span class="fill-size">$4,500</span><span class="fill-time">1:36 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-buy">BUY</span><span class="fill-price">42¢</span><span class="fill-size">$2,900</span><span class="fill-time">2:03 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-sell">SELL</span><span class="fill-price">44¢</span><span class="fill-size">$1,800</span><span class="fill-time">2:27 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-buy">BUY</span><span class="fill-price">41¢</span><span class="fill-size">$900</span><span class="fill-time">2:55 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-buy">BUY</span><span class="fill-price">42¢</span><span class="fill-size">$3,100</span><span class="fill-time">3:21 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-sell">SELL</span><span class="fill-price">43¢</span><span class="fill-size">$2,500</span><span class="fill-time">3:48 ago</span></div>
+  <div class="fill-row"><span class="fill-side fill-buy">BUY</span><span class="fill-price">41¢</span><span class="fill-size">$1,100</span><span class="fill-time">4:15 ago</span></div>
+    <!-- GENX:MKTPAGE_FILLS:END -->
     </div>
   </div>
 </div>
@@ -232,12 +251,226 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
     </thead>
     <tbody id="instruments-tbody">
       <!-- GENX:MKTPAGE_INSTRUMENTS:START -->
-      <tr><td class="inst-symbol">ARSENAL-UCL</td><td class="inst-name">Will Arsenal win the UEFA Champions League 2025/26?</td><td><span class="inst-cat">Football</span></td><td class="inst-price">67¢</td><td class="inst-change-up">+3.2%</td><td class="inst-vol">$4.2M</td><td class="inst-oi">18,420</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,14 5,12 10,10 15,11 20,9 25,7 30,8 35,6 40,5 45,6 50,4 55,4 60,3" fill="none" stroke="#39ff14" stroke-width="1.5"/></svg></td></tr>
-      <tr><td class="inst-symbol">CHIEFS-SB</td><td class="inst-name">Will the Kansas City Chiefs win Super Bowl LX?</td><td><span class="inst-cat">NFL</span></td><td class="inst-price">28¢</td><td class="inst-change-up">+5.1%</td><td class="inst-vol">$2.8M</td><td class="inst-oi">12,100</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,16 5,15 10,14 15,16 20,13 25,14 30,12 35,11 40,13 45,10 50,9 55,8 60,7" fill="none" stroke="#39ff14" stroke-width="1.5"/></svg></td></tr>
-      <tr><td class="inst-symbol">CELTICS-NBA</td><td class="inst-name">Will the Celtics win the 2026 NBA Championship?</td><td><span class="inst-cat">NBA</span></td><td class="inst-price">41¢</td><td class="inst-change-dn">-1.8%</td><td class="inst-vol">$1.9M</td><td class="inst-oi">9,840</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,5 5,4 10,6 15,5 20,7 25,8 30,7 35,9 40,10 45,9 50,11 55,12 60,12" fill="none" stroke="#ff006e" stroke-width="1.5"/></svg></td></tr>
-      <tr><td class="inst-symbol">VER-F1</td><td class="inst-name">Will Max Verstappen win the 2026 F1 Championship?</td><td><span class="inst-cat">F1</span></td><td class="inst-price">71¢</td><td class="inst-change-dn">-0.5%</td><td class="inst-vol">$1.1M</td><td class="inst-oi">6,230</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,4 5,4 10,5 15,4 20,6 25,5 30,5 35,6 40,7 45,6 50,8 55,8 60,9" fill="none" stroke="#ff006e" stroke-width="1.5"/></svg></td></tr>
-      <tr><td class="inst-symbol">SINNER-RG</td><td class="inst-name">Will Jannik Sinner win the 2026 French Open?</td><td><span class="inst-cat">Tennis</span></td><td class="inst-price">29¢</td><td class="inst-change-up">+2.1%</td><td class="inst-vol">$542K</td><td class="inst-oi">4,110</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,14 5,13 10,15 15,12 20,11 25,12 30,10 35,9 40,10 45,8 50,7 55,8 60,7" fill="none" stroke="#39ff14" stroke-width="1.5"/></svg></td></tr>
-      <!-- GENX:MKTPAGE_INSTRUMENTS:END -->
+    <tr class="instrument-row">
+      <td class="col-symbol">DORTMUND-UCL</td>
+      <td class="col-name">Dortmund to win UCL Final?</td>
+      <td class="col-category">Football</td>
+      <td class="col-price">42¢</td>
+      <td class="col-change change-down">-4.8%</td>
+      <td class="col-volume">$4.9M</td>
+      <td class="col-oi">28,700</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,3.25 10.91,5.5 16.36,7.75 21.82,10.0 27.27,12.25 32.73,14.5 38.18,16.75 43.64,19.0 49.09,16.75 54.55,14.5 60.0,14.5" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">REALMADRID-UCL</td>
+      <td class="col-name">Real Madrid to win UCL Final?</td>
+      <td class="col-category">Football</td>
+      <td class="col-price">58¢</td>
+      <td class="col-change change-up">+4.1%</td>
+      <td class="col-volume">$4.1M</td>
+      <td class="col-oi">24,500</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,16.0 10.91,13.0 16.36,10.0 21.82,7.0 27.27,4.0 32.73,1.0 38.18,4.0 43.64,7.0 49.09,4.0 54.55,1.0 60.0,1.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">NBAFINALS-BOS</td>
+      <td class="col-name">Celtics to win NBA Finals?</td>
+      <td class="col-category">NBA</td>
+      <td class="col-price">71¢</td>
+      <td class="col-change change-up">+2.5%</td>
+      <td class="col-volume">$3.2M</td>
+      <td class="col-oi">18,900</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,14.5 10.91,10.0 16.36,5.5 21.82,10.0 27.27,5.5 32.73,1.0 38.18,5.5 43.64,10.0 49.09,5.5 54.55,5.5 60.0,5.5" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">NBAFINALS-DAL</td>
+      <td class="col-name">Mavericks to win NBA Finals?</td>
+      <td class="col-category">NBA</td>
+      <td class="col-price">29¢</td>
+      <td class="col-change change-down">-1.5%</td>
+      <td class="col-volume">$2.8M</td>
+      <td class="col-oi">16,100</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,5.5 10.91,10.0 16.36,14.5 21.82,10.0 27.27,14.5 32.73,19.0 38.18,14.5 43.64,10.0 49.09,14.5 54.55,14.5 60.0,14.5" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">FRENCHOPEN-MEN</td>
+      <td class="col-name">Alcaraz to win French Open Men's Singles?</td>
+      <td class="col-category">Tennis</td>
+      <td class="col-price">65¢</td>
+      <td class="col-change change-up">+1.9%</td>
+      <td class="col-volume">$2.1M</td>
+      <td class="col-oi">12,300</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,13.0 10.91,7.0 16.36,13.0 21.82,19.0 27.27,13.0 32.73,7.0 38.18,1.0 43.64,7.0 49.09,13.0 54.55,7.0 60.0,7.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">FRENCHOPEN-WOMEN</td>
+      <td class="col-name">Swiatek to win French Open Women's Singles?</td>
+      <td class="col-category">Tennis</td>
+      <td class="col-price">78¢</td>
+      <td class="col-change change-up">+0.8%</td>
+      <td class="col-volume">$1.9M</td>
+      <td class="col-oi">11,200</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,19.0 54.55,10.0 60.0,10.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">IPL-FINAL</td>
+      <td class="col-name">KKR to win IPL Final?</td>
+      <td class="col-category">Cricket</td>
+      <td class="col-price">61¢</td>
+      <td class="col-change change-down">-2.1%</td>
+      <td class="col-volume">$1.8M</td>
+      <td class="col-oi">10,800</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,5.5 10.91,10.0 16.36,14.5 21.82,19.0 27.27,14.5 32.73,10.0 38.18,14.5 43.64,19.0 49.09,14.5 54.55,14.5 60.0,14.5" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">F1-MONACO</td>
+      <td class="col-name">Verstappen to win Monaco GP?</td>
+      <td class="col-category">F1</td>
+      <td class="col-price">82¢</td>
+      <td class="col-change change-down">-0.5%</td>
+      <td class="col-volume">$1.6M</td>
+      <td class="col-oi">9,500</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,19.0 54.55,10.0 60.0,10.0" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">NHLSTANLEYCUP-EDM</td>
+      <td class="col-name">Oilers to win Stanley Cup?</td>
+      <td class="col-category">Hockey</td>
+      <td class="col-price">55¢</td>
+      <td class="col-change change-up">+3.7%</td>
+      <td class="col-volume">$1.5M</td>
+      <td class="col-oi">8,900</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,15.4 10.91,11.8 16.36,8.2 21.82,4.6 27.27,1.0 32.73,4.6 38.18,8.2 43.64,4.6 49.09,1.0 54.55,1.0 60.0,1.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">NHLSTANLEYCUP-FLA</td>
+      <td class="col-name">Panthers to win Stanley Cup?</td>
+      <td class="col-category">Hockey</td>
+      <td class="col-price">45¢</td>
+      <td class="col-change change-down">-2.9%</td>
+      <td class="col-volume">$1.3M</td>
+      <td class="col-oi">7,800</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,5.5 10.91,10.0 16.36,14.5 21.82,19.0 27.27,14.5 32.73,10.0 38.18,14.5 43.64,19.0 49.09,14.5 54.55,14.5 60.0,14.5" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">PGA-MEMORIAL</td>
+      <td class="col-name">Scheffler to win Memorial Tournament?</td>
+      <td class="col-category">Golf</td>
+      <td class="col-price">75¢</td>
+      <td class="col-change change-up">+1.1%</td>
+      <td class="col-volume">$1.1M</td>
+      <td class="col-oi">6,500</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,13.0 5.45,7.0 10.91,13.0 16.36,19.0 21.82,13.0 27.27,7.0 32.73,1.0 38.18,7.0 43.64,13.0 49.09,7.0 54.55,7.0 60.0,7.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">UEFA-EURO-ENG</td>
+      <td class="col-name">England to win UEFA Euro 2028?</td>
+      <td class="col-category">Football</td>
+      <td class="col-price">38¢</td>
+      <td class="col-change change-up">+0.5%</td>
+      <td class="col-volume">$950K</td>
+      <td class="col-oi">5,800</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,1.0 54.55,10.0 60.0,10.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">UEFA-EURO-FRA</td>
+      <td class="col-name">France to win UEFA Euro 2028?</td>
+      <td class="col-category">Football</td>
+      <td class="col-price">35¢</td>
+      <td class="col-change change-up">+0.2%</td>
+      <td class="col-volume">$910K</td>
+      <td class="col-oi">5,500</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,1.0 54.55,10.0 60.0,10.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">MLB-WS-LAD</td>
+      <td class="col-name">Dodgers to win World Series?</td>
+      <td class="col-category">MLB</td>
+      <td class="col-price">68¢</td>
+      <td class="col-change change-down">-0.9%</td>
+      <td class="col-volume">$880K</td>
+      <td class="col-oi">5,200</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,19.0 54.55,10.0 60.0,10.0" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">CS2-MAJOR-FIN</td>
+      <td class="col-name">FaZe Clan to win CS2 Major?</td>
+      <td class="col-category">Esports</td>
+      <td class="col-price">52¢</td>
+      <td class="col-change change-up">+1.3%</td>
+      <td class="col-volume">$750K</td>
+      <td class="col-oi">4,800</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,13.0 10.91,7.0 16.36,13.0 21.82,19.0 27.27,13.0 32.73,7.0 38.18,1.0 43.64,7.0 49.09,13.0 54.55,7.0 60.0,7.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">FIFA-WC-2026</td>
+      <td class="col-name">Brazil to win FIFA World Cup 2026?</td>
+      <td class="col-category">Football</td>
+      <td class="col-price">30¢</td>
+      <td class="col-change change-up">+0.3%</td>
+      <td class="col-volume">$700K</td>
+      <td class="col-oi">4,500</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,1.0 54.55,10.0 60.0,10.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">WTA-ROME</td>
+      <td class="col-name">Sabalenka to win WTA Rome Open?</td>
+      <td class="col-category">Tennis</td>
+      <td class="col-price">48¢</td>
+      <td class="col-change change-down">-0.7%</td>
+      <td class="col-volume">$620K</td>
+      <td class="col-oi">4,100</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,19.0 54.55,10.0 60.0,10.0" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">NFL-SB-KC</td>
+      <td class="col-name">Chiefs to win Super Bowl LXI?</td>
+      <td class="col-category">NFL</td>
+      <td class="col-price">25¢</td>
+      <td class="col-change change-up">+0.1%</td>
+      <td class="col-volume">$580K</td>
+      <td class="col-oi">3,800</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,10.0 10.91,19.0 16.36,10.0 21.82,1.0 27.27,10.0 32.73,19.0 38.18,10.0 43.64,10.0 49.09,1.0 54.55,10.0 60.0,10.0" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">BOXING-HEAVY</td>
+      <td class="col-name">Fury to win next Heavyweight bout?</td>
+      <td class="col-category">Boxing</td>
+      <td class="col-price">70¢</td>
+      <td class="col-change change-up">+2.2%</td>
+      <td class="col-volume">$510K</td>
+      <td class="col-oi">3,500</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,19.0 5.45,14.5 10.91,10.0 16.36,5.5 21.82,10.0 27.27,14.5 32.73,10.0 38.18,5.5 43.64,5.5 49.09,1.0 54.55,5.5 60.0,5.5" fill="none" stroke="#39ff14" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+
+    <tr class="instrument-row">
+      <td class="col-symbol">T20WC-IND</td>
+      <td class="col-name">India to win T20 World Cup?</td>
+      <td class="col-category">Cricket</td>
+      <td class="col-price">40¢</td>
+      <td class="col-change change-down">-1.2%</td>
+      <td class="col-volume">$490K</td>
+      <td class="col-oi">3,200</td>
+      <td class="col-sparkline"><svg viewBox="0 0 60 20" width="60" height="20" style="display:block;overflow:visible"><polyline points="0.0,1.0 5.45,7.0 10.91,13.0 16.36,19.0 21.82,13.0 27.27,7.0 32.73,13.0 38.18,19.0 43.64,13.0 49.09,13.0 54.55,13.0 60.0,13.0" fill="none" stroke="#ff006e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></td>
+    </tr>
+    <!-- GENX:MKTPAGE_INSTRUMENTS:END -->
     </tbody>
   </table>
 </div>
