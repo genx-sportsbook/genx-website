@@ -1,0 +1,36 @@
+name: Daily Pages Update
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # 09:00 UTC — after daily article (08:00)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Update markets page
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_markets.py
+      - name: Update live feed page
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_live.py
+      - name: Rebuild news index
+        run: python scripts/generate_news_index.py
+      - name: Commit and push
+        run: |
+          git config user.name "Genx Pages Bot"
+          git config user.email "bot@genx-sportsbook.io"
+          git add web/markets.html web/live.html web/news.html
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "chore: daily pages update — markets, live, news index"
+          git push

@@ -240,11 +240,18 @@ def build_html(data: dict) -> str:
 
 <header>
   <a href="../index.html" class="logo">GENX<span>SPORTSBOOK</span></a>
-  <a href="../index.html#news" class="cta-btn">Back to News</a>
+  <nav style="display:flex;gap:2rem;align-items:center;">
+    <a href="../markets.html" style="font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;">Markets</a>
+    <a href="../sports.html" style="font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;">Sports</a>
+    <a href="../live.html" style="font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;">Live</a>
+    <a href="../news.html" style="font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;">News</a>
+    <a href="../docs.html" style="font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;">Docs</a>
+  </nav>
+  <a href="../index.html" class="cta-btn">Get Started</a>
 </header>
 
 <div class="article-hero">
-  <a href="../index.html#news" class="back-link">All Articles</a>
+  <a href="../news.html" class="back-link">All Articles</a>
   <div class="article-meta">
     <span class="article-category">{category}</span>
     <span class="article-date">{DATE_STR}</span>

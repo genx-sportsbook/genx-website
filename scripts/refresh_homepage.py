@@ -70,27 +70,12 @@ Generate fresh homepage data for Genx-Sportsbook. Return ONLY this JSON object �
       "color": "one of: var(--neon-cyan) var(--neon-pink) var(--neon-yellow) var(--neon-green) var(--neon-orange) var(--neon-purple)"
     }}
   ],
-  "leaderboard": [
-    {{
-      "rank": "01",
-      "top": true,
-      "name": "trader display name",
-      "handle": "@handle",
-      "profit": "+$284,440",
-      "win_rate": "71.2%",
-      "badge_emoji": "sport emoji",
-      "badge_label": "SPORT ABBREV",
-      "badge_color": "neon color var",
-      "badge_border": "rgba color"
-    }}
-  ]
 }}
 
 Rules:
 - ticker: exactly 8 items (they will be duplicated automatically for the scrolling animation)
 - stats: exactly 4 items, in the order shown above
 - markets: exactly 6 items covering a variety of sports currently in season
-- leaderboard: exactly 5 items; first 3 have "top": true, last 2 have "top": false
 - yes_price is an integer 1–99 (the NO price is 100 minus yes_price)
 - Make the market questions specific and timely — real teams/players, real upcoming events
 - Leaderboard profits should be plausible cumulative figures ($50K–$400K range)
@@ -240,10 +225,9 @@ def main():
     with open(index_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    content = replace_section(content, "TICKER",      build_ticker_html(data["ticker"]))
-    content = replace_section(content, "STATS",       build_stats_html(data["stats"]))
-    content = replace_section(content, "MARKETS",     build_markets_html(data["markets"]))
-    content = replace_section(content, "LEADERBOARD", build_leaderboard_html(data["leaderboard"]))
+    content = replace_section(content, "TICKER",  build_ticker_html(data["ticker"]))
+    content = replace_section(content, "STATS",   build_stats_html(data["stats"]))
+    content = replace_section(content, "MARKETS", build_markets_html(data["markets"]))
 
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(content)

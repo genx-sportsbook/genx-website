@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4125667313511978" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports — Genx-Sportsbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-pink: #ff006e;
+    --neon-cyan: #00f5ff;
+    --neon-yellow: #ffe600;
+    --neon-green: #39ff14;
+    --neon-purple: #bf00ff;
+    --neon-orange: #ff6600;
+    --dark-bg: #050510;
+    --grid-color: rgba(0,245,255,0.06);
+    --panel-bg: rgba(5,5,20,0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark-bg);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid rgba(0,245,255,0.2);
+    background: rgba(5,5,16,0.9);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.5rem;
+    color: var(--neon-cyan);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  nav { display: flex; gap: 2rem; }
+
+  nav a {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: #fff; }
+  nav a.active { color: var(--neon-cyan); }
+
+  .cta-btn {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark-bg);
+    background: var(--neon-cyan);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s;
+  }
+
+  .cta-btn:hover { background: var(--neon-pink); color: #fff; }
+
+  /* PAGE HERO */
+  .page-hero {
+    padding: 5rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  }
+
+  .hero-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--neon-cyan);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    opacity: 0.8;
+  }
+
+  .page-hero h1 {
+    font-family: 'Black Ops One', cursive;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: #fff;
+    text-shadow: 0 0 60px rgba(0,245,255,0.25);
+    margin-bottom: 1.4rem;
+  }
+
+  .page-hero h1 span {
+    color: var(--neon-cyan);
+  }
+
+  .page-hero .subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* SPORTS GRID */
+  .sports-grid {
+    padding: 4rem 3rem 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* SPORT CARD */
+  .sport-card {
+    background: rgba(5,5,20,0.7);
+    border: 1px solid var(--card-accent, rgba(0,245,255,0.15));
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .sport-card:hover {
+    border-color: var(--card-accent, rgba(0,245,255,0.5));
+    box-shadow: 0 0 30px rgba(0,0,0,0.4), inset 0 0 60px rgba(0,0,0,0.2);
+  }
+
+  .sport-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-accent);
+    opacity: 0.85;
+  }
+
+  .card-body {
+    padding: 1.8rem 2rem 1.5rem;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .sport-emoji {
+    font-size: 2.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .sport-name {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: var(--card-accent);
+    text-shadow: 0 0 20px var(--card-accent-glow, rgba(0,245,255,0.3));
+    line-height: 1.1;
+  }
+
+  .sport-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.64rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.12em;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+  }
+
+  .sport-desc {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.62);
+    line-height: 1.7;
+    margin-bottom: 0.85rem;
+  }
+
+  .sport-desc + .sport-desc {
+    margin-bottom: 0;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin: 1.5rem 0 1.5rem;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 0.8rem 0;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--card-accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* FEATURED MARKET */
+  .featured-market {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid var(--card-accent-dim, rgba(0,245,255,0.08));
+    padding: 1rem 1.2rem;
+    position: relative;
+  }
+
+  .featured-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .market-question {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.4;
+    margin-bottom: 0.9rem;
+  }
+
+  .market-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .market-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .price-badge {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--dark-bg);
+    background: var(--card-accent);
+    padding: 0.2rem 0.65rem;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+  }
+
+  .price-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+  }
+
+  .market-vol {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+
+  .market-vol span {
+    color: rgba(255,255,255,0.5);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer a {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--neon-cyan); }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="scanlines"></div>
+
+<div class="content">
+
+  <header>
+    <a href="index.html" class="logo">GENX<span style="color:var(--neon-pink)">SPORTSBOOK</span></a>
+    <nav>
+      <a href="markets.html">Markets</a>
+      <a href="sports.html" class="active">Sports</a>
+      <a href="live.html">Live</a>
+      <a href="news.html">News</a>
+      <a href="docs.html">Docs</a>
+    </nav>
+    <a href="index.html" class="cta-btn">Get Started</a>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-eyebrow">// PREDICTION MARKETS //</div>
+    <h1>EVERY SPORT.<br><span>EVERY EDGE.</span></h1>
+    <p class="subtitle">Genx covers every major prediction market on the planet — from Premier League matchweeks to esports grand finals. Deep liquidity, tight spreads, and the kind of market depth that makes Saturday afternoons genuinely stressful.</p>
+  </section>
+
+  <!-- SPORTS GRID -->
+  <section class="sports-grid">
+
+    <!-- 1. FOOTBALL / SOCCER -->
+    <div class="sport-card" style="--card-accent:var(--neon-cyan);--card-accent-glow:rgba(0,245,255,0.35);--card-accent-dim:rgba(0,245,255,0.1);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">⚽</div>
+          <div>
+            <div class="sport-name">FOOTBALL / SOCCER</div>
+            <div class="sport-sub">Premier League · Champions League · World Cup Qualifiers</div>
+          </div>
+        </div>
+        <p class="sport-desc">The world's most liquid prediction market. 38 Premier League gameweeks, 8 Champions League rounds, plus every domestic cup competition nobody predicted would matter until it did. The sheer volume of football markets means edges exist — they're just buried under a mountain of public money that moves on vibes rather than expected goals data.</p>
+        <p class="sport-desc">Finding genuine value takes work. Arsenal fans have been finding edges since 2004. Somehow none of them work by February. Price accordingly.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">2,840</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$4.2M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">71%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will Manchester City win the 2025–26 Premier League title?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 62¢</div>
+              <span class="price-label">/ NO 38¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$284,100</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. NFL -->
+    <div class="sport-card" style="--card-accent:var(--neon-orange);--card-accent-glow:rgba(255,102,0,0.35);--card-accent-dim:rgba(255,102,0,0.1);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🏈</div>
+          <div>
+            <div class="sport-name">NFL</div>
+            <div class="sport-sub">Regular Season · Playoffs · Super Bowl</div>
+          </div>
+        </div>
+        <p class="sport-desc">Where the spread matters more than the scoreboard, and a late-field-goal cover can flip an entire weekend's P&amp;L. NFL markets are the most liquid in American sports prediction — tight lines, sharp action, and more injury news in a single Friday than most sports produce in a season. The Thursday practice report is required reading.</p>
+        <p class="sport-desc">The Chiefs have been the market favourite in 11 of the last 12 seasons. Price accordingly, or don't. Both are valid trades. Just understand what you're doing when you fade them at home in January.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">1,620</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$6.8M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">68%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will the Kansas City Chiefs win Super Bowl LX?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 34¢</div>
+              <span class="price-label">/ NO 66¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$512,400</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. NBA -->
+    <div class="sport-card" style="--card-accent:var(--neon-yellow);--card-accent-glow:rgba(255,230,0,0.35);--card-accent-dim:rgba(255,230,0,0.08);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🏀</div>
+          <div>
+            <div class="sport-name">NBA</div>
+            <div class="sport-sub">Regular Season · Playoffs · Player Props</div>
+          </div>
+        </div>
+        <p class="sport-desc">82 regular-season games, 30 teams, and a load-management system specifically designed to make player prop markets interesting. The NBA is a trader's sport: high information environment, rapid price discovery, and the kind of variance that turns a 73-win team into a first-round exit. If you weren't watching that happen in real time, you missed the best cautionary tale in prediction market history.</p>
+        <p class="sport-desc">Player-level markets are where the sharpest edge lives. Points, assists, and rebounds props move fast — often faster than the market maker wants. Know the rotation, track the minutes, and do not forget to check who played 42 minutes the night before.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">3,110</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$3.9M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">66%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will Nikola Jokic win NBA MVP for a fifth time in 2025–26?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 41¢</div>
+              <span class="price-label">/ NO 59¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$198,700</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. F1 -->
+    <div class="sport-card" style="--card-accent:var(--neon-pink);--card-accent-glow:rgba(255,0,110,0.35);--card-accent-dim:rgba(255,0,110,0.1);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🏎</div>
+          <div>
+            <div class="sport-name">FORMULA 1</div>
+            <div class="sport-sub">24 Races · Constructors · Driver Standings</div>
+          </div>
+        </div>
+        <p class="sport-desc">24 races, 10 constructor battles, and the kind of technical regulation changes that can swing a world championship by 40 points before the season starts. F1 prediction markets reward preparation above all else: the traders who studied pre-season testing data made money in 2022 before the first race was ever run. That's not luck — that's homework.</p>
+        <p class="sport-desc">Understand the rule changes, model the mechanical degradation curves, and remember the cardinal rule of F1 prediction: the favourite always crashes in Monaco. Budget accordingly. Safety car probability alone is a tradeable variable.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">480</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$2.1M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">63%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will a safety car be deployed during the 2026 Monaco Grand Prix?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 81¢</div>
+              <span class="price-label">/ NO 19¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$76,200</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. TENNIS -->
+    <div class="sport-card" style="--card-accent:var(--neon-purple);--card-accent-glow:rgba(191,0,255,0.35);--card-accent-dim:rgba(191,0,255,0.1);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🎾</div>
+          <div>
+            <div class="sport-name">TENNIS</div>
+            <div class="sport-sub">Grand Slams · ATP · WTA</div>
+          </div>
+        </div>
+        <p class="sport-desc">4 Grand Slams, 96 ATP/WTA events, and more upset potential per match than any other individual sport on earth. Tennis markets are brutally direct: one player wins, one loses, nobody cares about the draw. There is no such thing as a moral victory in a tennis prediction market. You're either right or you're nursing a loss while watching a 250th-ranked player celebrate on clay.</p>
+        <p class="sport-desc">Surface matters enormously. Momentum matters. And the fact that your opponent played a three-hour five-setter in scorching heat yesterday matters significantly more than the seedings suggest. Fatigue data is your edge here. Most people don't bother to look.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">740</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$1.4M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">70%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will Carlos Alcaraz win the 2026 French Open?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 29¢</div>
+              <span class="price-label">/ NO 71¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$143,800</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. BOXING / MMA -->
+    <div class="sport-card" style="--card-accent:var(--neon-green);--card-accent-glow:rgba(57,255,20,0.35);--card-accent-dim:rgba(57,255,20,0.08);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🥊</div>
+          <div>
+            <div class="sport-name">BOXING / MMA</div>
+            <div class="sport-sub">UFC · Bellator · World Title Fights</div>
+          </div>
+        </div>
+        <p class="sport-desc">The original binary prediction market. Yes or No. Win or lose. Knockout or decision. Boxing markets are illiquid until fight week and then suddenly violent — the line moves fast and the last 48 hours before the bell are when most of the sharp money arrives. If you haven't done your research by the Tuesday before a Saturday card, you're already behind.</p>
+        <p class="sport-desc">MMA is structurally cleaner — more data, more frequent fights, and a slightly lower probability that the main event gets cancelled 48 hours out due to contractual disputes nobody saw coming. Fight metrics like takedown defence and striking accuracy are public and underused. Build a model. It doesn't have to be complicated to outperform the market.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">320</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$890K</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">65%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will Jon Jones retain the UFC Heavyweight title at UFC 318?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 67¢</div>
+              <span class="price-label">/ NO 33¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$94,500</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. CRICKET -->
+    <div class="sport-card" style="--card-accent:#00ffcc;--card-accent-glow:rgba(0,255,204,0.35);--card-accent-dim:rgba(0,255,204,0.08);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🏏</div>
+          <div>
+            <div class="sport-name">CRICKET</div>
+            <div class="sport-sub">Test · ODI · T20 · IPL</div>
+          </div>
+        </div>
+        <p class="sport-desc">The only sport where a rain delay is a legitimate trading strategy. Test cricket markets span five days and require the kind of patience that makes most traders acutely uncomfortable. You need to hold a position through a drinks break, a lunch interval, two overnight sessions, and a pitch report that could have been written by anyone. Then you find out the draw odds moved 15 points while you slept.</p>
+        <p class="sport-desc">T20, however, is prediction market crack: 20 overs, match-state shifts every ball, and more momentum swings per hour than a volatile altcoin in a bear market. IPL markets are particularly liquid. The powerplay is where fortunes are made and lost, and the data is there if you're willing to do the over-by-over analysis nobody else can be bothered with.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">560</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$1.7M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">69%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will India win the 2026 ICC Men's T20 World Cup?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 38¢</div>
+              <span class="price-label">/ NO 62¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$221,300</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. HOCKEY (NHL) -->
+    <div class="sport-card" style="--card-accent:var(--neon-cyan);--card-accent-glow:rgba(0,245,255,0.35);--card-accent-dim:rgba(0,245,255,0.1);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🏒</div>
+          <div>
+            <div class="sport-name">HOCKEY (NHL)</div>
+            <div class="sport-sub">Regular Season · Stanley Cup Playoffs</div>
+          </div>
+        </div>
+        <p class="sport-desc">The most under-priced volatility in mainstream sports prediction. Hockey lines are historically soft on the edges because the market isn't as heavily traded as NFL or NBA — and that asymmetry is exactly why the sharpest traders have been quietly building here for years. The volume is lower. The inefficiencies are larger. Do the maths.</p>
+        <p class="sport-desc">Goaltender starts are confirmed the day of the game. That single variable swings expected value significantly, and the public almost never adjusts correctly for it. Build goaltender confirmation into your pricing model as a hard dependency. The recreational bettor doesn't even know who's starting. That's your edge, right there, handed to you.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">890</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$1.1M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">72%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will the Florida Panthers win the 2026 Stanley Cup?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 22¢</div>
+              <span class="price-label">/ NO 78¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$118,900</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. ESPORTS -->
+    <div class="sport-card" style="--card-accent:var(--neon-purple);--card-accent-glow:rgba(191,0,255,0.35);--card-accent-dim:rgba(191,0,255,0.1);">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="sport-emoji">🎮</div>
+          <div>
+            <div class="sport-name">ESPORTS</div>
+            <div class="sport-sub">CS2 · League of Legends · Valorant · Dota 2</div>
+          </div>
+        </div>
+        <p class="sport-desc">The fastest-growing vertical in outcome trading. Counter-Strike, League of Legends, Valorant, and Dota have created a prediction market ecosystem with 24/7 action, massive global liquidity across multiple time zones, and a demographic that is extremely good at tournament bracket mathematics. Majors, regionals, and international invitational events run almost every week of the year.</p>
+        <p class="sport-desc">The edge? Most people still dramatically underestimate team composition data. Agent and operator pick rates, map pool depth, head-to-head records on specific maps — this information is public, freely available, and largely ignored by the general market. The gap between what the data says and what the odds reflect is wider in esports than almost anywhere else. For now.</p>
+        <div class="stats-strip">
+          <div class="stat-item">
+            <span class="stat-value">1,940</span>
+            <span class="stat-label">Open Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">$3.3M</span>
+            <span class="stat-label">24h Volume</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">67%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="featured-market">
+          <div class="featured-label">// Featured Market</div>
+          <div class="market-question">Will Team Vitality win the CS2 Major Championship in Copenhagen 2026?</div>
+          <div class="market-footer">
+            <div class="market-price">
+              <div class="price-badge">YES 18¢</div>
+              <span class="price-label">/ NO 82¢</span>
+            </div>
+            <div class="market-vol">VOL <span>$167,400</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /sports-grid -->
+
+  <footer>
+    <div style="font-family:'Black Ops One',cursive;font-size:1.3rem;color:var(--neon-cyan);">GENX<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
+    <div style="display:flex;gap:2rem;">
+      <a href="index.html">Home</a>
+      <a href="markets.html">Markets</a>
+      <a href="sports.html">Sports</a>
+      <a href="live.html">Live</a>
+      <a href="news.html">News</a>
+      <a href="docs.html">Docs</a>
+    </div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.2);">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
+  </footer>
+
+</div><!-- /content -->
+</body>
+</html>

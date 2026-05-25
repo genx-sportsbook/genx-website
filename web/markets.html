@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markets | Genx-Sportsbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--neon-pink:#ff006e;--neon-cyan:#00f5ff;--neon-yellow:#ffe600;--neon-green:#39ff14;--neon-purple:#bf00ff;--neon-orange:#ff6600;--dark-bg:#050510;--grid-color:rgba(0,245,255,0.06);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark-bg);color:#fff;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+.scanlines{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.12) 2px,rgba(0,0,0,0.12) 4px);pointer-events:none;z-index:1;}
+.content{position:relative;z-index:2;}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;border-bottom:1px solid rgba(0,245,255,0.2);background:rgba(5,5,16,0.9);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100;}
+.logo{font-family:'Black Ops One',cursive;font-size:1.8rem;letter-spacing:0.1em;color:var(--neon-cyan);text-decoration:none;text-shadow:0 0 10px var(--neon-cyan),0 0 30px var(--neon-cyan);}
+.logo span{color:var(--neon-pink);text-shadow:0 0 10px var(--neon-pink);}
+nav{display:flex;gap:2rem;align-items:center;}
+nav a{font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;}
+nav a:hover,nav a.active{color:var(--neon-cyan);text-shadow:0 0 8px var(--neon-cyan);}
+.cta-btn{font-family:'Orbitron',monospace;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;padding:0.6rem 1.4rem;background:transparent;border:2px solid var(--neon-pink);color:var(--neon-pink);cursor:pointer;text-transform:uppercase;text-decoration:none;transition:all 0.2s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.cta-btn:hover{background:var(--neon-pink);color:var(--dark-bg);}
+
+/* STATUS BAR */
+.status-bar{display:flex;align-items:center;gap:2rem;padding:0.65rem 3rem;background:rgba(0,245,255,0.03);border-bottom:1px solid rgba(0,245,255,0.1);font-family:'Share Tech Mono',monospace;font-size:0.75rem;flex-wrap:wrap;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--neon-green);box-shadow:0 0 8px var(--neon-green);animation:pulse-dot 1.5s ease-in-out infinite;display:inline-block;margin-right:0.4rem;}
+@keyframes pulse-dot{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.status-item{color:rgba(255,255,255,0.5);}
+.status-item span{color:var(--neon-cyan);font-weight:700;}
+.status-sep{color:rgba(255,255,255,0.15);}
+
+/* TRADING GRID */
+.trading-area{display:grid;grid-template-columns:1fr 340px;gap:1.5px;background:rgba(0,245,255,0.08);border-bottom:1px solid rgba(0,245,255,0.08);}
+.chart-panel{background:var(--dark-bg);padding:1.5rem;}
+.chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:1rem;}
+.chart-symbol{font-family:'Black Ops One',cursive;font-size:1.6rem;color:var(--neon-cyan);text-shadow:0 0 15px rgba(0,245,255,0.4);}
+.chart-name{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.4);letter-spacing:0.08em;margin-top:0.25rem;}
+.price-display{text-align:right;}
+.price-big{font-family:'Orbitron',monospace;font-weight:900;font-size:2.2rem;}
+.price-change{font-family:'Share Tech Mono',monospace;font-size:0.8rem;margin-top:0.2rem;}
+.up{color:var(--neon-green);}
+.dn{color:var(--neon-pink);}
+.chart-meta{display:flex;gap:2rem;margin-bottom:1rem;flex-wrap:wrap;}
+.meta-item{font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.35);}
+.meta-item span{color:rgba(255,255,255,0.7);}
+canvas#price-chart{width:100%;height:220px;display:block;}
+.vol-canvas{width:100%;height:40px;display:block;margin-top:2px;}
+.chart-footer{display:flex;justify-content:space-between;margin-top:0.75rem;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.2);letter-spacing:0.05em;}
+
+/* RIGHT PANEL */
+.right-panel{background:var(--dark-bg);display:flex;flex-direction:column;}
+.panel-tab{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.75rem 1.5rem;border-bottom:1px solid rgba(0,245,255,0.1);color:rgba(255,255,255,0.4);background:rgba(0,245,255,0.02);}
+.panel-tab span{color:var(--neon-cyan);}
+
+/* ORDER BOOK */
+.ob-wrap{padding:0.75rem 1.5rem;flex:1;}
+.ob-header{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;padding:0 0.25rem;}
+.ob-ask,.ob-bid{margin-bottom:0.15rem;}
+.ob-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;font-family:'Share Tech Mono',monospace;font-size:0.72rem;padding:0.22rem 0.25rem;position:relative;overflow:hidden;}
+.ob-bar{position:absolute;top:0;bottom:0;right:0;opacity:0.12;}
+.ask-bar{background:var(--neon-pink);}
+.bid-bar{background:var(--neon-green);}
+.ask-price{color:var(--neon-pink);}
+.bid-price{color:var(--neon-green);}
+.ob-spread{text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.25);padding:0.4rem;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);margin:0.25rem 0;}
+
+/* FILLS */
+.fills-wrap{padding:0.75rem 1.5rem;}
+.fill-row{display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0;border-bottom:1px solid rgba(255,255,255,0.04);font-family:'Share Tech Mono',monospace;font-size:0.7rem;}
+.fill-side-buy{color:var(--neon-green);}
+.fill-side-sell{color:var(--neon-pink);}
+.fill-time{color:rgba(255,255,255,0.25);font-size:0.65rem;}
+
+/* INSTRUMENTS TABLE */
+.instruments-section{padding:2rem 3rem 3rem;}
+.section-tag{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.3em;color:var(--neon-pink);text-shadow:0 0 8px var(--neon-pink);text-transform:uppercase;margin-bottom:0.5rem;display:block;}
+.section-title{font-family:'Black Ops One',cursive;font-size:2rem;color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,245,255,0.4);margin-bottom:1.5rem;}
+.inst-table{width:100%;border-collapse:collapse;border:1px solid rgba(0,245,255,0.1);}
+.inst-table th{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:rgba(0,245,255,0.5);text-transform:uppercase;padding:0.75rem 1rem;text-align:left;background:rgba(0,245,255,0.03);border-bottom:1px solid rgba(0,245,255,0.1);cursor:pointer;white-space:nowrap;}
+.inst-table th:hover{color:var(--neon-cyan);}
+.inst-table td{padding:0.7rem 1rem;border-bottom:1px solid rgba(255,255,255,0.04);font-family:'Share Tech Mono',monospace;font-size:0.75rem;vertical-align:middle;}
+.inst-table tr:hover td{background:rgba(0,245,255,0.02);}
+.inst-symbol{color:var(--neon-cyan);font-weight:700;letter-spacing:0.05em;}
+.inst-name{color:rgba(255,255,255,0.8);font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:400;max-width:280px;}
+.inst-cat{font-family:'Share Tech Mono',monospace;font-size:0.62rem;padding:0.15rem 0.5rem;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);white-space:nowrap;}
+.inst-price{font-family:'Orbitron',monospace;font-weight:700;font-size:0.8rem;color:var(--neon-cyan);}
+.inst-change-up{color:var(--neon-green);}
+.inst-change-dn{color:var(--neon-pink);}
+.inst-vol{color:rgba(255,255,255,0.55);}
+.inst-oi{color:rgba(255,255,255,0.4);}
+
+/* SPARKLINE */
+.sparkline{display:block;}
+
+/* FOOTER */
+footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Black Ops One',cursive;font-size:1.3rem;color:var(--neon-cyan);text-shadow:0 0 10px var(--neon-cyan);}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.1em;transition:color 0.2s;}
+.footer-links a:hover{color:var(--neon-cyan);}
+.footer-copy{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;}
+
+@media(max-width:900px){.trading-area{grid-template-columns:1fr;}.right-panel{border-top:1px solid rgba(0,245,255,0.08);}.instruments-section{padding:1.5rem;}header{padding:1rem 1.5rem;}nav{display:none;}.status-bar{padding:0.65rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="scanlines"></div>
+<div class="content">
+
+<header>
+  <a href="index.html" class="logo">GENX<span>SPORTSBOOK</span></a>
+  <nav>
+    <a href="markets.html" class="active">Markets</a>
+    <a href="sports.html">Sports</a>
+    <a href="live.html">Live</a>
+    <a href="news.html">News</a>
+    <a href="docs.html">Docs</a>
+  </nav>
+  <a href="index.html" class="cta-btn">Get Started</a>
+</header>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <!-- GENX:MKTPAGE_STATUS:START -->
+  <span><span class="live-dot"></span><span style="color:var(--neon-green);font-weight:700;letter-spacing:0.15em;">LIVE</span></span>
+  <span class="status-sep">|</span>
+  <span class="status-item"><span>12,847</span> MARKETS</span>
+  <span class="status-sep">|</span>
+  <span class="status-item">24H VOL <span>$47.2M</span></span>
+  <span class="status-sep">|</span>
+  <span class="status-item"><span>2,913</span> ACTIVE NOW</span>
+  <span class="status-sep">|</span>
+  <span class="status-item">UPDATED <span>08:00 UTC</span></span>
+  <!-- GENX:MKTPAGE_STATUS:END -->
+</div>
+
+<!-- MAIN TRADING AREA -->
+<div class="trading-area">
+
+  <!-- CHART PANEL -->
+  <div class="chart-panel">
+    <!-- GENX:MKTPAGE_FEATURED:START -->
+    <div class="chart-header">
+      <div>
+        <div class="chart-symbol">ARSENAL-UCL</div>
+        <div class="chart-name">Will Arsenal win the UEFA Champions League 2025/26?</div>
+      </div>
+      <div class="price-display">
+        <div class="price-big up" id="featured-price">67¢</div>
+        <div class="price-change up" id="featured-change">▲ +3.2% today</div>
+      </div>
+    </div>
+    <div class="chart-meta">
+      <div class="meta-item">24H HIGH <span id="chart-high">71¢</span></div>
+      <div class="meta-item">24H LOW <span id="chart-low">62¢</span></div>
+      <div class="meta-item">VOLUME <span>$4.2M</span></div>
+      <div class="meta-item">CATEGORY <span>Football</span></div>
+    </div>
+    <!-- GENX:MKTPAGE_FEATURED:END -->
+    <canvas id="price-chart"></canvas>
+    <canvas id="vol-chart" class="vol-canvas"></canvas>
+    <div class="chart-footer">
+      <span id="chart-time-start"></span>
+      <span style="color:rgba(255,255,255,0.3);font-size:0.6rem;letter-spacing:0.1em;">// LIVE · UPDATES EVERY 2s //</span>
+      <span>NOW</span>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: ORDER BOOK + FILLS -->
+  <div class="right-panel">
+    <div class="panel-tab">ORDER BOOK <span>// FEATURED MARKET</span></div>
+    <div class="ob-wrap">
+      <div class="ob-header">
+        <span>PRICE</span><span>SIZE</span><span>TOTAL</span>
+      </div>
+      <!-- ASKS (sell side) -->
+      <div id="ob-asks">
+        <!-- GENX:MKTPAGE_ORDERBOOK:START -->
+        <div class="ob-row ob-ask"><div class="ask-price">72¢</div><div style="color:rgba(255,255,255,0.6)">$8,100</div><div style="color:rgba(255,255,255,0.4)">$28,400</div><div class="ob-bar ask-bar" style="width:60%"></div></div>
+        <div class="ob-row ob-ask"><div class="ask-price">71¢</div><div style="color:rgba(255,255,255,0.6)">$12,300</div><div style="color:rgba(255,255,255,0.4)">$20,300</div><div class="ob-bar ask-bar" style="width:85%"></div></div>
+        <div class="ob-row ob-ask"><div class="ask-price">70¢</div><div style="color:rgba(255,255,255,0.6)">$15,200</div><div style="color:rgba(255,255,255,0.4)">$8,000</div><div class="ob-bar ask-bar" style="width:100%"></div></div>
+        <div class="ob-row ob-ask"><div class="ask-price">69¢</div><div style="color:rgba(255,255,255,0.6)">$9,800</div><div style="color:rgba(255,255,255,0.4)">$25,600</div><div class="ob-bar ask-bar" style="width:65%"></div></div>
+        <div class="ob-row ob-ask"><div class="ask-price">68¢</div><div style="color:rgba(255,255,255,0.6)">$11,200</div><div style="color:rgba(255,255,255,0.4)">$15,800</div><div class="ob-bar ask-bar" style="width:75%"></div></div>
+        <!-- GENX:MKTPAGE_ORDERBOOK:END -->
+      </div>
+      <div class="ob-spread">— SPREAD 1¢ —</div>
+      <!-- BIDS (buy side) -->
+      <div id="ob-bids">
+        <div class="ob-row ob-bid"><div class="bid-price">67¢</div><div style="color:rgba(255,255,255,0.6)">$18,400</div><div style="color:rgba(255,255,255,0.4)">$18,400</div><div class="ob-bar bid-bar" style="width:100%"></div></div>
+        <div class="ob-row ob-bid"><div class="bid-price">66¢</div><div style="color:rgba(255,255,255,0.6)">$14,200</div><div style="color:rgba(255,255,255,0.4)">$32,600</div><div class="ob-bar bid-bar" style="width:77%"></div></div>
+        <div class="ob-row ob-bid"><div class="bid-price">65¢</div><div style="color:rgba(255,255,255,0.6)">$9,600</div><div style="color:rgba(255,255,255,0.4)">$42,200</div><div class="ob-bar bid-bar" style="width:52%"></div></div>
+        <div class="ob-row ob-bid"><div class="bid-price">64¢</div><div style="color:rgba(255,255,255,0.6)">$7,100</div><div style="color:rgba(255,255,255,0.4)">$49,300</div><div class="ob-bar bid-bar" style="width:39%"></div></div>
+        <div class="ob-row ob-bid"><div class="bid-price">63¢</div><div style="color:rgba(255,255,255,0.6)">$5,800</div><div style="color:rgba(255,255,255,0.4)">$55,100</div><div class="ob-bar bid-bar" style="width:31%"></div></div>
+      </div>
+    </div>
+
+    <div class="panel-tab" style="margin-top:auto;">RECENT FILLS</div>
+    <div class="fills-wrap">
+      <!-- GENX:MKTPAGE_FILLS:START -->
+      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>67¢</span><span>$3,200</span><span class="fill-time">0:23</span></div>
+      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>67¢</span><span>$800</span><span class="fill-time">0:41</span></div>
+      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>66¢</span><span>$5,100</span><span class="fill-time">1:12</span></div>
+      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>66¢</span><span>$1,400</span><span class="fill-time">1:38</span></div>
+      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>65¢</span><span>$2,200</span><span class="fill-time">2:04</span></div>
+      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>65¢</span><span>$4,800</span><span class="fill-time">2:29</span></div>
+      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>64¢</span><span>$600</span><span class="fill-time">3:15</span></div>
+      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>64¢</span><span>$1,100</span><span class="fill-time">3:52</span></div>
+      <div class="fill-row"><span class="fill-side-sell">SELL</span><span>63¢</span><span>$3,700</span><span class="fill-time">4:28</span></div>
+      <div class="fill-row"><span class="fill-side-buy">BUY</span><span>63¢</span><span>$900</span><span class="fill-time">5:01</span></div>
+      <!-- GENX:MKTPAGE_FILLS:END -->
+    </div>
+  </div>
+</div>
+
+<!-- INSTRUMENTS TABLE -->
+<div class="instruments-section">
+  <span class="section-tag">// All Markets //</span>
+  <h2 class="section-title">ACTIVE CONTRACTS</h2>
+  <table class="inst-table">
+    <thead>
+      <tr>
+        <th>SYMBOL</th>
+        <th>MARKET</th>
+        <th>CATEGORY</th>
+        <th>PRICE</th>
+        <th>24H %</th>
+        <th>VOLUME</th>
+        <th>OPEN INT</th>
+        <th>TREND</th>
+      </tr>
+    </thead>
+    <tbody id="instruments-tbody">
+      <!-- GENX:MKTPAGE_INSTRUMENTS:START -->
+      <tr><td class="inst-symbol">ARSENAL-UCL</td><td class="inst-name">Will Arsenal win the UEFA Champions League 2025/26?</td><td><span class="inst-cat">Football</span></td><td class="inst-price">67¢</td><td class="inst-change-up">+3.2%</td><td class="inst-vol">$4.2M</td><td class="inst-oi">18,420</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,14 5,12 10,10 15,11 20,9 25,7 30,8 35,6 40,5 45,6 50,4 55,4 60,3" fill="none" stroke="#39ff14" stroke-width="1.5"/></svg></td></tr>
+      <tr><td class="inst-symbol">CHIEFS-SB</td><td class="inst-name">Will the Kansas City Chiefs win Super Bowl LX?</td><td><span class="inst-cat">NFL</span></td><td class="inst-price">28¢</td><td class="inst-change-up">+5.1%</td><td class="inst-vol">$2.8M</td><td class="inst-oi">12,100</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,16 5,15 10,14 15,16 20,13 25,14 30,12 35,11 40,13 45,10 50,9 55,8 60,7" fill="none" stroke="#39ff14" stroke-width="1.5"/></svg></td></tr>
+      <tr><td class="inst-symbol">CELTICS-NBA</td><td class="inst-name">Will the Celtics win the 2026 NBA Championship?</td><td><span class="inst-cat">NBA</span></td><td class="inst-price">41¢</td><td class="inst-change-dn">-1.8%</td><td class="inst-vol">$1.9M</td><td class="inst-oi">9,840</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,5 5,4 10,6 15,5 20,7 25,8 30,7 35,9 40,10 45,9 50,11 55,12 60,12" fill="none" stroke="#ff006e" stroke-width="1.5"/></svg></td></tr>
+      <tr><td class="inst-symbol">VER-F1</td><td class="inst-name">Will Max Verstappen win the 2026 F1 Championship?</td><td><span class="inst-cat">F1</span></td><td class="inst-price">71¢</td><td class="inst-change-dn">-0.5%</td><td class="inst-vol">$1.1M</td><td class="inst-oi">6,230</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,4 5,4 10,5 15,4 20,6 25,5 30,5 35,6 40,7 45,6 50,8 55,8 60,9" fill="none" stroke="#ff006e" stroke-width="1.5"/></svg></td></tr>
+      <tr><td class="inst-symbol">SINNER-RG</td><td class="inst-name">Will Jannik Sinner win the 2026 French Open?</td><td><span class="inst-cat">Tennis</span></td><td class="inst-price">29¢</td><td class="inst-change-up">+2.1%</td><td class="inst-vol">$542K</td><td class="inst-oi">4,110</td><td><svg class="sparkline" viewBox="0 0 60 20" width="60" height="20"><polyline points="0,14 5,13 10,15 15,12 20,11 25,12 30,10 35,9 40,10 45,8 50,7 55,8 60,7" fill="none" stroke="#39ff14" stroke-width="1.5"/></svg></td></tr>
+      <!-- GENX:MKTPAGE_INSTRUMENTS:END -->
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <div class="footer-logo">GENX<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
+  <div class="footer-links">
+    <a href="markets.html">Markets</a>
+    <a href="sports.html">Sports</a>
+    <a href="live.html">Live</a>
+    <a href="news.html">News</a>
+    <a href="docs.html">Docs</a>
+  </div>
+  <div class="footer-copy">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
+</footer>
+
+</div>
+
+<script>
+// --- CHART DATA (Gemini updates this daily) ---
+// GENX:MKTPAGE_CHARTDATA:START
+var baseChartData = [52,50,53,51,55,54,58,56,59,57,60,62,60,63,61,64,63,65,64,66,65,67,65,68,66,68,67,69,67,70,68,69,68,70,69,71,70,69,70,68,69,70,69,68,70,69,67,68,69,68,67,68,69,67,68,69,68,67,68,67,68,67,66,67,66,67,66,67,66,67,66,67,66,67,66,67,66,67,66,67];
+// GENX:MKTPAGE_CHARTDATA:END
+
+var chartData = baseChartData.slice();
+var volData = chartData.map(() => Math.floor(Math.random() * 80 + 20));
+
+function resizeCanvases() {
+  var c = document.getElementById('price-chart');
+  var v = document.getElementById('vol-chart');
+  var w = c.parentElement.clientWidth - 48;
+  c.width = w; c.height = 220;
+  v.width = w; v.height = 40;
+}
+
+function drawPriceChart() {
+  var c = document.getElementById('price-chart');
+  var ctx = c.getContext('2d');
+  var W = c.width, H = c.height;
+  ctx.clearRect(0, 0, W, H);
+
+  var min = Math.min(...chartData) - 3;
+  var max = Math.max(...chartData) + 3;
+  var range = max - min;
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(0,245,255,0.06)';
+  ctx.lineWidth = 1;
+  for (var i = 0; i <= 4; i++) {
+    var y = (i / 4) * H;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    // Price labels
+    var price = max - (i / 4) * range;
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.font = '10px Share Tech Mono, monospace';
+    ctx.fillText(Math.round(price) + '¢', W - 28, y + 4);
+  }
+
+  var n = chartData.length;
+  var xStep = W / (n - 1);
+
+  function px(i) { return i * xStep; }
+  function py(v) { return H - ((v - min) / range) * H; }
+
+  // Gradient fill
+  var grad = ctx.createLinearGradient(0, 0, 0, H);
+  var last = chartData[n - 1];
+  var first = chartData[0];
+  var isUp = last >= first;
+  var col = isUp ? '57,255,20' : '255,0,110';
+  grad.addColorStop(0, 'rgba(' + col + ',0.25)');
+  grad.addColorStop(1, 'rgba(' + col + ',0)');
+
+  ctx.beginPath();
+  ctx.moveTo(px(0), py(chartData[0]));
+  for (var i = 1; i < n; i++) {
+    ctx.lineTo(px(i), py(chartData[i]));
+  }
+  ctx.lineTo(px(n-1), H);
+  ctx.lineTo(0, H);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Price line with glow
+  ctx.shadowColor = isUp ? '#39ff14' : '#ff006e';
+  ctx.shadowBlur = 8;
+  ctx.strokeStyle = isUp ? '#39ff14' : '#ff006e';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(px(0), py(chartData[0]));
+  for (var i = 1; i < n; i++) {
+    ctx.lineTo(px(i), py(chartData[i]));
+  }
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Current price dot
+  var lx = px(n-1), ly = py(chartData[n-1]);
+  ctx.beginPath();
+  ctx.arc(lx, ly, 4, 0, Math.PI * 2);
+  ctx.fillStyle = isUp ? '#39ff14' : '#ff006e';
+  ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 12;
+  ctx.fill(); ctx.shadowBlur = 0;
+}
+
+function drawVolChart() {
+  var c = document.getElementById('vol-chart');
+  var ctx = c.getContext('2d');
+  var W = c.width, H = c.height;
+  ctx.clearRect(0, 0, W, H);
+  var maxVol = Math.max(...volData);
+  var barW = W / volData.length;
+  volData.forEach(function(v, i) {
+    var h = (v / maxVol) * H;
+    ctx.fillStyle = 'rgba(0,245,255,0.25)';
+    ctx.fillRect(i * barW, H - h, barW - 1, h);
+  });
+}
+
+function addDataPoint() {
+  var last = chartData[chartData.length - 1];
+  var delta = (Math.random() - 0.49) * 2.2;
+  var next = Math.max(1, Math.min(99, last + delta));
+  chartData.push(next);
+  if (chartData.length > 120) chartData.shift();
+  volData.push(Math.floor(Math.random() * 80 + 20));
+  if (volData.length > 120) volData.shift();
+
+  var priceEl = document.getElementById('featured-price');
+  var changeEl = document.getElementById('featured-change');
+  if (priceEl) {
+    var p = Math.round(next);
+    priceEl.textContent = p + '¢';
+    priceEl.className = 'price-big ' + (next >= last ? 'up' : 'dn');
+  }
+
+  drawPriceChart();
+  drawVolChart();
+}
+
+// Set chart time labels
+var now = new Date();
+var start = new Date(now.getTime() - 80 * 2000);
+document.getElementById('chart-time-start').textContent =
+  start.getHours().toString().padStart(2,'0') + ':' + start.getMinutes().toString().padStart(2,'0');
+
+window.addEventListener('resize', function() { resizeCanvases(); drawPriceChart(); drawVolChart(); });
+resizeCanvases();
+drawPriceChart();
+drawVolChart();
+setInterval(addDataPoint, 2000);
+</script>
+</body>
+</html>
