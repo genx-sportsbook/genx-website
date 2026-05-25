@@ -6,6 +6,15 @@ on:
       - main
     paths:
       - 'web/**'
+  workflow_run:
+    workflows:
+      - "Daily Article Generator"
+      - "Refresh Homepage Content"
+      - "Daily Pages Update"
+    types:
+      - completed
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -20,6 +29,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
