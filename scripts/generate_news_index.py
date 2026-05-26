@@ -173,7 +173,7 @@ def build_news_html(articles: list) -> str:
 <div class="content">
 
 <header>
-  <a href="index.html" class="logo">GENX<span>SPORTSBOOK</span></a>
+  <a href="index.html" class="logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></a>
   <nav>
     <a href="markets.html">Markets</a>
     <a href="sports.html">Sports</a>
@@ -194,7 +194,7 @@ def build_news_html(articles: list) -> str:
 </section>
 
 <footer>
-  <div class="footer-logo">GENX<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
+  <div class="footer-logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
   <div class="footer-links">
     <a href="markets.html">Markets</a>
     <a href="sports.html">Sports</a>
