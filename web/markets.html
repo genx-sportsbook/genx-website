@@ -41,7 +41,7 @@ nav a:hover{color:#fff;}nav a.active{color:var(--neon-cyan);}
 /* TRADING GRID */
 .trading-area{display:grid;grid-template-columns:1fr 340px;gap:1.5px;background:rgba(0,245,255,0.08);border-bottom:1px solid rgba(0,245,255,0.08);}
 .chart-panel{background:var(--dark-bg);padding:1.5rem;display:flex;flex-direction:column;}
-.chart-area{flex:1;display:flex;flex-direction:column;min-height:280px;margin-top:1rem;}
+.chart-area{flex:1;display:flex;flex-direction:column;min-height:280px;margin-bottom:1rem;}
 .chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:1rem;}
 .chart-symbol{font-family:'Black Ops One',cursive;font-size:1.6rem;color:var(--neon-cyan);text-shadow:0 0 15px rgba(0,245,255,0.4);}
 .chart-name{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.4);letter-spacing:0.08em;margin-top:0.25rem;}
@@ -180,6 +180,15 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
 
   <!-- CHART PANEL -->
   <div class="chart-panel">
+    <div class="chart-area">
+      <canvas id="price-chart"></canvas>
+      <canvas id="vol-chart" class="vol-canvas"></canvas>
+      <div class="chart-footer">
+        <span id="chart-time-start"></span>
+        <span style="color:rgba(255,255,255,0.3);font-size:0.6rem;letter-spacing:0.1em;">// LIVE · UPDATES EVERY 2s //</span>
+        <span>NOW</span>
+      </div>
+    </div>
     <!-- GENX:MKTPAGE_FEATURED:START -->
   <div class="featured-symbol">RM-UCL</div>
   <div class="featured-name">Real Madrid to Win the UEFA Champions League 2026?</div>
@@ -198,15 +207,6 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
     <button class="trade-btn trade-no">BUY NO 33¢</button>
   </div>
     <!-- GENX:MKTPAGE_FEATURED:END -->
-    <div class="chart-area">
-      <canvas id="price-chart"></canvas>
-      <canvas id="vol-chart" class="vol-canvas"></canvas>
-      <div class="chart-footer">
-        <span id="chart-time-start"></span>
-        <span style="color:rgba(255,255,255,0.3);font-size:0.6rem;letter-spacing:0.1em;">// LIVE · UPDATES EVERY 2s //</span>
-        <span>NOW</span>
-      </div>
-    </div>
   </div>
 
   <!-- RIGHT PANEL: ORDER BOOK + FILLS -->
