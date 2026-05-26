@@ -212,10 +212,22 @@ def build_news_html(articles: list) -> str:
 """
 
 
+def replace_section(content: str, tag: str, new_html: str) -> str:
+    pattern = rf"<!-- GENX:{tag}:START -->.*?<!-- GENX:{tag}:END -->"
+    replacement = f"<!-- GENX:{tag}:START -->\n{new_html}\n    <!-- GENX:{tag}:END -->"
+    return re.sub(pattern, replacement, content, flags=re.DOTALL)
+
+
+def build_homepage_cards_html(articles: list) -> str:
+    """Build cards for the latest 3 articles for index.html."""
+    return "\n\n".join(build_article_card(a) for a in articles[:3])
+
+
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     articles_dir = os.path.join(base_dir, "web", "articles")
     news_path = os.path.join(base_dir, "web", "news.html")
+    index_path = os.path.join(base_dir, "web", "index.html")
 
     articles = []
     if os.path.isdir(articles_dir):
@@ -235,8 +247,15 @@ def main():
     html = build_news_html(articles)
     with open(news_path, "w", encoding="utf-8") as f:
         f.write(html)
-
     print(f"News index written to: {news_path}")
+
+    # Also update the homepage news cards (latest 3, newest first)
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    index_content = replace_section(index_content, "NEWS_CARDS", build_homepage_cards_html(articles))
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(index_content)
+    print(f"Homepage news cards updated ({min(len(articles), 3)} articles)")
 
 
 if __name__ == "__main__":
