@@ -548,6 +548,7 @@
     align-items: center;
     gap: 0.75rem;
     cursor: pointer;
+    text-decoration: none;
   }
 
   .sport-icon-wrap:hover .sport-icon-svg { filter: drop-shadow(0 0 20px var(--icon-color)); transform: scale(1.1); }
@@ -1222,56 +1223,40 @@
 
   <div class="sports-icons-row">
 
-    <div class="sport-icon-wrap" style="--icon-color: var(--neon-cyan)">
+    <a href="sports.html#football" class="sport-icon-wrap" style="--icon-color: var(--neon-cyan)">
       <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="40" cy="40" rx="28" ry="20" fill="none" stroke="#00f5ff" stroke-width="2.5"/>
-        <line x1="12" y1="40" x2="68" y2="40" stroke="#00f5ff" stroke-width="1.5"/>
-        <line x1="40" y1="20" x2="40" y2="60" stroke="#00f5ff" stroke-width="1.5"/>
-        <line x1="30" y1="25" x2="50" y2="25" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
-        <line x1="26" y1="33" x2="54" y2="33" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
-        <line x1="26" y1="47" x2="54" y2="47" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
-        <line x1="30" y1="55" x2="50" y2="55" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#00f5ff" stroke-width="2.5"/>
+        <path d="M 20 22 Q 40 32 60 22" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity="0.7"/>
+        <path d="M 20 58 Q 40 48 60 58" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity="0.7"/>
+        <line x1="14" y1="40" x2="66" y2="40" stroke="#00f5ff" stroke-width="1.5"/>
+        <line x1="40" y1="14" x2="40" y2="66" stroke="#00f5ff" stroke-width="1.5"/>
       </svg>
       <span class="sport-icon-label">Football</span>
-    </div>
+    </a>
 
-    <div class="sport-icon-wrap" style="--icon-color: var(--neon-orange)">
+    <a href="sports.html#nfl" class="sport-icon-wrap" style="--icon-color: var(--neon-orange)">
       <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="26" fill="none" stroke="#ff6600" stroke-width="2.5"/>
-        <line x1="14" y1="40" x2="66" y2="40" stroke="#ff6600" stroke-width="1.5"/>
-        <line x1="40" y1="14" x2="40" y2="66" stroke="#ff6600" stroke-width="1.5"/>
-        <path d="M 20 20 Q 40 30 60 20" fill="none" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 20 60 Q 40 50 60 60" fill="none" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 14 40 Q 25 40 30 25" fill="none" stroke="#ff6600" stroke-width="1.5" opacity="0.5"/>
+        <ellipse cx="40" cy="40" rx="26" ry="17" fill="none" stroke="#ff6600" stroke-width="2.5"/>
+        <line x1="14" y1="40" x2="66" y2="40" stroke="#ff6600" stroke-width="2"/>
+        <line x1="37" y1="30" x2="37" y2="50" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
+        <line x1="40" y1="27" x2="40" y2="53" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
+        <line x1="43" y1="30" x2="43" y2="50" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
       </svg>
-      <span class="sport-icon-label">Basketball</span>
-    </div>
+      <span class="sport-icon-label">NFL</span>
+    </a>
 
-    <div class="sport-icon-wrap" style="--icon-color: var(--neon-green)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="26" fill="none" stroke="#39ff14" stroke-width="2.5"/>
-        <polygon points="40,16 49,26 46,38 34,38 31,26" fill="none" stroke="#39ff14" stroke-width="1.5" opacity="0.9"/>
-        <line x1="40" y1="16" x2="40" y2="26" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
-        <line x1="46" y1="38" x2="54" y2="44" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
-        <line x1="34" y1="38" x2="26" y2="44" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
-        <line x1="46" y1="38" x2="50" y2="52" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
-        <line x1="34" y1="38" x2="30" y2="52" stroke="#39ff14" stroke-width="1.2" opacity="0.5"/>
-      </svg>
-      <span class="sport-icon-label">Soccer</span>
-    </div>
-
-    <div class="sport-icon-wrap" style="--icon-color: var(--neon-yellow)">
+    <a href="sports.html#nba" class="sport-icon-wrap" style="--icon-color: var(--neon-yellow)">
       <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <circle cx="40" cy="40" r="26" fill="none" stroke="#ffe600" stroke-width="2.5"/>
-        <path d="M 22 28 Q 35 40 22 52" fill="none" stroke="#ffe600" stroke-width="2" opacity="0.8"/>
-        <path d="M 58 28 Q 45 40 58 52" fill="none" stroke="#ffe600" stroke-width="2" opacity="0.8"/>
-        <rect x="35" y="52" width="8" height="14" rx="2" fill="none" stroke="#ffe600" stroke-width="1.8"/>
-        <line x1="14" y1="40" x2="35" y2="52" stroke="#ffe600" stroke-width="1.5" opacity="0.5"/>
+        <line x1="14" y1="40" x2="66" y2="40" stroke="#ffe600" stroke-width="1.5"/>
+        <line x1="40" y1="14" x2="40" y2="66" stroke="#ffe600" stroke-width="1.5"/>
+        <path d="M 20 20 Q 30 40 20 60" fill="none" stroke="#ffe600" stroke-width="1.5" opacity="0.7"/>
+        <path d="M 60 20 Q 50 40 60 60" fill="none" stroke="#ffe600" stroke-width="1.5" opacity="0.7"/>
       </svg>
-      <span class="sport-icon-label">Tennis</span>
-    </div>
+      <span class="sport-icon-label">NBA</span>
+    </a>
 
-    <div class="sport-icon-wrap" style="--icon-color: var(--neon-pink)">
+    <a href="sports.html#formula1" class="sport-icon-wrap" style="--icon-color: var(--neon-pink)">
       <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <path d="M 8 46 L 20 34 L 50 30 L 68 38 L 72 46 L 8 46 Z" fill="none" stroke="#ff006e" stroke-width="2.5"/>
         <circle cx="22" cy="48" r="6" fill="none" stroke="#ff006e" stroke-width="2"/>
@@ -1279,43 +1264,61 @@
         <line x1="28" y1="48" x2="50" y2="48" stroke="#ff006e" stroke-width="2" opacity="0.4"/>
         <line x1="30" y1="34" x2="32" y2="22" stroke="#ff006e" stroke-width="2" opacity="0.7"/>
         <line x1="32" y1="22" x2="48" y2="22" stroke="#ff006e" stroke-width="2" opacity="0.7"/>
-        <path d="M 14 38 L 10 28 L 20 30" fill="none" stroke="#ff006e" stroke-width="1.5" opacity="0.5"/>
       </svg>
       <span class="sport-icon-label">Formula 1</span>
-    </div>
+    </a>
 
-    <div class="sport-icon-wrap" style="--icon-color: var(--neon-purple)">
+    <a href="sports.html#tennis" class="sport-icon-wrap" style="--icon-color: var(--neon-purple)">
       <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 25 50 Q 20 40 28 30 Q 36 20 46 24 Q 58 26 58 38 L 56 52 Q 52 62 42 62 Q 32 62 25 50 Z" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
-        <line x1="30" y1="62" x2="28" y2="72" stroke="#bf00ff" stroke-width="2" opacity="0.7"/>
-        <line x1="50" y1="62" x2="52" y2="72" stroke="#bf00ff" stroke-width="2" opacity="0.7"/>
-        <line x1="28" y1="72" x2="52" y2="72" stroke="#bf00ff" stroke-width="2.5" opacity="0.8"/>
-        <line x1="40" y1="30" x2="40" y2="52" stroke="#bf00ff" stroke-width="1.5" opacity="0.4"/>
-        <line x1="28" y1="38" x2="54" y2="42" stroke="#bf00ff" stroke-width="1.5" opacity="0.4"/>
+        <circle cx="38" cy="38" r="22" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
+        <path d="M 22 22 Q 38 32 22 54" fill="none" stroke="#bf00ff" stroke-width="2" opacity="0.8"/>
+        <path d="M 54 22 Q 38 32 54 54" fill="none" stroke="#bf00ff" stroke-width="2" opacity="0.8"/>
+        <rect x="37" y="58" width="8" height="14" rx="2" fill="none" stroke="#bf00ff" stroke-width="1.8"/>
       </svg>
-      <span class="sport-icon-label">Boxing</span>
-    </div>
+      <span class="sport-icon-label">Tennis</span>
+    </a>
 
-    <div class="sport-icon-wrap" style="--icon-color: #00ffcc">
+    <a href="sports.html#boxing" class="sport-icon-wrap" style="--icon-color: var(--neon-green)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 25 50 Q 20 40 28 30 Q 36 20 46 24 Q 58 26 58 38 L 56 52 Q 52 62 42 62 Q 32 62 25 50 Z" fill="none" stroke="#39ff14" stroke-width="2.5"/>
+        <line x1="30" y1="62" x2="28" y2="72" stroke="#39ff14" stroke-width="2" opacity="0.7"/>
+        <line x1="50" y1="62" x2="52" y2="72" stroke="#39ff14" stroke-width="2" opacity="0.7"/>
+        <line x1="28" y1="72" x2="52" y2="72" stroke="#39ff14" stroke-width="2.5" opacity="0.8"/>
+        <line x1="40" y1="30" x2="40" y2="52" stroke="#39ff14" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+      <span class="sport-icon-label">Boxing / MMA</span>
+    </a>
+
+    <a href="sports.html#cricket" class="sport-icon-wrap" style="--icon-color: #00ffcc">
       <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <rect x="34" y="16" width="12" height="38" rx="4" fill="none" stroke="#00ffcc" stroke-width="2.5"/>
         <line x1="30" y1="54" x2="50" y2="54" stroke="#00ffcc" stroke-width="2"/>
         <circle cx="26" cy="28" r="10" fill="none" stroke="#00ffcc" stroke-width="2" opacity="0.8"/>
-        <line x1="22" y1="24" x2="30" y2="32" stroke="#00ffcc" stroke-width="1.5" opacity="0.6"/>
         <line x1="36" y1="62" x2="34" y2="70" stroke="#00ffcc" stroke-width="2"/>
         <line x1="44" y1="62" x2="46" y2="70" stroke="#00ffcc" stroke-width="2"/>
       </svg>
       <span class="sport-icon-label" style="color: #00ffcc; text-shadow: 0 0 6px #00ffcc">Cricket</span>
-    </div>
+    </a>
 
-    <div class="sport-icon-wrap" style="--icon-color: #00aaff">
+    <a href="sports.html#hockey" class="sport-icon-wrap" style="--icon-color: #00aaff">
       <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <line x1="30" y1="14" x2="30" y2="56" stroke="#00aaff" stroke-width="2.5"/>
         <path d="M 30 56 Q 34 68 50 68 Q 62 68 62 60 Q 62 52 50 52 L 30 52" fill="none" stroke="#00aaff" stroke-width="2.5"/>
         <circle cx="55" cy="72" r="5" fill="none" stroke="#00aaff" stroke-width="2"/>
       </svg>
-      <span class="sport-icon-label" style="color: #00aaff; text-shadow: 0 0 6px #00aaff">Hockey</span>
-    </div>
+      <span class="sport-icon-label" style="color: #00aaff; text-shadow: 0 0 6px #00aaff">Hockey (NHL)</span>
+    </a>
+
+    <a href="sports.html#esports" class="sport-icon-wrap" style="--icon-color: var(--neon-purple)">
+      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="28" width="56" height="32" rx="16" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
+        <line x1="28" y1="38" x2="28" y2="50" stroke="#bf00ff" stroke-width="2"/>
+        <line x1="22" y1="44" x2="34" y2="44" stroke="#bf00ff" stroke-width="2"/>
+        <circle cx="50" cy="40" r="3" fill="#bf00ff" opacity="0.9"/>
+        <circle cx="57" cy="47" r="3" fill="#bf00ff" opacity="0.9"/>
+      </svg>
+      <span class="sport-icon-label">Esports</span>
+    </a>
 
   </div>
 </section>
