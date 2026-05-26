@@ -24,6 +24,14 @@ nav a:hover{color:#fff;}nav a.active{color:var(--neon-cyan);}
 
 /* STATUS BAR */
 .status-bar{display:flex;align-items:center;gap:2rem;padding:0.65rem 3rem;background:rgba(0,245,255,0.03);border-bottom:1px solid rgba(0,245,255,0.1);font-family:'Share Tech Mono',monospace;font-size:0.75rem;flex-wrap:wrap;}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(255,255,255,0.06);}
+.stat-item{padding:2rem;text-align:center;border-right:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
+.stat-item:last-child{border-right:none;}
+.stat-item::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent-color,var(--neon-cyan));box-shadow:0 0 10px var(--accent-color,var(--neon-cyan));}
+.stat-num{font-family:'Orbitron',monospace;font-weight:900;font-size:2.2rem;color:var(--accent-color,var(--neon-cyan));text-shadow:0 0 15px var(--accent-color,var(--neon-cyan));display:block;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-top:0.4rem;display:block;}
 .live-dot{width:7px;height:7px;border-radius:50%;background:var(--neon-green);box-shadow:0 0 8px var(--neon-green);animation:pulse-dot 1.5s ease-in-out infinite;display:inline-block;margin-right:0.4rem;}
 @keyframes pulse-dot{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .status-item{color:rgba(255,255,255,0.5);}
@@ -103,7 +111,7 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
 
 .menu-btn{display:none;background:none;border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);font-size:1.2rem;width:36px;height:36px;cursor:pointer;line-height:1;flex-shrink:0;}
 @media(max-width:900px){.trading-area{grid-template-columns:1fr;}.right-panel{border-top:1px solid rgba(0,245,255,0.08);}.instruments-section{padding:1.5rem;}.status-bar{padding:0.65rem 1.5rem;}}
-@media(max-width:768px){header{padding:1rem 1.5rem;}.menu-btn{display:flex;align-items:center;justify-content:center;}nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(5,5,16,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,245,255,0.2);padding:0.5rem 0;gap:0;z-index:200;}nav.open{display:flex;}nav a{padding:0.85rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.04);width:100%;box-sizing:border-box;}nav a:last-child{border-bottom:none;}footer{flex-direction:column;align-items:center;text-align:center;}}
+@media(max-width:768px){header{padding:1rem 1.5rem;}.menu-btn{display:flex;align-items:center;justify-content:center;}nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(5,5,16,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,245,255,0.2);padding:0.5rem 0;gap:0;z-index:200;}nav.open{display:flex;}nav a{padding:0.85rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.04);width:100%;box-sizing:border-box;}nav a:last-child{border-bottom:none;}.stats-bar{grid-template-columns:repeat(2,1fr);}footer{flex-direction:column;align-items:center;text-align:center;}}
 </style>
 </head>
 <body>
@@ -143,6 +151,28 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
     <span class="terminal-stat-label">Last Updated</span>
   </div>
     <!-- GENX:MKTPAGE_STATUS:END -->
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <!-- GENX:STATS:START -->
+  <div class="stat-item" style="--accent-color: var(--neon-cyan)">
+    <span class="stat-num">$51.3B</span>
+    <span class="stat-label">Total Volume Traded</span>
+  </div>
+  <div class="stat-item" style="--accent-color:var(--neon-pink)">
+    <span class="stat-num">945K</span>
+    <span class="stat-label">Active Traders</span>
+  </div>
+  <div class="stat-item" style="--accent-color: var(--neon-yellow)">
+    <span class="stat-num">14,800</span>
+    <span class="stat-label">Open Markets</span>
+  </div>
+  <div class="stat-item" style="--accent-color: var(--neon-green)">
+    <span class="stat-num">99.1%</span>
+    <span class="stat-label">Resolution Accuracy</span>
+  </div>
+  <!-- GENX:STATS:END -->
 </div>
 
 <!-- MAIN TRADING AREA -->
@@ -626,6 +656,34 @@ resizeCanvases();
 drawPriceChart();
 drawVolChart();
 setInterval(addDataPoint, 2000);
+
+// Stat counter animation
+const stats = [
+  { el: document.querySelectorAll('.stat-num')[0], target: 51.3, prefix: '$', suffix: 'B', decimals: 1 },
+  { el: document.querySelectorAll('.stat-num')[1], target: 945,  prefix: '',  suffix: 'K', decimals: 0 },
+  { el: document.querySelectorAll('.stat-num')[2], target: 14800, prefix: '', suffix: '',  decimals: 0 },
+  { el: document.querySelectorAll('.stat-num')[3], target: 99.1, prefix: '',  suffix: '%', decimals: 1 },
+];
+const animateCounter = (stat) => {
+  let start = 0;
+  const duration = 2000;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = eased * stat.target;
+    stat.el.textContent = stat.prefix + current.toFixed(stat.decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + stat.suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { stats.forEach(animateCounter); statsObserver.disconnect(); }
+  });
+}, { threshold: 0.5 });
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) statsObserver.observe(statsBar);
 </script>
 </body>
 </html>

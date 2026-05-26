@@ -213,11 +213,9 @@ def replace_section(content: str, tag: str, new_html: str) -> str:
 
 
 def main():
-    index_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "web",
-        "index.html",
-    )
+    web_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "web")
+    index_path = os.path.join(web_dir, "index.html")
+    markets_path = os.path.join(web_dir, "markets.html")
 
     print("Calling Gemini for fresh homepage data...")
     data = call_gemini(SYSTEM_PROMPT, USER_PROMPT)
@@ -226,11 +224,18 @@ def main():
         content = f.read()
 
     content = replace_section(content, "TICKER",  build_ticker_html(data["ticker"]))
-    content = replace_section(content, "STATS",   build_stats_html(data["stats"]))
     content = replace_section(content, "MARKETS", build_markets_html(data["markets"]))
 
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(content)
+
+    with open(markets_path, "r", encoding="utf-8") as f:
+        markets_content = f.read()
+
+    markets_content = replace_section(markets_content, "STATS", build_stats_html(data["stats"]))
+
+    with open(markets_path, "w", encoding="utf-8") as f:
+        f.write(markets_content)
 
     print(f"Homepage refreshed at {NOW_STR}")
 

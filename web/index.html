@@ -275,52 +275,6 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* ─── STATS BAR ─── */
-  .stats-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .stat-item {
-    padding: 2rem;
-    text-align: center;
-    border-right: 1px solid rgba(255,255,255,0.06);
-    position: relative;
-    overflow: hidden;
-  }
-  .stat-item:last-child { border-right: none; }
-
-  .stat-item::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--accent-color, var(--neon-cyan));
-    box-shadow: 0 0 10px var(--accent-color, var(--neon-cyan));
-  }
-
-  .stat-num {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 2.2rem;
-    color: var(--accent-color, var(--neon-cyan));
-    text-shadow: 0 0 15px var(--accent-color, var(--neon-cyan));
-    display: block;
-  }
-
-  .stat-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-    margin-top: 0.4rem;
-    display: block;
-  }
-
   /* ─── SECTION HEADERS ─── */
   .section { padding: 5rem 3rem; }
 
@@ -448,60 +402,6 @@
     background: var(--card-color, var(--neon-cyan));
     box-shadow: 0 0 8px var(--card-color, var(--neon-cyan));
     transition: width 0.4s ease;
-  }
-
-  /* ─── HOW IT WORKS ─── */
-  .how-it-works { background: rgba(0,0,0,0.3); }
-
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2px;
-    margin-top: 3rem;
-    background: rgba(191,0,255,0.1);
-  }
-
-  .step-card {
-    background: rgba(5,5,16,0.95);
-    padding: 2.5rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .step-number {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 4rem;
-    line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(191,0,255,0.3);
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-  }
-
-  .step-icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 1.5rem;
-    position: relative;
-  }
-
-  .step-icon svg { width: 100%; height: 100%; }
-
-  .step-title {
-    font-family: 'Black Ops One', cursive;
-    font-size: 1.3rem;
-    color: var(--neon-purple);
-    text-shadow: 0 0 10px rgba(191,0,255,0.5);
-    margin-bottom: 0.75rem;
-  }
-
-  .step-desc {
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.65);
   }
 
   /* ─── NEON SPORTS ICONS SECTION ─── */
@@ -956,14 +856,12 @@
     nav a:last-child { border-bottom: none; }
     .hero { padding: 2rem 1.5rem 2.5rem; }
     .hero-subtitle { font-size: 1rem; }
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .section { padding: 3rem 1.5rem; }
     .blog-grid { grid-template-columns: 1fr; }
     .markets-grid { grid-template-columns: 1fr; }
     .sports-showcase { padding: 2.5rem 1.5rem; }
     .sports-icons-row { gap: 1.5rem; }
     .sport-icon-svg { width: 56px; height: 56px; }
-    .steps-grid { grid-template-columns: 1fr; }
     .cta-section { padding: 3rem 1.5rem; }
     footer { flex-direction: column; align-items: center; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
@@ -1013,28 +911,6 @@
     <span class="ticker-item"><span class="label">⛳️ SCHEFFLER WIN PGA CHAMPIONSHIP 2027</span> 38¢ <span class="up">▲0.9%</span></span>
     <!-- GENX:TICKER:END -->
   </div>
-</div>
-
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <!-- GENX:STATS:START -->
-  <div class="stat-item" style="--accent-color: var(--neon-cyan)">
-    <span class="stat-num">$51.3B</span>
-    <span class="stat-label">Total Volume Traded</span>
-  </div>
-  <div class="stat-item" style="--accent-color:var(--neon-pink)">
-    <span class="stat-num">945K</span>
-    <span class="stat-label">Active Traders</span>
-  </div>
-  <div class="stat-item" style="--accent-color: var(--neon-yellow)">
-    <span class="stat-num">14,800</span>
-    <span class="stat-label">Open Markets</span>
-  </div>
-  <div class="stat-item" style="--accent-color: var(--neon-green)">
-    <span class="stat-num">99.1%</span>
-    <span class="stat-label">Resolution Accuracy</span>
-  </div>
-    <!-- GENX:STATS:END -->
 </div>
 
 <!-- HERO -->
@@ -1336,74 +1212,6 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section how-it-works">
-  <span class="section-tag">// The Exchange //</span>
-  <h2 class="section-title" style="color: var(--neon-purple); text-shadow: 0 0 30px rgba(191,0,255,0.4);">HOW IT WORKS</h2>
-
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="step-number">01</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="10" width="40" height="30" rx="4" fill="none" stroke="#bf00ff" stroke-width="2"/>
-          <line x1="5" y1="20" x2="45" y2="20" stroke="#bf00ff" stroke-width="1.5"/>
-          <circle cx="14" cy="15" r="2" fill="#bf00ff"/>
-          <circle cx="22" cy="15" r="2" fill="#bf00ff" opacity="0.5"/>
-          <rect x="10" y="26" width="12" height="8" rx="2" fill="none" stroke="#bf00ff" stroke-width="1.5"/>
-          <line x1="27" y1="30" x2="40" y2="30" stroke="#bf00ff" stroke-width="1.5" opacity="0.6"/>
-          <line x1="27" y1="34" x2="36" y2="34" stroke="#bf00ff" stroke-width="1.5" opacity="0.4"/>
-        </svg>
-      </div>
-      <div class="step-title">FUND YOUR ACCOUNT</div>
-      <div class="step-desc">Deposit crypto or fiat. Your funds are held in a non-custodial smart contract — always in your control.</div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-number">02</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="25" cy="25" r="18" fill="none" stroke="#bf00ff" stroke-width="2"/>
-          <line x1="25" y1="10" x2="25" y2="25" stroke="#bf00ff" stroke-width="2.5"/>
-          <line x1="25" y1="25" x2="35" y2="30" stroke="#bf00ff" stroke-width="2"/>
-          <circle cx="25" cy="25" r="2.5" fill="#bf00ff"/>
-        </svg>
-      </div>
-      <div class="step-title">PICK YOUR MARKET</div>
-      <div class="step-desc">Browse thousands of live and upcoming sports markets. Filter by sport, date, volume, or category.</div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-number">03</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-          <polyline points="5,40 14,28 23,32 32,18 41,22 46,12" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
-          <circle cx="46" cy="12" r="3" fill="#bf00ff"/>
-          <line x1="5" y1="40" x2="46" y2="40" stroke="#bf00ff" stroke-width="1" opacity="0.4"/>
-        </svg>
-      </div>
-      <div class="step-title">TRADE SHARES</div>
-      <div class="step-desc">Buy YES or NO shares. Prices update in real time based on market activity. Sell at any time to lock in your position.</div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-number">04</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="25" cy="25" r="18" fill="none" stroke="#bf00ff" stroke-width="2"/>
-          <line x1="25" y1="14" x2="25" y2="20" stroke="#bf00ff" stroke-width="2"/>
-          <line x1="25" y1="30" x2="25" y2="36" stroke="#bf00ff" stroke-width="2"/>
-          <line x1="16" y1="20" x2="34" y2="20" stroke="#bf00ff" stroke-width="1.5"/>
-          <line x1="16" y1="30" x2="34" y2="30" stroke="#bf00ff" stroke-width="1.5" opacity="0.6"/>
-          <text x="22" y="27" fill="#bf00ff" font-size="9" font-weight="700">$</text>
-        </svg>
-      </div>
-      <div class="step-title">COLLECT WINNINGS</div>
-      <div class="step-desc">Correct predictions resolve to $1 per share. Payouts are automatic and gas-optimised via smart contract.</div>
-    </div>
-  </div>
-</section>
-
 <!-- CTA SECTION -->
 <section class="cta-section">
   <h2 class="cta-title">
@@ -1442,40 +1250,6 @@
       this.classList.add('active');
     });
   });
-
-  // Stat counter animation
-  const stats = [
-    { el: document.querySelectorAll('.stat-num')[0], target: 42.2, prefix: '$', suffix: 'B', decimals: 1 },
-    { el: document.querySelectorAll('.stat-num')[1], target: 847,  prefix: '',  suffix: 'K', decimals: 0 },
-    { el: document.querySelectorAll('.stat-num')[2], target: 12400, prefix: '', suffix: '',  decimals: 0 },
-    { el: document.querySelectorAll('.stat-num')[3], target: 98.7, prefix: '',  suffix: '%', decimals: 1 },
-  ];
-
-  const animateCounter = (stat) => {
-    let start = 0;
-    const duration = 2000;
-    const step = (timestamp) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = eased * stat.target;
-      stat.el.textContent = stat.prefix + current.toFixed(stat.decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + stat.suffix;
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        stats.forEach(animateCounter);
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  const statsBar = document.querySelector('.stats-bar');
-  if (statsBar) observer.observe(statsBar);
 
   // Animate prob bars on scroll
   const barObserver = new IntersectionObserver((entries) => {
