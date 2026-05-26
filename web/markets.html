@@ -40,8 +40,8 @@ nav a:hover{color:#fff;}nav a.active{color:var(--neon-cyan);}
 
 /* TRADING GRID */
 .trading-area{display:grid;grid-template-columns:1fr 340px;gap:1.5px;background:rgba(0,245,255,0.08);border-bottom:1px solid rgba(0,245,255,0.08);}
-.chart-full{grid-column:1 / -1;background:var(--dark-bg);padding:1.5rem;}
-.chart-panel{background:var(--dark-bg);padding:1.5rem;}
+.chart-panel{background:var(--dark-bg);padding:1.5rem;display:flex;flex-direction:column;}
+.chart-area{flex:1;display:flex;flex-direction:column;min-height:280px;margin-top:1rem;}
 .chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:1rem;}
 .chart-symbol{font-family:'Black Ops One',cursive;font-size:1.6rem;color:var(--neon-cyan);text-shadow:0 0 15px rgba(0,245,255,0.4);}
 .chart-name{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.4);letter-spacing:0.08em;margin-top:0.25rem;}
@@ -53,8 +53,8 @@ nav a:hover{color:#fff;}nav a.active{color:var(--neon-cyan);}
 .chart-meta{display:flex;gap:2rem;margin-bottom:1rem;flex-wrap:wrap;}
 .meta-item{font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.35);}
 .meta-item span{color:rgba(255,255,255,0.7);}
-canvas#price-chart{width:100%;height:400px;display:block;}
-.vol-canvas{width:100%;height:40px;display:block;margin-top:2px;}
+canvas#price-chart{width:100%;flex:1;display:block;}
+.vol-canvas{width:100%;height:40px;display:block;flex-shrink:0;margin-top:2px;}
 .chart-footer{display:flex;justify-content:space-between;margin-top:0.75rem;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.2);letter-spacing:0.05em;}
 
 /* RIGHT PANEL */
@@ -178,18 +178,7 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
 <!-- MAIN TRADING AREA -->
 <div class="trading-area">
 
-  <!-- FULL-WIDTH CHART -->
-  <div class="chart-full">
-    <canvas id="price-chart"></canvas>
-    <canvas id="vol-chart" class="vol-canvas"></canvas>
-    <div class="chart-footer">
-      <span id="chart-time-start"></span>
-      <span style="color:rgba(255,255,255,0.3);font-size:0.6rem;letter-spacing:0.1em;">// LIVE · UPDATES EVERY 2s //</span>
-      <span>NOW</span>
-    </div>
-  </div>
-
-  <!-- FEATURED MARKET DETAILS -->
+  <!-- CHART PANEL -->
   <div class="chart-panel">
     <!-- GENX:MKTPAGE_FEATURED:START -->
   <div class="featured-symbol">RM-UCL</div>
@@ -209,6 +198,15 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:fle
     <button class="trade-btn trade-no">BUY NO 33¢</button>
   </div>
     <!-- GENX:MKTPAGE_FEATURED:END -->
+    <div class="chart-area">
+      <canvas id="price-chart"></canvas>
+      <canvas id="vol-chart" class="vol-canvas"></canvas>
+      <div class="chart-footer">
+        <span id="chart-time-start"></span>
+        <span style="color:rgba(255,255,255,0.3);font-size:0.6rem;letter-spacing:0.1em;">// LIVE · UPDATES EVERY 2s //</span>
+        <span>NOW</span>
+      </div>
+    </div>
   </div>
 
   <!-- RIGHT PANEL: ORDER BOOK + FILLS -->
@@ -373,8 +371,10 @@ var volData = chartData.map(() => Math.floor(Math.random() * 80 + 20));
 function resizeCanvases() {
   var c = document.getElementById('price-chart');
   var v = document.getElementById('vol-chart');
-  var w = c.parentElement.clientWidth - 48;
-  c.width = w; c.height = 400;
+  var area = c.parentElement;
+  var w = area.clientWidth;
+  var h = area.clientHeight - 42 - 20; // subtract vol canvas + footer
+  c.width = w; c.height = Math.max(h, 280);
   v.width = w; v.height = 40;
 }
 
