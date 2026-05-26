@@ -413,6 +413,9 @@
   }
 
   footer a:hover { color: var(--neon-cyan); }
+  .footer-logo { font-family: 'Black Ops One', cursive; font-size: 1.3rem; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-copy { font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
 
   .menu-btn {
     display: none;
@@ -452,6 +455,7 @@
     .sidebar-inner { padding: 1.5rem; }
     .doc-content { padding: 1.5rem; }
     footer { padding: 1.5rem; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
   }
 </style>
 </head>
@@ -572,8 +576,8 @@
   </div><!-- /docs-layout -->
 
   <footer>
-    <div style="font-family:'Black Ops One',cursive;font-size:1.3rem;color:var(--neon-cyan);">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
-    <div style="display:flex;gap:2rem;">
+    <div class="footer-logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
+    <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="markets.html">Markets</a>
       <a href="sports.html">Sports</a>
@@ -581,7 +585,7 @@
       <a href="news.html">News</a>
       <a href="docs.html">Docs</a>
     </div>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.2);">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
+    <div class="footer-copy">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
   </footer>
 
 </div><!-- /content -->
