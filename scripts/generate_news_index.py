@@ -181,7 +181,6 @@ def build_news_html(articles: list) -> str:
     <a href="news.html" class="active">News</a>
     <a href="docs.html">Docs</a>
   </nav>
-  <a href="index.html" class="cta-btn">Get Started</a>
 </header>
 
 <div class="page-hero">
