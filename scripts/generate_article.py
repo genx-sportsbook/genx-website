@@ -232,6 +232,8 @@ def build_html(data: dict) -> str:
   .footer-copy{{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;}}
   .menu-btn{{display:none;background:none;border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);font-size:1.2rem;width:36px;height:36px;cursor:pointer;line-height:1;flex-shrink:0;}}
   nav.article-nav{{display:flex;gap:2rem;align-items:center;}}
+  nav.article-nav a{{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}}
+  nav.article-nav a:hover{{color:#fff;}}
   @media(max-width:768px){{header{{padding:1rem 1.5rem;}}.menu-btn{{display:flex;align-items:center;justify-content:center;}}nav.article-nav{{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(5,5,16,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,245,255,0.2);padding:0.5rem 0;gap:0;z-index:200;}}nav.article-nav.open{{display:flex;}}nav.article-nav a{{padding:0.85rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.04);width:100%;box-sizing:border-box;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;}}nav.article-nav a:last-child{{border-bottom:none;}}.article-hero,.article-body{{padding-left:1.5rem;padding-right:1.5rem;}}}}
 </style>
 </head>
