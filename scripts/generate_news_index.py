@@ -164,7 +164,8 @@ def build_news_html(articles: list) -> str:
   .footer-links{{display:flex;gap:2rem;}}
   .footer-links a{{font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.1em;transition:color 0.2s;}}
   .footer-links a:hover{{color:var(--neon-cyan);}}
-  @media(max-width:768px){{header{{padding:1rem 1.5rem;}}nav{{display:none;}}.page-hero,.news-section{{padding-left:1.5rem;padding-right:1.5rem;}}}}
+  .menu-btn{{display:none;background:none;border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);font-size:1.2rem;width:36px;height:36px;cursor:pointer;line-height:1;flex-shrink:0;}}
+  @media(max-width:768px){{header{{padding:1rem 1.5rem;flex-wrap:wrap;}}.menu-btn{{display:flex;align-items:center;justify-content:center;}}nav{{display:none;width:100%;flex-direction:column;border-top:1px solid rgba(0,245,255,0.1);margin-top:0.75rem;padding-top:0.5rem;gap:0;align-items:flex-start;}}nav.open{{display:flex;}}nav a{{padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.04);width:100%;}}nav a:last-child{{border-bottom:none;}}.page-hero,.news-section{{padding-left:1.5rem;padding-right:1.5rem;}}.blog-grid{{grid-template-columns:1fr;}}footer{{flex-direction:column;align-items:center;text-align:center;}}.footer-links{{flex-wrap:wrap;justify-content:center;gap:1rem;}}}}
 </style>
 </head>
 <body>
@@ -181,6 +182,7 @@ def build_news_html(articles: list) -> str:
     <a href="news.html" class="active">News</a>
     <a href="docs.html">Docs</a>
   </nav>
+  <button class="menu-btn" onclick="this.previousElementSibling.classList.toggle('open')" aria-label="Open menu">☰</button>
 </header>
 
 <div class="page-hero">

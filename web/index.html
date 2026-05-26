@@ -919,15 +919,50 @@
   .blink { animation: blink 1s step-end infinite; }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+  /* HAMBURGER */
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid rgba(0,245,255,0.3);
+    color: var(--neon-cyan);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    header { padding: 1rem 1.5rem; }
-    nav { display: none; }
+    header { padding: 1rem 1.5rem; flex-wrap: wrap; }
+    .menu-btn { display: flex; align-items: center; justify-content: center; }
+    nav {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      border-top: 1px solid rgba(0,245,255,0.1);
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      gap: 0;
+      align-items: flex-start;
+    }
+    nav.open { display: flex; }
+    nav a { padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); width: 100%; }
+    nav a:last-child { border-bottom: none; }
+    .hero { padding: 2rem 1.5rem 2.5rem; }
+    .hero-subtitle { font-size: 1rem; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .section { padding: 3rem 1.5rem; }
-    .lb-header, .lb-row { grid-template-columns: 50px 1fr 100px; }
-    .lb-pct, .lb-badge { display: none; }
-    footer { flex-direction: column; text-align: center; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .markets-grid { grid-template-columns: 1fr; }
+    .sports-showcase { padding: 2.5rem 1.5rem; }
+    .sports-icons-row { gap: 1.5rem; }
+    .sport-icon-svg { width: 56px; height: 56px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 3rem 1.5rem; }
+    footer { flex-direction: column; align-items: center; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
   }
 </style>
 </head>
@@ -949,6 +984,7 @@
     <a href="news.html">News</a>
     <a href="docs.html">Docs</a>
   </nav>
+  <button class="menu-btn" onclick="this.previousElementSibling.classList.toggle('open')" aria-label="Open menu">☰</button>
 </header>
 
 <!-- LIVE TICKER -->

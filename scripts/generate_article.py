@@ -230,7 +230,9 @@ def build_html(data: dict) -> str:
   footer{{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}}
   .footer-logo{{font-family:'Black Ops One',cursive;font-size:1.3rem;color:var(--neon-cyan);text-shadow:0 0 10px var(--neon-cyan);}}
   .footer-copy{{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;}}
-  @media(max-width:768px){{header{{padding:1rem 1.5rem;}}.article-hero,.article-body{{padding-left:1.5rem;padding-right:1.5rem;}}}}
+  .menu-btn{{display:none;background:none;border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);font-size:1.2rem;width:36px;height:36px;cursor:pointer;line-height:1;flex-shrink:0;}}
+  nav.article-nav{{display:flex;gap:2rem;align-items:center;}}
+  @media(max-width:768px){{header{{padding:1rem 1.5rem;flex-wrap:wrap;}}.menu-btn{{display:flex;align-items:center;justify-content:center;}}nav.article-nav{{display:none;width:100%;flex-direction:column;border-top:1px solid rgba(0,245,255,0.1);margin-top:0.75rem;padding-top:0.5rem;gap:0;}}nav.article-nav.open{{display:flex;}}nav.article-nav a{{padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.04);width:100%;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;}}nav.article-nav a:last-child{{border-bottom:none;}}.article-hero,.article-body{{padding-left:1.5rem;padding-right:1.5rem;}}}}
 </style>
 </head>
 <body>
@@ -240,13 +242,14 @@ def build_html(data: dict) -> str:
 
 <header>
   <a href="../index.html" class="logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></a>
-  <nav style="display:flex;gap:2rem;align-items:center;">
+  <nav class="article-nav">
     <a href="../markets.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">Markets</a>
     <a href="../sports.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">Sports</a>
     <a href="../live.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">Live</a>
     <a href="../news.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">News</a>
     <a href="../docs.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">Docs</a>
   </nav>
+  <button class="menu-btn" onclick="this.previousElementSibling.classList.toggle('open')" aria-label="Open menu">☰</button>
 </header>
 
 <div class="article-hero">
