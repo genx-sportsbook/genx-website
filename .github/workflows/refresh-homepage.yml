@@ -1,9 +1,6 @@
 name: Refresh Homepage Content
 
 on:
-  schedule:
-    # Runs at 10:00, 15:00, and 21:00 UTC — staggered away from the 08:00 article job
-    - cron: '0 10,15,21 * * *'
   workflow_dispatch:
 
 permissions:

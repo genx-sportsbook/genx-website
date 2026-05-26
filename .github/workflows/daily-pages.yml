@@ -1,8 +1,6 @@
 name: Daily Pages Update
 
 on:
-  schedule:
-    - cron: '0 9 * * *'  # 09:00 UTC — after daily article (08:00)
   workflow_dispatch:
 
 permissions:

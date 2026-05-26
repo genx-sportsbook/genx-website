@@ -8,9 +8,7 @@ on:
       - 'web/**'
   workflow_run:
     workflows:
-      - "Daily Article Generator"
-      - "Refresh Homepage Content"
-      - "Daily Pages Update"
+      - "Daily Content Refresh"
     types:
       - completed
     branches:
