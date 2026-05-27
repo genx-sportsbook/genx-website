@@ -288,7 +288,7 @@ def build_html(data: dict) -> str:
 </div>
 
 <footer>
-  <div class="footer-logo">GENX-SPORTSBOOK</div>
+  <div class="footer-logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
   <div class="footer-copy">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
 </footer>
 
