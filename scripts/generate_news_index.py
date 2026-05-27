@@ -159,7 +159,7 @@ def build_news_html(articles: list) -> str:
   .blog-read-more:hover{{gap:0.8rem;text-shadow:0 0 8px var(--card-color,var(--neon-cyan));}}
   .blog-read-more::after{{content:'→';}}
   footer{{padding:2rem 3rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}}
-  .footer-logo{{font-family:'Black Ops One',cursive;font-size:1.3rem;color:var(--neon-cyan);text-shadow:0 0 10px var(--neon-cyan);}}
+  .footer-logo{{font-family:'Black Ops One',cursive;font-size:1.3rem;color:var(--neon-cyan)}}
   .footer-copy{{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;}}
   .footer-links{{display:flex;gap:2rem;}}
   .footer-links a{{font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.1em;transition:color 0.2s;}}
