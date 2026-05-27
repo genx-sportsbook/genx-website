@@ -195,7 +195,7 @@ def build_news_html(articles: list) -> str:
 </section>
 
 <footer>
-  <div class="footer-logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
+  <div class="footer-logo">GENX-SPORTSBOOK</div>
   <div class="footer-links">
     <a href="markets.html">Markets</a>
     <a href="sports.html">Sports</a>
