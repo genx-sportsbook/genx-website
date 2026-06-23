@@ -2,7 +2,7 @@ name: Daily Content Refresh
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # 08:00 UTC every day
+    - cron: '0 1 * * *'  # 01:00 UTC every day
   workflow_dispatch:
     inputs:
       dry_run:
