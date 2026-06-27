@@ -28,24 +28,28 @@ jobs:
       # 1. Generate today's article
       - name: Generate daily article
         id: article
+        timeout-minutes: 15
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_article.py
 
       # 2. Refresh homepage dynamic sections (ticker, stats, markets)
       - name: Refresh homepage content
+        timeout-minutes: 15
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/refresh_homepage.py
 
       # 4. Refresh markets page
       - name: Refresh markets page
+        timeout-minutes: 15
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_markets.py
 
       # 5. Refresh live feed page
       - name: Refresh live feed page
+        timeout-minutes: 15
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_live.py

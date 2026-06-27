@@ -19,6 +19,7 @@ jobs:
           python-version: '3.12'
 
       - name: Refresh homepage via Gemini
+        timeout-minutes: 15
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/refresh_homepage.py

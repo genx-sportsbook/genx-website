@@ -124,12 +124,21 @@ def call_gemini(system: str, user: str) -> dict:
                 body = json.loads(resp.read().decode("utf-8"))
                 break
         except urllib.error.HTTPError as e:
-            if e.code == 429 and attempt < 3:
+            retryable = e.code in (429, 500, 502, 503, 504)
+            if retryable and attempt < 3:
                 wait = 30 * (2 ** attempt)  # 30s, 60s, 120s
-                print(f"Rate limited (attempt {attempt + 1}), retrying in {wait}s...", file=sys.stderr)
+                print(f"Gemini HTTP {e.code} (attempt {attempt + 1}), retrying in {wait}s...", file=sys.stderr)
                 time.sleep(wait)
             else:
                 print(f"Gemini HTTP error {e.code}: {e.read().decode()}", file=sys.stderr)
+                sys.exit(1)
+        except urllib.error.URLError as e:
+            if attempt < 3:
+                wait = 30 * (2 ** attempt)  # 30s, 60s, 120s
+                print(f"Gemini request error (attempt {attempt + 1}): {e.reason}, retrying in {wait}s...", file=sys.stderr)
+                time.sleep(wait)
+            else:
+                print(f"Gemini request failed after 4 attempts: {e.reason}", file=sys.stderr)
                 sys.exit(1)
 
     text = body["candidates"][0]["content"]["parts"][0]["text"]
