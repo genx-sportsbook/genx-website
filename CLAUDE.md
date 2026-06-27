@@ -116,6 +116,15 @@ The trading area uses a 2-column CSS grid (`1fr 340px`). Left column (`.chart-pa
 
 Active Contracts table (`GENX:MKTPAGE_INSTRUMENTS`) displays **5 rows**. Live Trade Feed (`GENX:LIVE_FEED`) displays **5 items**.
 
+## Git commits
+
+Always commit as the repository owner — never use a bot identity:
+
+```
+git config user.name  "simonccc"
+git config user.email "simonc@txodds.com"
+```
+
 ## GitHub Actions
 
 - **`daily-article.yml`** — triggers daily and also accepts `workflow_dispatch` with an optional `dry_run` input. Requires the `GEMINI_API_KEY` repository secret.
