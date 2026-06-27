@@ -118,12 +118,7 @@ Active Contracts table (`GENX:MKTPAGE_INSTRUMENTS`) displays **5 rows**. Live Tr
 
 ## Git commits
 
-Always commit as the repository owner — never use a bot identity:
-
-```
-git config user.name  "simonccc"
-git config user.email "simonc@txodds.com"
-```
+Always commit as the repository owner (simonccc) — never use a bot identity.
 
 ## GitHub Actions
 
