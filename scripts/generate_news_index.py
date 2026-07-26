@@ -176,9 +176,6 @@ def build_news_html(articles: list) -> str:
 <header>
   <a href="index.html" class="logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></a>
   <nav>
-    <a href="markets.html">Markets</a>
-    <a href="sports.html">Sports</a>
-    <a href="live.html">Live</a>
     <a href="news.html" class="active">News</a>
   </nav>
   <button class="menu-btn" onclick="this.previousElementSibling.classList.toggle('open')" aria-label="Open menu">☰</button>
@@ -197,9 +194,6 @@ def build_news_html(articles: list) -> str:
 <footer>
   <div class="footer-logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
   <div class="footer-links">
-    <a href="markets.html">Markets</a>
-    <a href="sports.html">Sports</a>
-    <a href="live.html">Live</a>
     <a href="news.html">News</a>
   </div>
   <div class="footer-copy">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
