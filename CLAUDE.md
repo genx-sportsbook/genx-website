@@ -32,7 +32,7 @@ Key markers and where they live:
 
 ## Running the scripts locally
 
-All scripts require `GEMINI_API_KEY` in the environment and have no dependencies beyond the Python standard library.
+Scripts have no dependencies beyond the Python standard library. `generate_article.py` requires `GEMINI_API_KEY` in the environment; `generate_news_index.py` needs no API key (pure file scanning).
 
 ```bash
 GEMINI_API_KEY=your_key python scripts/generate_article.py
