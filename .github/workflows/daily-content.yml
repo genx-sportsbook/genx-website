@@ -33,32 +33,11 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_article.py
 
-      # 2. Refresh homepage dynamic sections (ticker, stats, markets)
-      - name: Refresh homepage content
-        timeout-minutes: 15
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/refresh_homepage.py
-
-      # 4. Refresh markets page
-      - name: Refresh markets page
-        timeout-minutes: 15
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/generate_markets.py
-
-      # 5. Refresh live feed page
-      - name: Refresh live feed page
-        timeout-minutes: 15
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/generate_live.py
-
-      # 6. Rebuild news index (now includes today's new article)
+      # 2. Rebuild news index (now includes today's new article)
       - name: Rebuild news index
         run: python scripts/generate_news_index.py
 
-      # 7. Commit everything in one go
+      # 3. Commit everything in one go
       - name: Commit and push
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
