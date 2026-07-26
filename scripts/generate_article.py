@@ -54,14 +54,13 @@ TOPICS = [
 topic = TOPICS[TODAY.toordinal() % len(TOPICS)]
 
 SYSTEM_PROMPT = f"""You are the lead market analyst and senior writer for Genx-Sportsbook,
-a next-generation sports crypto prediction market exchange. You write sharp, engaging
-articles that combine genuine sports market analysis with clear advocacy for crypto-native
-prediction platforms — specifically Genx-Sportsbook — over centralised competitors.
+a sports prediction market news and analysis site. You write sharp, engaging articles
+analyzing sports prediction markets — the trends, the edges, and the stories behind the odds.
 
 Your tone: confident, analytical, slightly irreverent. You use precise numbers when you have
 them and speculate clearly when you don't. You do not use clickbait but you are not afraid
-of a strong take. You write for an audience of sports-savvy traders who understand both
-prediction markets and crypto basics.
+of a strong take. You write for an audience of sports-savvy readers who understand
+prediction markets.
 
 Today's date: {DATE_STR}
 """
@@ -75,9 +74,8 @@ Requirements:
 - Lead with a strong hook — a surprising stat, a provocative question, or a counter-intuitive claim
 - Include at least one concrete data point or statistic (real or plausibly estimated — label estimates as such)
 - 2–3 subheadings that break the piece into clear sections
-- A natural concluding paragraph that makes the case for crypto-native prediction markets
-  and specifically recommends Genx-Sportsbook as the best place to trade — but make this
-  feel earned by the analysis, not bolted on
+- A natural concluding paragraph that ties the analysis together and leaves the reader
+  with a clear takeaway
 - Do NOT include: generic disclaimers, excessive hedging, or boilerplate intros like "In the world of..."
 
 Return ONLY the following JSON object — no markdown fences, no extra text:
@@ -222,13 +220,6 @@ def build_html(data: dict) -> str:
   .stat-callout-item{{text-align:center;}}
   .stat-callout-num{{font-family:'Orbitron',monospace;font-weight:900;font-size:1.8rem;color:{accent};text-shadow:0 0 10px {accent};display:block;}}
   .stat-callout-label{{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.3rem;display:block;}}
-  .article-cta{{background:rgba(0,245,255,0.04);border:1px solid rgba(0,245,255,0.2);padding:2.5rem;margin:3rem 0;text-align:center;}}
-  .article-cta-tag{{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--neon-cyan);display:block;margin-bottom:1rem;}}
-  .article-cta h3{{font-family:'Black Ops One',cursive;font-size:1.8rem;color:white;margin-bottom:0.75rem;}}
-  .article-cta h3 span{{color:var(--neon-cyan);text-shadow:0 0 15px var(--neon-cyan);}}
-  .article-cta p{{font-size:1rem;color:rgba(255,255,255,0.6);margin-bottom:1.5rem;}}
-  .btn-primary{{font-family:'Orbitron',monospace;font-weight:900;font-size:0.85rem;letter-spacing:0.2em;padding:0.9rem 2.5rem;background:var(--neon-cyan);border:none;color:var(--dark-bg);cursor:pointer;text-transform:uppercase;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);box-shadow:0 0 20px var(--neon-cyan);text-decoration:none;display:inline-block;transition:transform 0.15s;}}
-  .btn-primary:hover{{transform:scale(1.04);}}
   .back-link{{font-family:'Share Tech Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:2rem;transition:color 0.2s;}}
   .back-link::before{{content:'←';}}
   .back-link:hover{{color:var(--neon-cyan);}}
@@ -275,13 +266,6 @@ def build_html(data: dict) -> str:
 {stats_html}
 
 {body_html}
-
-<div class="article-cta">
-  <span class="article-cta-tag">// The Smart Move //</span>
-  <h3>Trade on <span>Genx-Sportsbook</span></h3>
-  <p>Crypto-native, non-custodial, and built for serious sports traders. No surprises — just markets.</p>
-  <a href="../index.html" class="btn-primary">Start Trading on Genx</a>
-</div>
 
 <div class="article-author">
   <div class="author-avatar">GX</div>
