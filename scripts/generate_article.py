@@ -254,9 +254,6 @@ def build_html(data: dict) -> str:
 <header>
   <a href="../index.html" class="logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></a>
   <nav class="article-nav">
-    <a href="../markets.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">Markets</a>
-    <a href="../sports.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">Sports</a>
-    <a href="../live.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">Live</a>
     <a href="../news.html" style="font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.55);text-decoration:none;text-transform:uppercase;">News</a>
   </nav>
   <button class="menu-btn" onclick="this.previousElementSibling.classList.toggle('open')" aria-label="Open menu">☰</button>
