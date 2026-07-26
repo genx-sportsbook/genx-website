@@ -4,7 +4,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4125667313511978" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Genx-Sportsbook — Sports Crypto Prediction Market Exchange</title>
+<title>Genx-Sportsbook — Sports Prediction Market News &amp; Analysis</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -197,61 +197,6 @@
     margin-bottom: 3rem;
   }
 
-  .btn-primary {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 0.9rem;
-    letter-spacing: 0.2em;
-    padding: 1rem 2.5rem;
-    background: var(--neon-cyan);
-    border: none;
-    color: var(--dark-bg);
-    cursor: pointer;
-    text-transform: uppercase;
-    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
-    box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px rgba(0,245,255,0.4);
-    animation: pulse-btn 2s ease-in-out infinite;
-    transition: transform 0.1s;
-  }
-  .btn-primary:hover { transform: scale(1.05); }
-
-  @keyframes pulse-btn {
-    0%, 100% { box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px rgba(0,245,255,0.4); }
-    50% { box-shadow: 0 0 50px var(--neon-cyan), 0 0 100px rgba(0,245,255,0.6); }
-  }
-
-  /* LIVE TICKER */
-  .ticker-wrap {
-    background: rgba(0,245,255,0.05);
-    border-top: 1px solid rgba(0,245,255,0.2);
-    border-bottom: 1px solid rgba(0,245,255,0.2);
-    overflow: hidden;
-    padding: 0.7rem 0;
-    white-space: nowrap;
-  }
-
-  .ticker-inner {
-    display: inline-block;
-    animation: ticker 35s linear infinite;
-  }
-
-  .ticker-item {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    color: rgba(255,255,255,0.8);
-    padding: 0 3rem;
-  }
-
-  .ticker-item .up { color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green); }
-  .ticker-item .down { color:var(--neon-pink); text-shadow: 0 0 6px var(--neon-pink); }
-  .ticker-item .label { color: var(--neon-yellow); }
-
-  @keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
   /* ─── SECTION HEADERS ─── */
   .section { padding: 5rem 3rem; }
 
@@ -271,275 +216,6 @@
     font-size: clamp(2rem, 5vw, 3.5rem);
     line-height: 1;
     margin-bottom: 1.5rem;
-  }
-
-  /* ─── MARKETS GRID ─── */
-  .markets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5px;
-    margin-top: 3rem;
-    background: rgba(0,245,255,0.08);
-    border: 1px solid rgba(0,245,255,0.1);
-  }
-
-  .market-card {
-    background: var(--dark-bg);
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.2s;
-    cursor: pointer;
-  }
-
-  .market-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--card-color, var(--neon-cyan));
-    box-shadow: 0 0 12px var(--card-color, var(--neon-cyan));
-  }
-
-  .market-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at top left, rgba(0,245,255,0.04), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-
-  .market-card:hover { background: rgba(0,245,255,0.03); }
-  .market-card:hover::after { opacity: 1; }
-
-  .market-sport {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--card-color, var(--neon-cyan));
-    text-shadow: 0 0 6px var(--card-color, var(--neon-cyan));
-    margin-bottom: 0.5rem;
-  }
-
-  .market-question {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 600;
-    font-size: 1.15rem;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-    color: rgba(255,255,255,0.95);
-  }
-
-  .market-options { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
-
-  .option-btn {
-    flex: 1;
-    padding: 0.6rem 0.5rem;
-    border: 1px solid var(--card-color, var(--neon-cyan));
-    background: transparent;
-    color: var(--card-color, var(--neon-cyan));
-    font-family: 'Orbitron', monospace;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-  }
-
-  .option-btn:hover, .option-btn.active {
-    background: var(--card-color, var(--neon-cyan));
-    color: var(--dark-bg);
-    box-shadow: 0 0 15px var(--card-color, var(--neon-cyan));
-  }
-
-  .market-meta {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.4);
-  }
-
-  .prob-bar {
-    width: 100%;
-    height: 3px;
-    background: rgba(255,255,255,0.1);
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .prob-fill {
-    height: 100%;
-    background: var(--card-color, var(--neon-cyan));
-    box-shadow: 0 0 8px var(--card-color, var(--neon-cyan));
-    transition: width 0.4s ease;
-  }
-
-  /* ─── NEON SPORTS ICONS SECTION ─── */
-  .sports-showcase {
-    padding: 4rem 3rem;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .sports-icons-row {
-    display: flex;
-    gap: 3rem;
-    margin-top: 3rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .sport-icon-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .sport-icon-wrap:hover .sport-icon-svg { filter: drop-shadow(0 0 20px var(--icon-color)); transform: scale(1.1); }
-
-  .sport-icon-svg {
-    width: 80px;
-    height: 80px;
-    transition: filter 0.2s, transform 0.2s;
-    filter: drop-shadow(0 0 8px var(--icon-color));
-  }
-
-  .sport-icon-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    color: var(--icon-color);
-    text-transform: uppercase;
-  }
-
-  /* ─── LEADERBOARD ─── */
-  .leaderboard-wrap {
-    margin-top: 3rem;
-    border: 1px solid rgba(255,230,0,0.15);
-    overflow: hidden;
-  }
-
-  .lb-header {
-    display: grid;
-    grid-template-columns: 60px 1fr 140px 140px 120px;
-    background: rgba(255,230,0,0.05);
-    padding: 0.75rem 1.5rem;
-    border-bottom: 1px solid rgba(255,230,0,0.15);
-  }
-
-  .lb-col-head {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    color: rgba(255,230,0,0.6);
-    text-transform: uppercase;
-  }
-
-  .lb-row {
-    display: grid;
-    grid-template-columns: 60px 1fr 140px 140px 120px;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    align-items: center;
-    transition: background 0.15s;
-  }
-
-  .lb-row:hover { background: rgba(255,230,0,0.03); }
-  .lb-row:last-child { border-bottom: none; }
-
-  .lb-rank {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.3);
-  }
-
-  .lb-rank.top { color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow); }
-
-  .lb-name {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.9);
-  }
-
-  .lb-handle {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.35);
-  }
-
-  .lb-profit {
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--neon-green);
-    text-shadow: 0 0 8px var(--neon-green);
-  }
-
-  .lb-pct {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-  }
-
-  .lb-badge {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.2rem 0.6rem;
-    border: 1px solid;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  /* ─── FEATURES ─── */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    margin-top: 3rem;
-    background: rgba(57,255,20,0.08);
-  }
-
-  .feature-card {
-    background: var(--dark-bg);
-    padding: 2rem;
-    border-bottom: none;
-  }
-
-  .feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    display: block;
-    filter: drop-shadow(0 0 10px currentColor);
-  }
-
-  .feature-title {
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
-    color: var(--neon-green);
-    text-shadow: 0 0 8px rgba(57,255,20,0.5);
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-  }
-
-  .feature-desc {
-    font-size: 0.95rem;
-    font-weight: 300;
-    line-height: 1.65;
-    color: rgba(255,255,255,0.6);
   }
 
   /* ─── BLOG / NEWS SECTION ─── */
@@ -649,100 +325,6 @@
     margin-top: 2.5rem;
   }
 
-  /* ─── CTA SECTION ─── */
-  .cta-section {
-    text-align: center;
-    padding: 7rem 2rem;
-    position: relative;
-    overflow: hidden;
-    background: rgba(0,0,0,0.5);
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,245,255,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-title {
-    font-family: 'Black Ops One', cursive;
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
-
-  .cta-title span:nth-child(1) {
-    color: var(--neon-yellow);
-    text-shadow: 0 0 20px var(--neon-yellow), 0 0 60px rgba(255,230,0,0.4);
-    display: block;
-  }
-
-  .cta-title span:nth-child(2) {
-    color: white;
-    display: block;
-    -webkit-text-stroke: 1px rgba(255,255,255,0.5);
-  }
-
-  .cta-desc {
-    font-size: 1.15rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.6);
-    max-width: 500px;
-    margin: 0 auto 3rem;
-    line-height: 1.6;
-  }
-
-  .email-form {
-    display: flex;
-    gap: 0;
-    max-width: 460px;
-    margin: 0 auto;
-  }
-
-  .email-input {
-    flex: 1;
-    padding: 1rem 1.5rem;
-    background: rgba(255,255,255,0.05);
-    border: 2px solid rgba(0,245,255,0.3);
-    border-right: none;
-    color: white;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .email-input:focus { border-color: var(--neon-cyan); }
-  .email-input::placeholder { color: rgba(255,255,255,0.3); }
-
-  .email-submit {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    padding: 1rem 1.5rem;
-    background: var(--neon-cyan);
-    border: 2px solid var(--neon-cyan);
-    color: var(--dark-bg);
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  .email-submit:hover {
-    background: var(--dark-bg);
-    color: var(--neon-cyan);
-    box-shadow: 0 0 20px var(--neon-cyan);
-  }
-
   /* ─── FOOTER ─── */
   footer {
     padding: 2rem 3rem;
@@ -780,19 +362,6 @@
     color: rgba(255,255,255,0.2);
     letter-spacing: 0.1em;
   }
-
-  /* DECORATIVE CORNER BRACKETS */
-  .bracket-tl, .bracket-tr, .bracket-bl, .bracket-br {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-color: rgba(0,245,255,0.4);
-    border-style: solid;
-  }
-  .bracket-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
-  .bracket-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
-  .bracket-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-  .bracket-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
 
   /* BLINKING CURSOR */
   .blink { animation: blink 1s step-end infinite; }
@@ -837,11 +406,6 @@
     .hero-subtitle { font-size: 1rem; }
     .section { padding: 3rem 1.5rem; }
     .blog-grid { grid-template-columns: 1fr; }
-    .markets-grid { grid-template-columns: 1fr; }
-    .sports-showcase { padding: 2.5rem 1.5rem; }
-    .sports-icons-row { gap: 1.5rem; }
-    .sport-icon-svg { width: 56px; height: 56px; }
-    .cta-section { padding: 3rem 1.5rem; }
     footer { flex-direction: column; align-items: center; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
   }
@@ -859,42 +423,15 @@
 <header>
   <a href="index.html" class="logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></a>
   <nav>
-    <a href="markets.html">Markets</a>
-    <a href="sports.html">Sports</a>
-    <a href="live.html">Live</a>
     <a href="news.html">News</a>
   </nav>
   <button class="menu-btn" onclick="this.previousElementSibling.classList.toggle('open')" aria-label="Open menu">☰</button>
 </header>
 
-<!-- LIVE TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    <!-- GENX:TICKER:START -->
-    <span class="ticker-item"><span class="label">⚽ ENGLAND WIN EURO 2028</span> 55¢ <span class="up">▲1.8%</span></span>
-    <span class="ticker-item"><span class="label">🏀 CELTICS WIN NBA FINALS 2026</span> 78¢ <span class="up">▲0.5%</span></span>
-    <span class="ticker-item"><span class="label">🎾 ALCARAZ WIMBLEDON 2026</span> 62¢ <span class="down">▼1.2%</span></span>
-    <span class="ticker-item"><span class="label">🏈 SUPER BOWL LXI WINNER CHIEFS</span> 28¢ <span class="up">▲3.1%</span></span>
-    <span class="ticker-item"><span class="label">🏎️ VERSTAPPEN F1 TITLE 2026</span> 89¢ <span class="up">▲0.7%</span></span>
-    <span class="ticker-item"><span class="label">⚾ YANKEES WIN WORLD SERIES 2026</span> 45¢ <span class="down">▼2.0%</span></span>
-    <span class="ticker-item"><span class="label">🥊 FURY VS USYK REMATCH 2026</span> 68¢ <span class="up">▲1.1%</span></span>
-    <span class="ticker-item"><span class="label">🏒 OILERS WIN STANLEY CUP 2026</span> 37¢ <span class="down">▼1.5%</span></span>
-    <span class="ticker-item"><span class="label">⚽ ENGLAND WIN EURO 2028</span> 55¢ <span class="up">▲1.8%</span></span>
-    <span class="ticker-item"><span class="label">🏀 CELTICS WIN NBA FINALS 2026</span> 78¢ <span class="up">▲0.5%</span></span>
-    <span class="ticker-item"><span class="label">🎾 ALCARAZ WIMBLEDON 2026</span> 62¢ <span class="down">▼1.2%</span></span>
-    <span class="ticker-item"><span class="label">🏈 SUPER BOWL LXI WINNER CHIEFS</span> 28¢ <span class="up">▲3.1%</span></span>
-    <span class="ticker-item"><span class="label">🏎️ VERSTAPPEN F1 TITLE 2026</span> 89¢ <span class="up">▲0.7%</span></span>
-    <span class="ticker-item"><span class="label">⚾ YANKEES WIN WORLD SERIES 2026</span> 45¢ <span class="down">▼2.0%</span></span>
-    <span class="ticker-item"><span class="label">🥊 FURY VS USYK REMATCH 2026</span> 68¢ <span class="up">▲1.1%</span></span>
-    <span class="ticker-item"><span class="label">🏒 OILERS WIN STANLEY CUP 2026</span> 37¢ <span class="down">▼1.5%</span></span>
-    <!-- GENX:TICKER:END -->
-  </div>
-</div>
-
 <!-- HERO -->
 <section class="hero">
 
-  <!-- Neon grid floor SVG -->
+  <!-- Neon grid floor -->
   <div class="grid-floor">
     <svg viewBox="0 0 1400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -922,14 +459,16 @@
     </svg>
   </div>
 
+  <span class="hero-eyebrow">// Sports Prediction Market Intel //</span>
+
   <h1 class="hero-title">
-    <span class="line1">PREDICT.</span>
-    <span class="line2">PROFIT.</span>
+    <span class="line1">SHARP TAKES.</span>
+    <span class="line2">ZERO NOISE.</span>
   </h1>
 
   <p class="hero-subtitle">
-    A next-generation sports prediction exchange powered by crypto markets.
-    Trade outcome shares on the world's biggest sporting events.<span class="blink">_</span>
+    Daily analysis on sports prediction markets — the trends, the edges, and the stories
+    behind the odds, from the Genx team.<span class="blink">_</span>
   </p>
 
 </section>
@@ -973,275 +512,16 @@
   </div>
 </section>
 
-<!-- LIVE MARKETS -->
-<section class="section">
-  <span class="section-tag">// Live Markets //</span>
-  <h2 class="section-title" style="color: var(--neon-cyan); text-shadow: 0 0 30px rgba(0,245,255,0.4);">ACTIVE CONTRACTS</h2>
-  <p style="color: rgba(255,255,255,0.5); font-size: 1rem; max-width: 600px; line-height: 1.6;">Trade outcome shares across the world's biggest sporting events, from major leagues to niche competitions.</p>
-
-  <div class="markets-grid">
-    <!-- GENX:MARKETS:START -->
-    <div class="market-card" style="--card-color: var(--neon-cyan)">
-      <div class="bracket-tl" style="border-color: rgba(0,245,255,0.4)"></div><div class="bracket-tr" style="border-color: rgba(0,245,255,0.4)"></div><div class="bracket-bl" style="border-color: rgba(0,245,255,0.4)"></div><div class="bracket-br" style="border-color: rgba(0,245,255,0.4)"></div>
-      <div class="market-sport">⚽ SOCCER • LIVE</div>
-      <div class="market-question">Will France beat Portugal in their friendly match on June 21st, 2026?</div>
-      <div class="prob-bar"><div class="prob-fill" style="width: 63%"></div></div>
-      <div class="market-options">
-        <button class="option-btn">YES 63¢</button>
-        <button class="option-btn">NO 37¢</button>
-      </div>
-      <div class="market-meta">
-        <span>Vol: $2.1M</span>
-        <span>7,890 traders</span>
-        <span>Closes: 2h 05m</span>
-      </div>
-    </div>
-
-    <div class="market-card" style="--card-color: var(--neon-pink)">
-      <div class="bracket-tl" style="border-color: rgba(255,0,110,0.4)"></div><div class="bracket-tr" style="border-color: rgba(255,0,110,0.4)"></div><div class="bracket-bl" style="border-color: rgba(255,0,110,0.4)"></div><div class="bracket-br" style="border-color: rgba(255,0,110,0.4)"></div>
-      <div class="market-sport">🏀 NBA • HOT</div>
-      <div class="market-question">Will the Boston Celtics win Game 6 of the NBA Finals on June 22nd?</div>
-      <div class="prob-bar"><div class="prob-fill" style="width: 78%"></div></div>
-      <div class="market-options">
-        <button class="option-btn">YES 78¢</button>
-        <button class="option-btn">NO 22¢</button>
-      </div>
-      <div class="market-meta">
-        <span>Vol: $3.8M</span>
-        <span>12,115 traders</span>
-        <span>Closes: 1d 15h</span>
-      </div>
-    </div>
-
-    <div class="market-card" style="--card-color: var(--neon-yellow)">
-      <div class="bracket-tl" style="border-color: rgba(255,230,0,0.4)"></div><div class="bracket-tr" style="border-color: rgba(255,230,0,0.4)"></div><div class="bracket-bl" style="border-color: rgba(255,230,0,0.4)"></div><div class="bracket-br" style="border-color: rgba(255,230,0,0.4)"></div>
-      <div class="market-sport">🎾 TENNIS • TRENDING</div>
-      <div class="market-question">Will Jannik Sinner reach the Wimbledon 2026 Men's Singles Final?</div>
-      <div class="prob-bar"><div class="prob-fill" style="width: 55%"></div></div>
-      <div class="market-options">
-        <button class="option-btn">YES 55¢</button>
-        <button class="option-btn">NO 45¢</button>
-      </div>
-      <div class="market-meta">
-        <span>Vol: $1.5M</span>
-        <span>4,980 traders</span>
-        <span>Closes: 8d 10h</span>
-      </div>
-    </div>
-
-    <div class="market-card" style="--card-color: var(--neon-green)">
-      <div class="bracket-tl" style="border-color: rgba(57,255,20,0.4)"></div><div class="bracket-tr" style="border-color: rgba(57,255,20,0.4)"></div><div class="bracket-bl" style="border-color: rgba(57,255,20,0.4)"></div><div class="bracket-br" style="border-color: rgba(57,255,20,0.4)"></div>
-      <div class="market-sport">⚾ MLB • UPCOMING</div>
-      <div class="market-question">Will the Los Angeles Dodgers win their series against the San Francisco Giants (June 24-26)?</div>
-      <div class="prob-bar"><div class="prob-fill" style="width: 68%"></div></div>
-      <div class="market-options">
-        <button class="option-btn">YES 68¢</button>
-        <button class="option-btn">NO 32¢</button>
-      </div>
-      <div class="market-meta">
-        <span>Vol: $950K</span>
-        <span>3,560 traders</span>
-        <span>Closes: 3d 4h</span>
-      </div>
-    </div>
-
-    <div class="market-card" style="--card-color: var(--neon-orange)">
-      <div class="bracket-tl" style="border-color: rgba(255,102,0,0.4)"></div><div class="bracket-tr" style="border-color: rgba(255,102,0,0.4)"></div><div class="bracket-bl" style="border-color: rgba(255,102,0,0.4)"></div><div class="bracket-br" style="border-color: rgba(255,102,0,0.4)"></div>
-      <div class="market-sport">🏎️ FORMULA 1 • SEASON</div>
-      <div class="market-question">Will Max Verstappen secure pole position for the Austrian Grand Prix 2026?</div>
-      <div class="prob-bar"><div class="prob-fill" style="width: 72%"></div></div>
-      <div class="market-options">
-        <button class="option-btn">YES 72¢</button>
-        <button class="option-btn">NO 28¢</button>
-      </div>
-      <div class="market-meta">
-        <span>Vol: $1.2M</span>
-        <span>4,120 traders</span>
-        <span>Closes: 7d 22h</span>
-      </div>
-    </div>
-
-    <div class="market-card" style="--card-color: var(--neon-purple)">
-      <div class="bracket-tl" style="border-color: rgba(191,0,255,0.4)"></div><div class="bracket-tr" style="border-color: rgba(191,0,255,0.4)"></div><div class="bracket-bl" style="border-color: rgba(191,0,255,0.4)"></div><div class="bracket-br" style="border-color: rgba(191,0,255,0.4)"></div>
-      <div class="market-sport">🏈 NFL • SEASON</div>
-      <div class="market-question">Will the Kansas City Chiefs win over 11.5 regular season games in 2026?</div>
-      <div class="prob-bar"><div class="prob-fill" style="width: 48%"></div></div>
-      <div class="market-options">
-        <button class="option-btn">YES 48¢</button>
-        <button class="option-btn">NO 52¢</button>
-      </div>
-      <div class="market-meta">
-        <span>Vol: $1.9M</span>
-        <span>6,750 traders</span>
-        <span>Closes: 85d</span>
-      </div>
-    </div>
-    <!-- GENX:MARKETS:END -->
-  </div>
-</section>
-
-<!-- SPORTS NEON SHOWCASE -->
-<section class="sports-showcase">
-  <span class="section-tag">// Covered Sports //</span>
-  <h2 class="section-title" style="color:var(--neon-pink); text-shadow: 0 0 30px rgba(255,0,110,0.4);">EVERY SPORT. EVERY MARKET.</h2>
-
-  <div class="sports-icons-row">
-
-    <a href="sports.html#football" class="sport-icon-wrap" style="--icon-color: var(--neon-cyan)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="26" fill="none" stroke="#00f5ff" stroke-width="2.5"/>
-        <path d="M 20 22 Q 40 32 60 22" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 20 58 Q 40 48 60 58" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity="0.7"/>
-        <line x1="14" y1="40" x2="66" y2="40" stroke="#00f5ff" stroke-width="1.5"/>
-        <line x1="40" y1="14" x2="40" y2="66" stroke="#00f5ff" stroke-width="1.5"/>
-      </svg>
-      <span class="sport-icon-label">Football</span>
-    </a>
-
-    <a href="sports.html#nfl" class="sport-icon-wrap" style="--icon-color: var(--neon-orange)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="40" cy="40" rx="26" ry="17" fill="none" stroke="#ff6600" stroke-width="2.5"/>
-        <line x1="14" y1="40" x2="66" y2="40" stroke="#ff6600" stroke-width="2"/>
-        <line x1="37" y1="30" x2="37" y2="50" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
-        <line x1="40" y1="27" x2="40" y2="53" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
-        <line x1="43" y1="30" x2="43" y2="50" stroke="#ff6600" stroke-width="1.5" opacity="0.7"/>
-      </svg>
-      <span class="sport-icon-label">NFL</span>
-    </a>
-
-    <a href="sports.html#nba" class="sport-icon-wrap" style="--icon-color: var(--neon-yellow)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="26" fill="none" stroke="#ffe600" stroke-width="2.5"/>
-        <line x1="14" y1="40" x2="66" y2="40" stroke="#ffe600" stroke-width="1.5"/>
-        <line x1="40" y1="14" x2="40" y2="66" stroke="#ffe600" stroke-width="1.5"/>
-        <path d="M 20 20 Q 30 40 20 60" fill="none" stroke="#ffe600" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 20 Q 50 40 60 60" fill="none" stroke="#ffe600" stroke-width="1.5" opacity="0.7"/>
-      </svg>
-      <span class="sport-icon-label">NBA</span>
-    </a>
-
-    <a href="sports.html#formula1" class="sport-icon-wrap" style="--icon-color:var(--neon-pink)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 8 46 L 20 34 L 50 30 L 68 38 L 72 46 L 8 46 Z" fill="none" stroke="#ff006e" stroke-width="2.5"/>
-        <circle cx="22" cy="48" r="6" fill="none" stroke="#ff006e" stroke-width="2"/>
-        <circle cx="56" cy="48" r="6" fill="none" stroke="#ff006e" stroke-width="2"/>
-        <line x1="28" y1="48" x2="50" y2="48" stroke="#ff006e" stroke-width="2" opacity="0.4"/>
-        <line x1="30" y1="34" x2="32" y2="22" stroke="#ff006e" stroke-width="2" opacity="0.7"/>
-        <line x1="32" y1="22" x2="48" y2="22" stroke="#ff006e" stroke-width="2" opacity="0.7"/>
-      </svg>
-      <span class="sport-icon-label">Formula 1</span>
-    </a>
-
-    <a href="sports.html#tennis" class="sport-icon-wrap" style="--icon-color: var(--neon-purple)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="38" cy="38" r="22" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
-        <path d="M 22 22 Q 38 32 22 54" fill="none" stroke="#bf00ff" stroke-width="2" opacity="0.8"/>
-        <path d="M 54 22 Q 38 32 54 54" fill="none" stroke="#bf00ff" stroke-width="2" opacity="0.8"/>
-        <rect x="37" y="58" width="8" height="14" rx="2" fill="none" stroke="#bf00ff" stroke-width="1.8"/>
-      </svg>
-      <span class="sport-icon-label">Tennis</span>
-    </a>
-
-    <a href="sports.html#boxing" class="sport-icon-wrap" style="--icon-color: var(--neon-green)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 25 50 Q 20 40 28 30 Q 36 20 46 24 Q 58 26 58 38 L 56 52 Q 52 62 42 62 Q 32 62 25 50 Z" fill="none" stroke="#39ff14" stroke-width="2.5"/>
-        <line x1="30" y1="62" x2="28" y2="72" stroke="#39ff14" stroke-width="2" opacity="0.7"/>
-        <line x1="50" y1="62" x2="52" y2="72" stroke="#39ff14" stroke-width="2" opacity="0.7"/>
-        <line x1="28" y1="72" x2="52" y2="72" stroke="#39ff14" stroke-width="2.5" opacity="0.8"/>
-        <line x1="40" y1="30" x2="40" y2="52" stroke="#39ff14" stroke-width="1.5" opacity="0.4"/>
-      </svg>
-      <span class="sport-icon-label">Boxing / MMA</span>
-    </a>
-
-    <a href="sports.html#cricket" class="sport-icon-wrap" style="--icon-color: #00ffcc">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <rect x="34" y="16" width="12" height="38" rx="4" fill="none" stroke="#00ffcc" stroke-width="2.5"/>
-        <line x1="30" y1="54" x2="50" y2="54" stroke="#00ffcc" stroke-width="2"/>
-        <circle cx="26" cy="28" r="10" fill="none" stroke="#00ffcc" stroke-width="2" opacity="0.8"/>
-        <line x1="36" y1="62" x2="34" y2="70" stroke="#00ffcc" stroke-width="2"/>
-        <line x1="44" y1="62" x2="46" y2="70" stroke="#00ffcc" stroke-width="2"/>
-      </svg>
-      <span class="sport-icon-label" style="color: #00ffcc; text-shadow: 0 0 6px #00ffcc">Cricket</span>
-    </a>
-
-    <a href="sports.html#hockey" class="sport-icon-wrap" style="--icon-color: #00aaff">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <line x1="30" y1="14" x2="30" y2="56" stroke="#00aaff" stroke-width="2.5"/>
-        <path d="M 30 56 Q 34 68 50 68 Q 62 68 62 60 Q 62 52 50 52 L 30 52" fill="none" stroke="#00aaff" stroke-width="2.5"/>
-        <circle cx="55" cy="72" r="5" fill="none" stroke="#00aaff" stroke-width="2"/>
-      </svg>
-      <span class="sport-icon-label" style="color: #00aaff; text-shadow: 0 0 6px #00aaff">Hockey (NHL)</span>
-    </a>
-
-    <a href="sports.html#esports" class="sport-icon-wrap" style="--icon-color: var(--neon-purple)">
-      <svg class="sport-icon-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <rect x="12" y="28" width="56" height="32" rx="16" fill="none" stroke="#bf00ff" stroke-width="2.5"/>
-        <line x1="28" y1="38" x2="28" y2="50" stroke="#bf00ff" stroke-width="2"/>
-        <line x1="22" y1="44" x2="34" y2="44" stroke="#bf00ff" stroke-width="2"/>
-        <circle cx="50" cy="40" r="3" fill="#bf00ff" opacity="0.9"/>
-        <circle cx="57" cy="47" r="3" fill="#bf00ff" opacity="0.9"/>
-      </svg>
-      <span class="sport-icon-label">Esports</span>
-    </a>
-
-  </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="cta-section">
-  <h2 class="cta-title">
-    <span>YOUR KNOWLEDGE.</span>
-    <span>YOUR CALL.</span>
-  </h2>
-  <p class="cta-desc">Join thousands of traders on the world's leading sports prediction exchange. Free to sign up.</p>
-  <div class="email-form">
-    <input type="email" class="email-input" placeholder="Enter your email address">
-    <button class="email-submit">GET EARLY ACCESS</button>
-  </div>
-  <p style="margin-top: 1.2rem; font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em;">// No spam. Unsubscribe anytime. //</p>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></div>
   <div class="footer-links">
-    <a href="markets.html">Markets</a>
-    <a href="sports.html">Sports</a>
-    <a href="live.html">Live</a>
     <a href="news.html">News</a>
   </div>
   <div class="footer-copy">© 2026 GENX-SPORTSBOOK INC. ALL RIGHTS RESERVED</div>
 </footer>
 
 </div>
-
-<script>
-  // Interactive market cards
-  document.querySelectorAll('.option-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const siblings = this.closest('.market-options').querySelectorAll('.option-btn');
-      siblings.forEach(s => s.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-  // Animate prob bars on scroll
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fills = entry.target.querySelectorAll('.prob-fill');
-        fills.forEach((fill, i) => {
-          const targetWidth = fill.style.width;
-          fill.style.width = '0%';
-          setTimeout(() => { fill.style.width = targetWidth; }, i * 150);
-        });
-        barObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('.market-card').forEach(card => barObserver.observe(card));
-</script>
 
 </body>
 </html>
