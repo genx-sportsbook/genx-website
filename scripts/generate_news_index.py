@@ -177,6 +177,7 @@ def build_news_html(articles: list) -> str:
   <a href="index.html" class="logo">GENX-<span style="color:var(--neon-pink)">SPORTSBOOK</span></a>
   <nav>
     <a href="news.html" class="active">News</a>
+    <a href="https://odds.genx-sportsbook.com" target="_blank" rel="noopener">Live Odds</a>
   </nav>
   <button class="menu-btn" onclick="this.previousElementSibling.classList.toggle('open')" aria-label="Open menu">☰</button>
 </header>
