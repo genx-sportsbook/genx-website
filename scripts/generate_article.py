@@ -24,7 +24,7 @@ if not GEMINI_API_KEY:
 
 GEMINI_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-2.5-flash:generateContent?key=" + GEMINI_API_KEY
+    "gemini-3.6-flash:generateContent?key=" + GEMINI_API_KEY
 )
 
 TODAY = date.today()
